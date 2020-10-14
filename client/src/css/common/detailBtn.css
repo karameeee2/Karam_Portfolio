@@ -1,0 +1,23 @@
+.progressDetailBtnBox, .endDetailBtnBox, .noticeDetailBtnBox {
+    width: 1200px; margin: 30px auto 100px;
+}
+
+.submitCancelBox {
+    display: none; width: 240px; margin: auto;
+}
+.submitCancelBox button {
+    width: 120px; height: 36px; cursor: pointer;
+}
+.surveySubmitBtn {
+    background-color: #C7C7C7; border: none; color: white;
+}
+.surveyCancelBtn {
+    background-color: white; border: 1px solid #C7C7C7;
+}
+
+.listBox {
+    width: 120px; margin: auto;
+}
+.goSurveyListBtn {
+    width: 120px; height: 36px; background-color: #C7C7C7; border: none; color: white; cursor: pointer;
+}

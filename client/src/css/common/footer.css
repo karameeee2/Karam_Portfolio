@@ -1,0 +1,3 @@
+#footerBox { bottom:0; width: 100%; height: 100px; line-height: 100px; text-align: center; background-color: #F0F0F0;}
+.centerBox {width: 1200px; margin: auto;}
+.centerBox p {font-size: 16px;}

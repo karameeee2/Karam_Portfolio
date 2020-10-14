@@ -1,0 +1,5 @@
+.progressPrevWrap {width: 100%;}
+
+.buttonWrap {width: 1200px; height:60px; margin: 0 auto; padding: 12px 0; box-sizing: border-box;}
+.buttonWrap button { width: 120px; height:36px; float: right; background-color: #C7C7C7; border: none; color: white; cursor: pointer;}
+

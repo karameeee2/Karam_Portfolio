@@ -1,0 +1,20 @@
+.pageTitleBox { 
+    display: flex; width: 100%;
+}
+.pageTitleWrap { 
+    width: 1200px; margin: 0 auto; text-align: center; border-bottom: 10px solid #F0F0F0;
+}
+.pageTitleWrap h2 { 
+    margin: 70px 0; font-size: 24px; color: black; font-weight: bold;
+}
+
+/* innerTitle */
+.innerTitleWrap {
+    width: 100%; height: auto;
+}
+.innerTitleBox {
+    margin: 70px auto;
+}
+.innerTitleBox h2 {
+    font-size: 20px; font-weight: bold; text-align: center;
+}

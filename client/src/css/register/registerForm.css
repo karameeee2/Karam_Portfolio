@@ -1,0 +1,44 @@
+.registerFormSection {
+    width: 100%
+}
+.registerFormContainer {
+    width: 800px; height: auto; margin: 100px auto; padding: 70px; box-sizing: border-box; 
+    border-radius: 5px; border: 1px solid black;
+}
+.registerFormWrap {
+    width: 480px; margin: auto;
+}
+.titleBox {
+    margin-bottom: 60px; text-align: center;
+}
+.titleBox .registerTitle {
+    font-size: 24px; color: black; font-weight: bold;
+}
+
+.registerInputWrap {
+    display: flex; flex-direction: column;
+}
+
+.idInput, .passwordInput, .passwordConfirm {
+    width:100%; height: 48px; margin-bottom: 10px; padding: 0 10px;
+    box-sizing: border-box; border: 1px solid #C7C7C7;
+}
+.nameNickWrap, .genderBirthWrap {
+    width: 100%; height: 48px; margin-bottom: 10px;
+}
+.nameInput, .genderSelect  {
+    width: 235px; height: 48px; margin-right: 10px; padding: 0 10px; 
+    box-sizing: border-box;  border: 1px solid #C7C7C7;
+}
+
+.nicknameInput, .birthInput {
+    width: 235px; height: 48px; padding: 0 10px; border: 1px solid #C7C7C7; 
+    box-sizing: border-box;
+}
+.registerFormWrap .registerBtnWrap {
+    width: 100%; height: 48px; margin: 0; 
+}
+.registerFormWrap .registerBtnWrap .registerBtn {
+    width: 100%; height: 48px; background-color: #C7C7C7; color: white; 
+    font-weight: bold; border: none; cursor: pointer;
+}

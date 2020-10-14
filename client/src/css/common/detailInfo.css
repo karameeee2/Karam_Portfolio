@@ -1,0 +1,6 @@
+.detailInfoBox {display: flex; width: 1200px; margin: 60px auto;}
+
+.infoThumbnail {width: 320px; height: 160px; margin-right: 30px;}
+.infoSubject { height: 60px; line-height: 30px; font-size: 24px; font-weight: bold;}
+.infoContent, .infoSpanWrap { margin-top: 20px; font-size: 16px; line-height: 20px;}
+.verLine { margin: 0 10px;}

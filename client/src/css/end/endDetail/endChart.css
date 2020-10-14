@@ -1,0 +1,53 @@
+.chartWrap {
+    display: flex; flex-direction: column; width: 1200px; margin: 60px auto;
+}
+.chartWrap .qst {
+    font-size: 24px; line-height: 32px;
+}
+.chartWrap .aswBox {
+    height: 30px; line-height: 30px; margin:20px 0 0 0
+}
+.chartBox {
+    display: flex; width: 1200px; height: 30px; line-height: 30px;
+}
+.age {
+    display: inline-block; width: 40px; height: 30px; margin-right: 20px;
+    text-align: center;
+}
+.chartBar {
+    display: inline-block; width: 1140px; height: 30px;
+}
+.chartBar li {
+    display: inline-block; height: 30px;
+}
+.answer01, .color01 {
+    background-color: #484848;
+}
+.answer02, .color02 {
+    background-color: #858585;
+}
+.answer03, .color03 {
+    background-color: #B7B7B7;
+}
+.answer04, .color04 {
+    background-color: #D2D2D2;
+}
+.answer05, .color05 {
+    background-color: #E4E4E4;
+}
+
+.categoryBox {
+    display: flex; justify-content: flex-end; line-height: 20px; margin-top: 6px;
+}
+.category {
+    display: flex;
+    margin-left: 20px;
+}
+
+.categoryColor {
+    display: inline-block; width: 16px; height: 16px; margin: 2px 6px 0 0; 
+}
+
+.categoryName {
+
+}

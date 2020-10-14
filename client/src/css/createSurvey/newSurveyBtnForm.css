@@ -1,0 +1,17 @@
+.createNewSurveyBtnContainer {
+    display: flex; width: 1200px; margin: 0 auto 90px;
+}
+/* submit, cancel */
+.submitCancelBtn {
+    width: 240px; height: 36px; margin: auto;
+}
+.submitCancelBtn button {
+    width: 120px; height: 36px;
+}
+
+.submitNewSurvey {
+    background-color: #C7C7C7; border: none; color:white;
+}
+.cancelBtn {
+    background-color: white; border: 1px solid #C7C7C7; color: black;
+}

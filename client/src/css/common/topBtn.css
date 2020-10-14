@@ -1,0 +1,4 @@
+#topBtnWrap {position: fixed; right:40px; bottom:40px; width: 50px; height: 50px; line-height: 50px; 
+                border-radius: 25px; text-align: center; background-color: white; border: 1px solid #E6E6E6;
+                cursor: pointer;}
+#topBtnWrpa a {display: flex; width: 50px; height: 50px; color: black;}

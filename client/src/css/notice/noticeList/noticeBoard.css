@@ -1,0 +1,30 @@
+.noticeBoardContainer {
+    width: 1200px; margin: 0 auto 100px;
+}
+.noticeBoardWrap {
+    width: 1200px;
+}
+.noticeRowWrap {
+    height: 48px; line-height: 48px; border-bottom: 1px solid #C7C7C7;
+}
+.noticeContentWrap {
+    height: 48px; line-height: 48px; border-bottom: 1px solid #F0F0F0;
+}
+.noticeContentWrap:last-child {
+    border-bottom: 1px solid black;
+}
+.rowSmall {
+    width: 100px;
+}
+.rowMidium {
+    width: 150px;
+}
+.rowLarge {
+    width: 780px;
+}
+.noticeContentWrap .num, .noticeContentWrap .regdate, .noticeContentWrap .hit {
+    text-align: center;
+}
+.noticeContentWrap .subject {
+    padding: 0 10px; box-sizing: border-box; color: black
+}

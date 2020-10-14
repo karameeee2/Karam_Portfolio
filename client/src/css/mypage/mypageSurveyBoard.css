@@ -1,0 +1,35 @@
+.mysurveyBoardSection, .takesurveyBoardSection {
+    width: 100%;
+}
+.mysurveyBoardContainer, .takesurveyBoardContainer {
+    width: 100%;
+}
+.mysurveyBoardWrap, .takesurveyBoardWrap {
+    width: 100%; margin-bottom: 70px; border-top: 1px solid #C7C7C7; 
+    border-bottom: 1px solid #C7C7C7;
+}
+.mysurveyBoardWrap tr, .takesurveyBoardWrap tr {
+    height: 60px; line-height: 60px;
+}
+.mysurveyBoardWrap .tableRowWrap, .takesurveyBoardWrap .tableRowWrap {
+    border-bottom: 1px solid #C7C7C7;
+}
+.mysurveyBoardWrap .rowLarge, .takesurveyBoardWrap .rowLarge {
+    width: 740px;
+}
+.mysurveyBoardWrap .rowSmall, .takesurveyBoardWrap .rowSmall {
+    width: 160px;
+}
+
+.mysurveyBoardWrap .tablecontentWrap, .takesurveyBoardWrap .tablecontentWrap {
+    border-bottom: 1px solid #E6E6E6;
+}
+.mysurveyBoardWrap .tablecontentWrap:last-child, .takesurveyBoardWrap .tablecontentWrap:last-child {
+    border-bottom: none;
+}
+.tablecontentWrap td {
+    padding: 0 20px; box-sizing: border-box; color: black;
+}
+.tablecontentWrap .regdate {
+    text-align: center;
+}

@@ -1,0 +1,16 @@
+.mypageCategoryContainer {
+    width: 25%; height: auto;
+}
+.categoryWrap {
+    width: 100%;
+}
+.categories {
+    height: 60px; line-height: 60px; border-bottom: 1px solid #C7C7C7; 
+    padding: 0 30px;
+}
+.categories a {
+    cursor: pointer;
+}
+.categories a:hover, .categories a:active {
+    font-weight: bold;
+}

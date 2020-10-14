@@ -1,0 +1,6 @@
+.mypageSection {
+    width: 100%;
+}
+.mypageContainer {
+    display: flex; width: 1200px; min-height: 500px; margin: 0 auto 100px; border-bottom: 1px solid black;
+}

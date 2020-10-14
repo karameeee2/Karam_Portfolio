@@ -1,0 +1,24 @@
+.noticeFullContainer {
+    width: 1200px; margin: 0 auto 30px;
+}
+.noticeFullWrap { 
+    border-bottom: 1px solid black;
+}
+.noticeFullRowWrap {
+    height: 48px; line-height: 48px; border-bottom: 1px solid #C7C7C7;
+}
+.rowSmall {
+    width: 100px;
+}
+.rowMedium {
+    width: 150px;
+}
+.rowLarge {
+    width: 780px;
+}
+.noticeFullContentWrap {
+    width: 100%;
+}
+.noticeContent {
+    width: 100%; padding: 30px; box-sizing: border-box; line-height: 24px;
+}

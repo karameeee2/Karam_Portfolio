@@ -1,0 +1,33 @@
+.modifyFormSection {
+    width: 100%; height: auto;
+}
+.modifyFormContainer {
+    width: 480px; height: auto; margin: 0 auto 70px;
+}
+.modifyInputWrap {
+    width: 100%; height: auto;
+}
+.modifyInputWrap input {
+    width: 480px; height: 48px; margin-bottom: 10px; padding: 0 10px; 
+    border: 1px solid #C7C7C7; box-sizing: border-box; 
+}
+.modifyInputWrap input:read-only {
+    color: #C7C7C7;
+}
+.halfRowWrap {
+    width: 100%; height: 48px; margin-bottom: 10px;
+}
+.halfRowWrap input {
+    width: 235px; height: 48px;
+}
+.nameInput, .genderInput {
+    margin-right: 10px;
+}
+
+.modifyBtnWrap {
+    width: 100%; height: 48px;
+}
+.modifySubmitBtn {
+    width: 100%; height: 48px; background-color: #C7C7C7; border: none;
+    color: white;
+}

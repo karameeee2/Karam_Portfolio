@@ -1,0 +1,52 @@
+/* 전체 사이즈 */
+.createNewSurveyInfoContainer {
+    display: flex; flex-direction: column; width: 1200px; margin: 60px auto 30px;
+}
+
+/* 하단 30px 여백 */
+.bottom30 {
+    margin-bottom: 30px!important;
+}
+
+/* newSurvey info input */
+/* row */
+.newSurveyRow {
+    width: 100%; margin-bottom: 10px;
+}
+.newSurveyRow input, .newSurveyHalfRow input {
+    width: 100%; height: 40px; line-height: 40px; padding: 0 10px; 
+    border:1px solid #C7C7C7; box-sizing: border-box;
+}
+.newSurveyRow textarea {
+    display: block; width: 100%; height: 60px; line-height: 24px; 
+    border:1px solid #C7C7C7; padding: 6px 10px; box-sizing: border-box;
+}
+.newSurveyHalfRow {
+    display: flex;
+}
+/* halfRow */
+.halfRowLeft {
+    width: 590px; margin-right: 20px;
+}
+.halfRowRight {
+    width: 590px;
+}
+
+/* file, datePicker, comment */
+.fileInputBox, .datePickerBox {
+    width: 100%;
+}
+.fileInputBox .fileName, .datePickerBox .datePick {
+    width: 500px; border-radius: 0;
+}
+.fileInputBox button, .datePickerBox button {
+    width: 90px; height: 40px; background-color: #2A2a2A; color: white; 
+    border: none; box-sizing: border-box; cursor: pointer;
+}
+.commentBox {
+    width: 100%; height: 16px; line-height: 16px;
+}
+.newSurveyComment { font-size: 12px;}
+
+
+

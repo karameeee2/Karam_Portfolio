@@ -1,0 +1,5 @@
+.qnaWrap {width: 1200px; height: auto; margin: 60px auto;}
+
+.qst {font-size: 24px; line-height: 32px;}
+.aswBox {display: inline-flex; height: 24px; line-height: 24px; margin: 10px 60px 0 0;font-size: 16px; }
+.asw {height: 24px;line-height: 24px; margin-right: 6px;}

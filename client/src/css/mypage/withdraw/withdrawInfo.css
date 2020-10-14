@@ -1,0 +1,23 @@
+.withdrawInfoSection {
+    width: 100%; margin: 0 auto; border-top: 1px solid #C7C7C7;
+}
+
+.withdrawInfoContainer {
+    width: 700px; margin: 70px auto;
+}
+.withdrawWrap {
+    width: 100%;
+}
+.infoTextBox {
+    width: 100%; margin-bottom: 30px;
+}
+.withdrawInputBox {
+    width: 600px; height: 48px; margin: 0 auto;
+}
+.withdrawInputBox .passwordInput {
+    width: 480px; height: 48px; border: 1px solid #C7C7C7; padding: 0 10px; 
+}
+.withdrawInputBox .withdrawSubmit {
+    width: 120px; height: 48px; background-color: #C7C7C7; border: none; color: white;
+    font-weight: bold;
+}
