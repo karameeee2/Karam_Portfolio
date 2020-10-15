@@ -11,6 +11,11 @@ const RegisterForm = () => {
                 </div>
                 <div className="registerInputWrap">
                     <input type="text" className='idInput' placeholder='아이디(이메일)'/>
+                    <div className="certBox">
+                        <input type="text" className="certNumber" placeholder='인증번호입력'/>
+                        <button className='certNumSend'>인증번호전송</button>
+                        <button className='certOk'>인증완료</button>
+                    </div>
                     <input type="password" className="passwordInput" placeholder='비밀번호'/>
                     <input type="password" className="passwordConfirm" placeholder='비밀번호 확인'/>
                     <div className="nameNickWrap">

@@ -11,13 +11,10 @@ const RegisterComplete = () => {
                 </div>
                 <div className="completeTextBox">
                     <p className="completeText">회원가입을 축하드립니다.</p>
-                    <p className="completeText">
-                        아이디로 입력하신 메일로 인증메일을 발송하였으니, 
-                        인증메일의 링크를 클릭해 인증을 완료하시기 바랍니다.
-                    </p>
                     <br />
                     <p className="completeText">
-                        이메일 인증이 완료되지 않으면 로그인 및 사이트 이용이 불가합니다.
+                        로그인 후 다양한 설문에 응답하고 내가 필요한 설문을 등록해 다양한 데이터를 얻어보세요! 
+                        많은 이용 부탁드립니다.
                     </p>
                     <br />
                     <p className="completeText">감사합니다.</p>
