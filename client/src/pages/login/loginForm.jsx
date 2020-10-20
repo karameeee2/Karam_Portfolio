@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/login/loginForm.css';
 
 const LoginForm = () => {
@@ -14,7 +15,8 @@ const LoginForm = () => {
                     <button type='submit' className='loginBtn'>로그인</button>
                 </div>
                 <div className="registerBtnWrap">
-                    <button className='registerBtn'>회원가입</button>
+                    <Link to='/register'><button className='registerBtn'>회원가입</button></Link>
+                    
                 </div>
                 <p className="findIdPw">
                     <a href="" className="findId">아이디찾기</a>

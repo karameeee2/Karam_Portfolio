@@ -11,7 +11,7 @@ const ModifyForm = () => {
                 <input type="password" className="passwordConfirmInput" placeholder='새 비밀번호 확인'/>
                 <p className="halfRowWrap">
                     <input type="text" className="nameInput" value='유가람' readOnly />
-                    <input type="text" className="nickNameInput" value='karameeee' />
+                    <input type="text" className="nickNameInput" placeholder='닉네임' defaultValue='karameeee' />
                 </p>
                 <p className="halfRowWrap">
                     <input type="text" className="genderInput" value='여' readOnly />
