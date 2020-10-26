@@ -9,6 +9,11 @@
   "author": "karameeee",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-server": "^0.12.3",
+    "method-override": "^3.0.0",
+    "yarn": "^1.22.10"
   }
 }

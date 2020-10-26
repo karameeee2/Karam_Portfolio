@@ -18,10 +18,20 @@ import RegisterFormComponent from '../components/register/registerForm';
 import RegisterCompleteComponent from '../components/register/registerComplete';
 import SearchResultComponent from '../components/search/searchResult';
 import MypageComponent from '../components/mypage/mypage';
+import Axios from 'axios';
 
 
 class App extends Component {
-
+    // componentDidMount(){} 를 요청이 필요한 곳에 작성해서 데이터 요청 해야함
+    componentDidMount(){
+        const requestUrl = 'localhost:8080/'
+        
+        Axios.get(requestUrl).then(res => {
+            console.log('res', res)
+        }).catch(err => {
+            console.log('err', err.response)
+        })
+    }
     render() {
         return (
             <div>
