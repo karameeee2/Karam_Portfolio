@@ -11,7 +11,7 @@ const EndPreview = (props) => {
                 {endPreview.map((item) => {
                     return (
                         <li className="prevBox">
-                            <img className="prevThumbnail" src={item.thumbnail} />
+                            <img className="prevThumbnail" src={item.thumbnail} alt='설문 썸네일 이미지' />
                             <Link to="/endDetail"><h3 className='prevSubject'>{item.subject}</h3></Link>
                             <p className='prevNickname'>{item.nickname}</p>
                             <p className='prevTerm'>{item.term}</p>

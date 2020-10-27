@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../../css/common/previewList.css';
 import '../../../css/progress/progressList/progressPreview.css';
 
-const CreateBtn = (props) => {
-    const progressPreview = props.progressPreview;
+const CreateBtn = () => {
     return (
         <div className="buttonWrap">
             <Link to='/createSurvey'>

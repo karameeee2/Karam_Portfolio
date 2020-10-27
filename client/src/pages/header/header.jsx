@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/common/header.css';
-import surveyOnLogo from '../../assets/logo/survey_on_logo_2.svg';
+import surveyOnLogo from '../../assets/logo/survey_on_logo_1.svg';
 
 const Header = (props) => {
     const gnb = props.gnb;
@@ -11,7 +11,7 @@ const Header = (props) => {
             <div id="navWrap">
                 {/* 로고 */}
                 <p id="surveyon_logo">
-                    <Link to='/'><img src={surveyOnLogo} /></Link>
+                    <Link to='/'><img src={surveyOnLogo} alt='써베이온 로고' /></Link>
                 </p>
                 {/* gnb */}
                 <ul id="gnbWrap">

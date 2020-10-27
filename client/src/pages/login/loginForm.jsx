@@ -7,7 +7,7 @@ const LoginForm = () => {
         <div className='loginFormContainer'>
             <div className="loginFormWrap">
                 <div className="logoBox">
-                    <img src='./survey_on_logo_1.svg' />
+                    <img src='./survey_on_logo_1.svg' alt='써베이온 로고' />
                 </div>
                 <div className="loginInputWrap">
                     <input type='text' className='idInput' placeholder='아이디' />
@@ -19,9 +19,9 @@ const LoginForm = () => {
                     
                 </div>
                 <p className="findIdPw">
-                    <a href="" className="findId">아이디찾기</a>
+                    <a href="#!" className="findId">아이디찾기</a>
                     <span className="verLine">|</span>
-                    <a href="" className="findPassword">비밀번호찾기</a>
+                    <a href="#!" className="findPassword">비밀번호찾기</a>
                 </p>
             </div>
         </div>

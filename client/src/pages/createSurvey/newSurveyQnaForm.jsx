@@ -60,11 +60,11 @@ const NewSurveyQnaForm = () => {
                         </span>
                         <span className="optionBox">
                             <span className="radio">○</span>
-                            <a className='addOption'>옵션 추가</a>
+                            <a href='#!' className='addOption'>옵션 추가</a>
                         </span>
                         <span className="optionBox">
                             <span className="radio">○</span>
-                            <a className='addTextField'>기타 추가</a>
+                            <a href='#!' className='addTextField'>기타 추가</a>
                         </span>
                     </div>
                     <div className='deleteBox'>
@@ -103,11 +103,11 @@ const NewSurveyQnaForm = () => {
                         </span>
                         <span className="optionBox">
                             <span className="checkbox">□</span>
-                            <a className='addOption'>옵션 추가</a>
+                            <a href='#!' className='addOption'>옵션 추가</a>
                         </span>
                         <span className="optionBox">
                             <span className="checkbox">□</span>
-                            <a className='addTextField'>기타 추가</a>
+                            <a href='#!' className='addTextField'>기타 추가</a>
                         </span>
                     </div>
                     <div className='deleteBox'>

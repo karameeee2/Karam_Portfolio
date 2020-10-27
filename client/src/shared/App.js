@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import HeaderComponent from '../components/header/header';
@@ -24,7 +23,7 @@ import Axios from 'axios';
 class App extends Component {
     // componentDidMount(){} 를 요청이 필요한 곳에 작성해서 데이터 요청 해야함
     componentDidMount(){
-        const requestUrl = 'localhost:8080/'
+        const requestUrl = 'http://localhost:8080/'
         
         Axios.get(requestUrl).then(res => {
             console.log('res', res)

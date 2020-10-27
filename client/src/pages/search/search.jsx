@@ -5,9 +5,9 @@ import '../../css/search/search.css';
 const Search = (props) => {
     const search = props.search;
 
-    const onClickSearch = () => {
+    // const onClickSearch = () => {
         
-    }
+    // }
 
     return (
         <section id="searchBox">

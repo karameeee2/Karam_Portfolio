@@ -4,9 +4,7 @@ import ProgressPreviewComponent from '../../../components/progress/progressList/
 import SearchComponent from '../../../components/search/search';
 import PageTitle from '../../pageTitle/pageTitle';
 
-const ProgressList = (props) => {
-    const pageTitle = props.pageTitle;
-
+const ProgressList = () => {
     return (
         <div>
             <SearchComponent />

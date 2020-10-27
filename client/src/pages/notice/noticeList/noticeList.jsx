@@ -3,9 +3,7 @@ import NoticeBoardComponent from '../../../components/notice/noticeList/noticeBo
 import SearchComponent from '../../../components/search/search';
 import PageTitle from '../../pageTitle/pageTitle';
 
-const NoticeList = (props) => {
-    const pageTitle = props.pageTitle;
-
+const NoticeList = () => {
     return (
         <div>
             <SearchComponent />

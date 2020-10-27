@@ -5,9 +5,7 @@ import EndDetailBtnComponent from '../../../components/end/endDetail/endDetailBt
 import EndChartComponent from '../../../components/end/endDetail/endChart';
 import '../../../css/end/endDetail/endDetail.css';
 
-const EndDetail = (props) => {
-    const pageTitle = props.pageTitle;
-
+const EndDetail = () => {
     return (
         <div>
             <PageTitle pageTitle='종료된 설문' />

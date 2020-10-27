@@ -12,7 +12,7 @@ const Landing = (props) => {
                 <div className="landingImg">
                     {landing.map((item, idx) => {
                         return (
-                            <img src={item.imageSrc} key={idx} />
+                            <img src={item.imageSrc} key={idx} alt='사이트 소개 이미지' />
                         )
                     })}
                 </div>

@@ -5,9 +5,7 @@ import NewSurveyQnaFormComponent from '../../components/createSurvey/newSurveyQn
 import PageTitle from '../pageTitle/pageTitle';
 
 
-const CreateNewSurvey = (props) => {
-    const pageTitle = props.pageTitle;
-
+const CreateNewSurvey = () => {
     return (
         <div>
             <PageTitle pageTitle='새 설문 등록' />

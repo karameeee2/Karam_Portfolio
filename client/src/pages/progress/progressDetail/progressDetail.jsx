@@ -6,9 +6,7 @@ import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/progress/progressDetail/progressDetail.css';
 
 
-const ProgressDetail = (props) => {
-    const pageTitle = props.pageTitle;
-
+const ProgressDetail = () => {
     return (
         <div>
             <PageTitle pageTitle='진행중인 설문' />

@@ -4,8 +4,7 @@ import SearchComponent from '../../../components/search/search';
 import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/end/endList/endList.css';
 
-const EndList = (props) => {
-    const pageTitle = props.pageTitle;
+const EndList = () => {
     return (
         <div>
             <SearchComponent />

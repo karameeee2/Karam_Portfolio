@@ -4,8 +4,7 @@ import NoticeFullComponent from '../../../components/notice/noticeDetail/noticeF
 import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/notice/noticeDetail/noticeDetail.css';
 
-const NoticeDetail = (props) => {
-    const pageTitle = props.pageTitle;
+const NoticeDetail = () => {
     return(
         <div>
             <PageTitle pageTitle='공지사항' />

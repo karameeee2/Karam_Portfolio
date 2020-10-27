@@ -7,7 +7,7 @@ const DetailInfo = (props) => {
     return (
         <div className='detailInfoContainer'>
             <div className="detailInfoBox">
-                <img className="infoThumbnail" src={DetailInfo.thumbnail} />
+                <img className="infoThumbnail" src={DetailInfo.thumbnail} alt='설문조사 대표이미지' />
                 <div className="detailInfoWrap">
                     <h3 className="infoSubject">{DetailInfo.subject}</h3>
                     <p className="infoContent">{DetailInfo.content}</p>
