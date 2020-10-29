@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('./users.controller');
+const controller = require('./withdraw.controller');
 
-router.get('/', controller.users);
+router.get('/', controller.withdraw);
 
 module.exports = router;
