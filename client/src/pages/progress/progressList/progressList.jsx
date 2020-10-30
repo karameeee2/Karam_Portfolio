@@ -4,7 +4,8 @@ import ProgressPreviewComponent from '../../../components/progress/progressList/
 import SearchComponent from '../../../components/search/search';
 import PageTitle from '../../pageTitle/pageTitle';
 
-const ProgressList = () => {
+const ProgressList = (props) => {
+
     return (
         <div>
             <SearchComponent />
@@ -13,7 +14,7 @@ const ProgressList = () => {
             <section className="progressPreviewSection">
                 <div className="progressPrevWrap">
                 <CreateBtnComponent />
-                <ProgressPreviewComponent />
+                <ProgressPreviewComponent surveyList={props.surveyList} />
                 </div>
             </section>
         </div>

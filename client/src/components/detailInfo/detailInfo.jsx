@@ -1,10 +1,9 @@
 import React from 'react';
-import { detailInfo } from '../../constants/const';
 import DetailInfo from '../../pages/detailInfo/detailInfo';
 
-const DetailInfoComponent = () => {
+const DetailInfoComponent = (props) => {
     return (
-        <DetailInfo detailInfo={detailInfo} />
+        <DetailInfo detailInfo={props.detailInfo} />
     );
 }
 

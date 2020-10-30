@@ -4,12 +4,12 @@ import NoticeFullComponent from '../../../components/notice/noticeDetail/noticeF
 import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/notice/noticeDetail/noticeDetail.css';
 
-const NoticeDetail = () => {
+const NoticeDetail = (props) => {
     return(
         <div>
             <PageTitle pageTitle='공지사항' />
             <section className="noticeDetailSection">
-                <NoticeFullComponent />
+                <NoticeFullComponent  noticeDetail={props.noticeDetail}/>
             </section>
             <NoticeDetailBtnComponent />
         </div>

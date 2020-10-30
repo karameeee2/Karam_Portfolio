@@ -1,10 +1,10 @@
 import React from 'react';
-import { noticeFull } from '../../../constants/const';
+//import { noticeDetail } from '../../../constants/const';
 import NoticeFull from '../../../pages/notice/noticeDetail/noticeFull';
 
-const NoticeFullComponent = () => {
+const NoticeFullComponent = (props) => {
     return(
-        <NoticeFull noticeFull={noticeFull} />
+        <NoticeFull noticeDetail={props.noticeDetail} />
     );
 }
 

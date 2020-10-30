@@ -1,12 +1,11 @@
 import React from 'react';
-import { progressPreview } from '../../../constants/const';
 import ProgressPreview from '../../../pages/progress/progressList/progressPreview';
 
 
-const ProgressPreviewComponent = () => {
+const ProgressPreviewComponent = (props) => {
 
     return(
-        <ProgressPreview progressPreview={progressPreview} />
+        <ProgressPreview progressPreview={props.surveyList}  />
     );
 };
 

@@ -17,37 +17,28 @@ import RegisterFormComponent from '../components/register/registerForm';
 import RegisterCompleteComponent from '../components/register/registerComplete';
 import SearchResultComponent from '../components/search/searchResult';
 import MypageComponent from '../components/mypage/mypage';
-import Axios from 'axios';
-
 
 class App extends Component {
-    // componentDidMount(){} 를 요청이 필요한 곳에 작성해서 데이터 요청 해야함
-    componentDidMount(){
-        const requestUrl = 'http://localhost:8080/'
-        
-        Axios.get(requestUrl).then(res => {
-            console.log('res', res)
-        }).catch(err => {
-            console.log('err', err.response)
-        })
-    }
+    
     render() {
         return (
-            <div>
+            <>
             {/* <div style={{position: 'relative', height: '100%'}}> */}
                 <HeaderComponent />
                 <Switch>
                     <Route exact path="/" component={ LandingComponent } />
                     {/* 진행중인 설문 */}
                     <Route exact path="/progressList" component={ ProgressListComponent } />
-                    <Route exact path="/progressDetail" component={ ProgressDetailComponent } />
+                    <Route path="/progressDetail/:sidx" component={ ProgressDetailComponent } />
                     <Route exact path="/createSurvey" component={ CreateNewSurveyFormComponent } />
                     {/* 종료된 설문 */}
                     <Route exact path="/endList" component={ EndListComponent } />
                     <Route exact path="/endDetail" component={ EndDetailComponent } />
                     {/* 공지사항 */}
                     <Route exact path="/noticeList" component={ NoticeListComponent } />
-                    <Route exact path='/noticeDetail' component={ NoticeDetailComponent } />
+                    {/* 댜.. 일단 라우터에서 파라미터를 받을 수 있오야해. 라우터 파라미터를 
+                    props.match.params에서 꺼내쓰려묜 Route 태그안에서 선언해줘야해 */}
+                    <Route path='/noticeDetail/:nidx' component={ NoticeDetailComponent } />
                     {/* 회원가입 */}
                     <Route exact path='/register' component={ RegisterFormComponent } />
                     <Route exact path='/registerComplete' component={ RegisterCompleteComponent } />
@@ -60,7 +51,7 @@ class App extends Component {
                 </Switch>
                 <FooterComponent />
                 <TopBtnComponent />
-            </div>
+            </>
         );
     }
 }

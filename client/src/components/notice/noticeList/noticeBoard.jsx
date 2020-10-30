@@ -1,10 +1,9 @@
 import React from 'react';
-import { noticeListContent } from '../../../constants/const';
 import NoticeBoard from '../../../pages/notice/noticeList/noticeBoard';
 
-const NoticeBoardComponent = () => {
+const NoticeBoardComponent = (props) => {
     return(
-        <NoticeBoard noticeListContent={noticeListContent} />
+        <NoticeBoard noticeListContent={props.noticeList} />
     );
 }
 

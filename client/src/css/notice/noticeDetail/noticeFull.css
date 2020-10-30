@@ -22,3 +22,6 @@
 .noticeContent {
     width: 100%; padding: 30px; box-sizing: border-box; line-height: 24px;
 }
+.noticeContent div {
+    width: 100%;; min-height: 500px;
+}

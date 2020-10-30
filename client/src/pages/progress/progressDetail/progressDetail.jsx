@@ -6,14 +6,14 @@ import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/progress/progressDetail/progressDetail.css';
 
 
-const ProgressDetail = () => {
+const ProgressDetail = (props) => {
     return (
         <div>
             <PageTitle pageTitle='진행중인 설문' />
             {/* Detail */}
             <section className='infoQnASection'>
                 <div className="infoQnAContainer">
-                    <DetailInfoComponent />
+                    <DetailInfoComponent detailInfo={props.detailInfo} />
                     <ProgressQnAComponent />
                 </div>
                 <ProgressDetailBtnComponent />
