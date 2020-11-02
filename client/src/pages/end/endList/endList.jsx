@@ -4,13 +4,13 @@ import SearchComponent from '../../../components/search/search';
 import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/end/endList/endList.css';
 
-const EndList = () => {
+const EndList = (props) => {
     return (
         <div>
             <SearchComponent />
             <PageTitle pageTitle='종료된 설문' />
             <section className="endPreviewSection">
-                <EndPreviewComponent />
+                <EndPreviewComponent endList={props.endList} />
             </section>
         </div>
         

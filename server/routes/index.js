@@ -3,6 +3,7 @@ const router = express.Router();
 const selectMember = require('./selectMember/index');
 const insertMember = require('./insertMember/index');
 const selectSurveyList = require('./selectSurveyList/index');
+const selectEndList = require('./selectEndList/index');
 const selectSurveyEach = require('./selectSurveyEach/index');
 const insertSurvey = require('./insertSurvey/index');
 const selectQuestion = require('./selectQuestion/index');
@@ -18,6 +19,7 @@ router.use('/selectMember', selectMember);
 router.use('/insertMember', insertMember);
 
 router.use('/selectSurveyList', selectSurveyList);
+router.use('/selectEndList', selectEndList);
 router.use('/selectSurveyEach', selectSurveyEach);
 router.use('/insertSurvey', insertSurvey);
 

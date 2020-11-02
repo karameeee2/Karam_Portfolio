@@ -20,7 +20,7 @@ const ProgressPreview = (props) => {
                             <p className="prevTag">{item.TAG}</p>
                         </li>
                     );
-                })}
+                }).reverse()}
             </ul>
         </div>
     );

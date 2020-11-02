@@ -1,11 +1,10 @@
 import React from 'react';
-import { endPreview } from '../../../constants/const';
 import EndPreview from '../../../pages/end/endList/endPreview';
 
 
-const EndPreviewComponent = () => {
+const EndPreviewComponent = (props) => {
     return(
-        <EndPreview endPreview={endPreview} />
+        <EndPreview endList={props.endList} />
     );
 }
 export default EndPreviewComponent;

@@ -9,5 +9,5 @@ export const CommonUtils = {
 
         result = `${year}.${month}.${day}`;
         return result
-    }
+    },
 }

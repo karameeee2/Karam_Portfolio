@@ -7,7 +7,6 @@ const NoticeDetailComponent = (props) => {
     
     useEffect(() => {
         let nidx = props.match.params.nidx;
-        console.log(nidx);
         getNoticeDetail(nidx);
     }, []);
     

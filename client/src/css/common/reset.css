@@ -40,9 +40,16 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
-body { font-family: 'Noto Sans', sans-serif !important; height: 100vh; }
+html {
+	height: 100%;
+}
+
+body { 
+	font-family: 'Noto Sans', sans-serif !important; height: 100%;
+}
+
 #root {
-	height: 100vh;
+	position: relative; min-height: 100%; padding-bottom: 80px; box-sizing: border-box;
 }
 
 ol, ul {

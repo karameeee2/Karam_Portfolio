@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/register/registerForm.css';
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
+    const insertMember = props.insertMember;
     return(
         <div className='registerFormContainer'>
             <div className="registerFormWrap">
@@ -24,7 +25,7 @@ const RegisterForm = () => {
                     </div>
                     <div className="genderBirthWrap">
                         <select name="gender" className='genderSelect' >
-                            <option selected value="">성별</option>
+                            <option defaultValue="">성별</option>
                             <option value="남자" name='gender'>남자</option>
                             <option value="여자" name='gender'>여자</option>
                         </select>

@@ -23,7 +23,6 @@ class App extends Component {
     render() {
         return (
             <>
-            {/* <div style={{position: 'relative', height: '100%'}}> */}
                 <HeaderComponent />
                 <Switch>
                     <Route exact path="/" component={ LandingComponent } />
@@ -36,8 +35,6 @@ class App extends Component {
                     <Route exact path="/endDetail" component={ EndDetailComponent } />
                     {/* 공지사항 */}
                     <Route exact path="/noticeList" component={ NoticeListComponent } />
-                    {/* 댜.. 일단 라우터에서 파라미터를 받을 수 있오야해. 라우터 파라미터를 
-                    props.match.params에서 꺼내쓰려묜 Route 태그안에서 선언해줘야해 */}
                     <Route path='/noticeDetail/:nidx' component={ NoticeDetailComponent } />
                     {/* 회원가입 */}
                     <Route exact path='/register' component={ RegisterFormComponent } />
