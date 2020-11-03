@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/search/search.css';
 
 const Search = (props) => {
+    const [value, setValue] = useState('');
     const search = props.search;
 
-    // const onClickSearch = () => {
-        
-    // }
+    const onClickSearch = () => {
+        // 검색어 담아서 요청보내기
+        return value;
+
+    }
+
+    const onChangeInput = (e) => {
+        setValue(e.currentTarget.value);
+        console.log(value);
+    }
 
     return (
         <section id="searchBox">
@@ -20,8 +28,8 @@ const Search = (props) => {
                             );
                         })};
                     </select>
-                    <input className="typeSearch" name="typeSearch" type="text" placeholder="검색어를 입력하세요."/>
-                    <Link to='/searchResult'><button id="goSearch" name="goSearch" type="submit" >검색</button></Link>
+                    <input className="typeSearch" name="typeSearch" type="text" placeholder="검색어를 입력하세요." onChange={onChangeInput} />
+                    <Link to='/searchResult'><button id="goSearch" name="goSearch" type="submit" onClick={onClickSearch} >검색</button></Link>
                 </form>
             </div>
         </section>

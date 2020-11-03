@@ -14,6 +14,7 @@ const noticeList = require('./noticeList/index');
 const noticeDetail = require('./noticeDetail/index');
 const login = require('./login/index');
 const withdraw = require('./withdraw/index');
+const search = require('./search/index');
 
 router.use('/selectMember', selectMember);
 router.use('/insertMember', insertMember);
@@ -35,5 +36,7 @@ router.use('/noticeDetail', noticeDetail);
 router.use('/login', login);
 
 router.use('/withdraw', withdraw);
+
+router.use('/search', search);
 
 module.exports = router;
