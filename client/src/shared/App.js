@@ -42,7 +42,7 @@ class App extends Component {
                     {/* 로그인 */}
                     <Route exact path='/login' component={ LoginFormComponent } />
                     {/* 검색결과 */}
-                    <Route exact path='/searchResult' component={ SearchResultComponent } />
+                    <Route path='/searchResult/:searchWord' component={ SearchResultComponent } />
                     {/* 마이페이지 */}
                     <Route path='/mypage' component={ MypageComponent } />
                 </Switch>

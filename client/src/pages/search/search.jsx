@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/search/search.css';
 
@@ -9,19 +10,21 @@ const Search = (props) => {
     const onClickSearch = () => {
         // 검색어 담아서 요청보내기
         return value;
-
     }
 
     const onChangeInput = (e) => {
         setValue(e.currentTarget.value);
-        console.log(value);
+    }
+
+    const changeCategory = (e) => {
+        props.categoryChange(e.target.value)
     }
 
     return (
         <section id="searchBox">
             <div id="searchWrap">
                 <form>
-                    <select name="searchValue" className="searchValue">
+                    <select name="searchValue" className="searchValue" onChange={changeCategory}>
                         {search.map((item, idx) => {
                             return (
                                 <option key={idx} value={item.value}>{item.valueTitle}</option>
@@ -29,7 +32,7 @@ const Search = (props) => {
                         })};
                     </select>
                     <input className="typeSearch" name="typeSearch" type="text" placeholder="검색어를 입력하세요." onChange={onChangeInput} />
-                    <Link to='/searchResult'><button id="goSearch" name="goSearch" type="submit" onClick={onClickSearch} >검색</button></Link>
+                    <Link to={`/searchResult/${value}`} ><button id="goSearch" name="goSearch" type="submit" onClick={onClickSearch} >검색</button></Link>
                 </form>
             </div>
         </section>

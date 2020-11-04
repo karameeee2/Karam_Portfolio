@@ -7,19 +7,25 @@ import PageTitle from '../pageTitle/pageTitle';
 import '../../css/search/searchResult.css';
 
 
-const SearchResult = () => {
+const SearchResult = (props) => {
+    // const searchWord = props.searchWord;
+    const surveyList = props.surveyList;
+    const endList = props.endList;
+    const noticeList = props.noticeList;
+    const searchTotal = props.searchTotal || 0;
+
     return (
         <div>
-            <SearchComponent />
-            <PageTitle pageTitle='총 37건이 검색되었습니다.' />
+            <SearchComponent categoryChange={props.categoryChange} />
+            <PageTitle pageTitle={`총 ${searchTotal}건이 검색되었습니다.`} />
             <section className="searchResultSection">
                 <div className="searchResultContainer">
                     <p className='resultTitle bottom30'>진행중인 설문</p>
-                    <ProgressPreviewComponent />
+                    <ProgressPreviewComponent surveyList={surveyList || []} />
                     <p className='resultTitle bottom30'>종료된 설문</p>
-                    <EndPreviewComponent />
+                    <EndPreviewComponent endList={endList || []} />
                     <p className='resultTitle'>공지사항</p>
-                    <NoticeBoardComponent />
+                    <NoticeBoardComponent noticeList={noticeList || []} />
                 </div>
             </section>
         </div>

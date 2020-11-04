@@ -7,6 +7,7 @@ const ProgressDetailComponent = (props) => {
 
     useEffect(() => {
         let sidx = props.match.params.sidx;
+        // console.log('sidx',sidx, props.match);
         getDetailInfo(sidx);
     }, [])
 

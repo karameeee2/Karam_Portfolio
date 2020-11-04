@@ -1,15 +1,11 @@
-import Axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import { search } from '../../constants/const'
 import Search from '../../pages/search/search'
 
-const SearchComponent = () => {
-    const [searchWord, setSearchWord] = useState=({});
-    const getsearchWord = () => {
-        Axios()
-    }
+const SearchComponent = (props) => {
+
     return (
-        <Search search = {search} />
+        <Search search = {search} categoryChange={props.categoryChange} />
     )
 }
 

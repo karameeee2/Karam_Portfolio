@@ -1,7 +1,7 @@
 const db = require('../../dbconnection');
 
 exports.noticeList = (req, res, next) => {
-    db.query('SELECT NIDX, NSUBJECT, CREATEDATE, HIT FROM SURVEY_NOTICE', (err, rows) => {
+    db.query('SELECT NIDX, NSUBJECT, CREATEDATE, HIT FROM SURVEY_NOTICE ORDER BY NIDX DESC', (err, rows) => {
         if(!err) {
             res.send(rows);
         } else {
