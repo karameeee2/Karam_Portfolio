@@ -7,7 +7,7 @@ const Landing = (props) => {
 
     return (
         <>
-            <SearchComponent />
+            <SearchComponent/>
             <div id="landingBox">
                 <div className="landingImg">
                     {landing.map((item, idx) => {

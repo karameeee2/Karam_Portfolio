@@ -1,7 +1,9 @@
 const db = require('../../dbconnection');
 
 exports.selectAnswer = (req, res, next) => {
-    db.query('SELECT * FROM SURVEY_ANSWER WHERE QIDX = 1', (err, rows) => {
+    if(!req.query.qidx) res.status(400).render('error');
+
+    db.query(`SELECT a.*, q.QIDX FROM SURVEY_ANSWER a LEFT JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX WHERE QIDX = ${req.query.qidx}`, (err, rows) => {
         if(!err) {
             res.send(rows);
         } else {

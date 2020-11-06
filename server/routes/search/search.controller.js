@@ -19,13 +19,37 @@ exports.searchResult = (req, res, next) => {
 
     // category 에 따라서 resultQuery 를 변경해준다.
     let category = req.query.category;
+    
     if(!category || category === 'all' ) {
         // 초기화가 되있으므로 변경해주지 않아도됨
     } else if (category === 'subject') {
         // progress, progressSql
         // resultQuery = progressSql + endSql
-    } else if (category === 'tag') { 
+        progress = `SELECT * FROM SURVEY WHERE SSUBJECT LIKE '%${value}%' AND EDATE > NOW();`
+        progressSql = mysql.format(progress);
+        end = `SELECT * FROM SURVEY WHERE SSUBJECT LIKE '%${value}%' AND EDATE < NOW();`;
+        endSql = mysql.format(end);
+        notice = `SELECT * FROM SURVEY_NOTICE WHERE NSUBJECT LIKE '%${value}%';`;
+        noticeSql = mysql.format(notice);
 
+        resultQuery = progressSql + endSql + noticeSql;
+    } else if (category === 'content') { 
+        progress = `SELECT * FROM SURVEY WHERE SCONTENT LIKE '%${value}%' AND EDATE > NOW();`
+        progressSql = mysql.format(progress);
+        end = `SELECT * FROM SURVEY WHERE SCONTENT LIKE '%${value}%' AND EDATE < NOW();`;
+        endSql = mysql.format(end);
+        notice = `SELECT * FROM SURVEY_NOTICE WHERE NCONTENT LIKE '%${value}%';`;
+        noticeSql = mysql.format(notice);
+
+        resultQuery = progressSql + endSql + noticeSql;
+
+    } else if (category === 'tag') {
+        progress = `SELECT * FROM SURVEY WHERE TAG LIKE '%${value}%' AND EDATE > NOW();`
+        progressSql = mysql.format(progress);
+        end = `SELECT * FROM SURVEY WHERE TAG LIKE '%${value}%' AND EDATE < NOW();`;
+        endSql = mysql.format(end);
+
+        resultQuery = progressSql + endSql;
     }
 
     db.query(resultQuery, (err, rows) => {

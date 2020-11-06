@@ -2,7 +2,7 @@
     width: 100%;
 }
 .previewWrap {
-    display: grid; grid-template-rows: repeat(2, 392px); grid-template-columns: repeat(3, 420px); 
+    display: grid; grid-template-rows: 392px; grid-template-columns: repeat(3, 420px); 
     width:1200px; height: auto; margin: 0 auto;
 }
 .prevBox { 

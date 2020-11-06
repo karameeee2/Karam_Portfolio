@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/search/search.css';
 
@@ -17,7 +16,11 @@ const Search = (props) => {
     }
 
     const changeCategory = (e) => {
-        props.categoryChange(e.target.value)
+        // 내가보기엔, 랜딩페이지에서 Search컴포넌트로 categoryChange함수를 안보내줘서 그런거같은데 왜 안보내주는데 ㅇㅅㅇ 
+        // 그 SearchResult 컴포넌트에선 props 에다가 함수를넣어주는데
+        // 랜딩에서는 안넣어줘서그런거같아
+        // 함 부쟈
+        if(props.categoryChange) props.categoryChange(e.target.value)
     }
 
     return (

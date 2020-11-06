@@ -25,8 +25,7 @@ const SearchResultComponent = (props) => {
         const url = `http://localhost:8080/search?value=${value}&category=${category}`;
         Axios.get(url)
         .then(res => {
-            let result = res.data;
-
+            //let result = res.data;
             // result[0] : progressList, result[1]: endList, result[2]: noticeList
             console.log(res.data);
             // setSearchWord(res.data[0]);
