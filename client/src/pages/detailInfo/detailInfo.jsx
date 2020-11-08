@@ -4,21 +4,21 @@ import thumbnail1 from '../../assets/thumbnail1.jpg';
 import { CommonUtils } from '../../utils/common';
 
 const DetailInfo = (props) => {
-    const detailInfo = props.detailInfo;
+    const surveyDetail = props.surveyDetail;
 
     return (
         <div className='detailInfoContainer'>
             <div className="detailInfoBox">
-                <img className="infoThumbnail" src={detailInfo.SIMG || thumbnail1} alt='설문조사 대표이미지' onError={e => e.target.src = thumbnail1} />
+                <img className="infoThumbnail" src={surveyDetail.SIMG || thumbnail1} alt='설문조사 대표이미지' onError={e => e.target.src = thumbnail1} />
                 <div className="detailInfoWrap">
-                    <h3 className="infoSubject">{detailInfo.SSUBJECT}</h3>
-                    <p className="infoContent">{detailInfo.SCONTENT}</p>
+                    <h3 className="infoSubject">{surveyDetail.SSUBJECT}</h3>
+                    <p className="infoContent">{surveyDetail.SCONTENT}</p>
                     <p className="infoSpanWrap">
-                        <span className="infoNickname">{detailInfo.NICKNAME}</span>
+                        <span className="infoNickname">{surveyDetail.NICKNAME}</span>
                         <span className='verLine'>|</span>
-                        <span className="infoTerm">{CommonUtils.dateFormat(new Date(detailInfo.SDATE))} ~ {CommonUtils.dateFormat(new Date(detailInfo.EDATE))}</span>
+                        <span className="infoTerm">{CommonUtils.dateFormat(new Date(surveyDetail.SDATE))} ~ {CommonUtils.dateFormat(new Date(surveyDetail.EDATE))}</span>
                         <span className='verLine'>|</span>
-                        <span className="infoTag">{detailInfo.TAG}</span>
+                        <span className="infoTag">{surveyDetail.TAG}</span>
                     </p>
                 </div>
             </div>

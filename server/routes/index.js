@@ -6,6 +6,7 @@ const selectSurveyList = require('./selectSurveyList/index');
 const selectEndList = require('./selectEndList/index');
 const selectSurveyEach = require('./selectSurveyEach/index');
 const insertSurvey = require('./insertSurvey/index');
+const selectQnA = require('./selectQnA/index');
 const selectQuestion = require('./selectQnA/index');
 const insertQuestion = require('./insertQuestion/index');
 const selectAnswer = require('./selectAnswer/index');
@@ -23,6 +24,8 @@ router.use('/selectSurveyList', selectSurveyList);
 router.use('/selectEndList', selectEndList);
 router.use('/selectSurveyEach', selectSurveyEach);
 router.use('/insertSurvey', insertSurvey);
+
+router.use('/selectQna', selectQnA)
 
 router.use('/selectQuestion', selectQuestion);
 router.use('/insertQuestion', insertQuestion);

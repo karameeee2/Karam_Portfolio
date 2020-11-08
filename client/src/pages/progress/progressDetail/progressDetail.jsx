@@ -13,8 +13,8 @@ const ProgressDetail = (props) => {
             {/* Detail */}
             <section className='infoQnASection'>
                 <div className="infoQnAContainer">
-                    <DetailInfoComponent detailInfo={props.detailInfo} />
-                    <ProgressQnAComponent />
+                    <DetailInfoComponent detailInfo={props.surveyDetail} />
+                    <ProgressQnAComponent selectQnA={props.surveyDetail} />
                 </div>
                 <ProgressDetailBtnComponent />
             </section>

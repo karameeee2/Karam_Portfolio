@@ -5,7 +5,7 @@ exports.selectQnA = (req, res, next) => {
 
     // let answer = `SELECT a.*, q.QIDX FROM SURVEY_ANSWER a LEFT JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX WHERE QIDX = ${req.query.qidx};`;
     // let question = `SELECT q.*, s.SIDX FROM SURVEY_QUESTION q LEFT JOIN SURVEY s ON q.SIDX = s.SIDX WHERE q.SIDX = ${req.query.sidx};`;
-    db.query(`SELECT a.ANSWER, q.QUESTION FROM  SURVEY_ANSWER a INNER JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX INNER JOIN SURVEY s ON q.SIDX = s.SIDX WHERE s.SIDX = 1 GROUP BY AIDX;`, (err, rows) => {
+    db.query(`SELECT a.ANSWER, q.QUESTION FROM  SURVEY_ANSWER a INNER JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX INNER JOIN SURVEY s ON q.SIDX = s.SIDX WHERE s.SIDX = ${req.query.sidx} GROUP BY AIDX;`, (err, rows) => {
         if(!err) {
             res.send(rows);
         } else {

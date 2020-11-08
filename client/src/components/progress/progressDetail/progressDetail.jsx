@@ -3,27 +3,27 @@ import React, { useEffect, useState } from 'react';
 import ProgressDetail from '../../../pages/progress/progressDetail/progressDetail';
 
 const ProgressDetailComponent = (props) => {
-    const [detailInfo, setDetailInfo] = useState({});
+    const [surveyDetail, setSurveyDetail] = useState([]);
 
     useEffect(() => {
         let sidx = props.match.params.sidx;
         // console.log('sidx',sidx, props.match);
-        getDetailInfo(sidx);
+        getSurveyDetail(sidx);
     }, [])
 
-    const getDetailInfo = (sidx) => {
+    const getSurveyDetail = (sidx) => {
         const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
 
         Axios.get(url)
         .then(response => {
-            setDetailInfo(response.data[0])
+            setSurveyDetail(response.data[0])
         })
         .catch(err => {
-            console.log('getDetailInfo', err , err.response)
+            console.log('getSurveyDetail', err , err.response)
         })
     }
     return (
-        <ProgressDetail pageTitle={ '진행중인 설문' } detailInfo = {detailInfo} />
+        <ProgressDetail pageTitle={ '진행중인 설문' } surveyDetail={ surveyDetail } />
     )
 }
 

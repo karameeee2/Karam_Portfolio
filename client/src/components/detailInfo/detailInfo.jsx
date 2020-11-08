@@ -3,7 +3,7 @@ import DetailInfo from '../../pages/detailInfo/detailInfo';
 
 const DetailInfoComponent = (props) => {
     return (
-        <DetailInfo detailInfo={props.detailInfo} />
+        <DetailInfo surveyDetail={props.surveyDetail} />
     );
 }
 
