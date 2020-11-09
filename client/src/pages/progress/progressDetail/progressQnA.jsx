@@ -2,23 +2,21 @@ import React from 'react';
 import '../../../css/progress/progressDetail/progressQnA.css';
 
 const ProgressQnA = (props) => {
-    const surveyDetail = props.surveyDetail;
+    const qnaList = props.qnaList;
+    console.log('qnalist',qnaList)
     return (
         <div className='qnaContainer'>
-            {surveyDetail.map((item, idx) => {
+            {qnaList.map((item, idx) => {
                 return (
                     <div className="qnaWrap">
-                        <p className="qst" key={idx}>{idx+1}. {item.QUESTION}</p>
-                        <label className="aswBox" key={idx}>
-                            <input type="radio" className='asw'/>{item.ANSWER}
-                        </label>
-                        {/* {selectQnA.map((item, idx) => {
+                        <p className="qst" key={item.QIDX}>{idx+1}. {item.QUESTION}</p>
+                        {qnaList.map((item, idx) => {
                             return (
-                                <label className="aswBox" key={idx}>
-                                    <input type="radio" className='asw'/>{item.asw}
+                                <label className="aswBox" key={item.AIDX}>
+                                    <input type="radio" className='asw'/>{item.ANSWER}
                                 </label>
                             );
-                        })} */}
+                        })}
                     </div>
                 );
             })}
