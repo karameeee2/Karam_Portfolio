@@ -3,13 +3,24 @@ const mysql = require('mysql');
 
 exports.selectQnA = async (req, res, next) => {
     if(!req.query.sidx) res.status(400).render('error');
-    if(!req.query.qidx) res.status(400).render('error');
+    console.log(req.query.sidx);
 
-    let question = `SELECT q.*, s.SIDX FROM SURVEY_QUESTION q LEFT JOIN SURVEY s ON q.SIDX = s.SIDX WHERE q.SIDX = ${req.query.sidx};`;
-    let questionSql = mysql.format(question);
-    let answer = `SELECT a.*, q.QIDX FROM SURVEY_ANSWER a LEFT JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX WHERE QIDX = ${req.query.qidx};`;
-    let answerSql = mysql.format(answer);
-    db.query(questionSql + answerSql, (err, rows) => {
+    // let question = `SELECT q.*, s.SIDX FROM SURVEY_QUESTION q LEFT JOIN SURVEY s ON q.SIDX = s.SIDX WHERE q.SIDX = ${req.query.sidx};`;
+    // let questionSql = mysql.format(question);
+    // let answer = `SELECT a.*, q.QIDX FROM SURVEY_ANSWER a INNER JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX ` + 
+    // `INNER JOIN SURVEY s ON q.SIDX = s.SIDX WHERE q.SIDX = ${req.query.sidx};`;
+    // let answerSql = mysql.format(answer);
+    // db.query(questionSql + answerSql, (err, rows) => {
+    //     console.log('rows:: ',rows);
+    //     if(!err) {
+    //         res.send(rows);
+    //         console.log('success');
+    //     } else {
+    //         console.log(`query error : ${err}`);
+    //         res.send(err);
+    //     }
+    // })
+    db.query(`SELECT a.ANSWER, q.QUESTION FROM SURVEY_ANSWER a INNER JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX INNER JOIN SURVEY s ON q.SIDX = s.SIDX WHERE s.SIDX = ${req.query.sidx};`, (err, rows) => {
         console.log('rows:: ',rows);
         if(!err) {
             res.send(rows);
@@ -18,15 +29,6 @@ exports.selectQnA = async (req, res, next) => {
             res.send(err);
         }
     })
-    // db.query(`SELECT a.ANSWER, q.* FROM  SURVEY_ANSWER a INNER JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX INNER JOIN SURVEY s ON q.SIDX = s.SIDX WHERE s.SIDX = ${req.query.sidx};`, (err, rows) => {
-    //     console.log('rows:: ',rows);
-    //     if(!err) {
-    //         res.send(rows);
-    //     } else {
-    //         console.log(`query error : ${err}`);
-    //         res.send(err);
-    //     }
-    // })
 
     
 

@@ -1,5 +1,4 @@
 const db = require('../../dbconnection');
-const bodyParser = require('body-parser');
 const mysql = require('mysql');
 
 

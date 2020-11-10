@@ -4,10 +4,9 @@ import ProgressDetail from '../../../pages/progress/progressDetail/progressDetai
 
 const ProgressDetailComponent = (props) => {
     let sidx = props.match.params.sidx;
-    let qidx = props.match.params.qidx;
 
     return (
-        <ProgressDetail pageTitle={ '진행중인 설문' } sidx={sidx} qidx={qidx} />
+        <ProgressDetail pageTitle={ '진행중인 설문' } sidx={sidx} />
     )
 }
 

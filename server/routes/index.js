@@ -2,20 +2,29 @@ const express = require('express');
 const router = express.Router();
 const selectMember = require('./selectMember/index');
 const insertMember = require('./insertMember/index');
+
 const selectSurveyList = require('./selectSurveyList/index');
 const selectEndList = require('./selectEndList/index');
 const selectSurveyEach = require('./selectSurveyEach/index');
 const insertSurvey = require('./insertSurvey/index');
+
 const selectQnA = require('./selectQnA/index');
-const selectQuestion = require('./selectQnA/index');
+
+const selectQuestion = require('./selectQuestion/index');
 const insertQuestion = require('./insertQuestion/index');
+
 const selectAnswer = require('./selectAnswer/index');
 const insertAnswer = require('./insertAnswer/index');
+
 const noticeList = require('./noticeList/index');
 const noticeDetail = require('./noticeDetail/index');
+
 const login = require('./login/index');
 const withdraw = require('./withdraw/index');
+
 const search = require('./search/index');
+
+// -------------------------------------------------------------------------------------
 
 router.use('/selectMember', selectMember);
 router.use('/insertMember', insertMember);

@@ -1,8 +1,8 @@
 const db = require('../../dbconnection');
 
-exports.selectAnswer = (req, res, next) => {
+exports.selectQuestion = (req, res, next) => {
 
-    db.query(`SELECT a.ANSWER, q.QIDX FROM SURVEY_ANSWER a LEFT JOIN SURVEY_QUESTION q ON a.QIDX = q.QIDX WHERE a.QIDX = q.QIDX `, (err, rows) => {
+    db.query(`SELECT q.QUESTION, s.SIDX FROM SURVEY_QUESTION q LEFT JOIN SURVEY s ON q.SIDX = s.SIDX WHERE q.SIDX = s.SIDX`, (err, rows) => {
         if(!err) {
             res.send(rows);
         } else {

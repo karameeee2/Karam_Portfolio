@@ -14,7 +14,7 @@ const ProgressDetail = (props) => {
             <section className='infoQnASection'>
                 <div className="infoQnAContainer">
                     <DetailInfoComponent surveyDetail={props.surveyDetail} sidx={props.sidx} />
-                    <ProgressQnAComponent qnaList={props.qnaList} sidx={props.sidx} qidx={props.qidx} />
+                    <ProgressQnAComponent qnaList={props.qnaList} sidx={props.sidx} />
                 </div>
                 <ProgressDetailBtnComponent />
             </section>
