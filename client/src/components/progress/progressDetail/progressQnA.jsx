@@ -11,32 +11,53 @@ const ProgressQnAComponent = (props) => {
         // let sidx = props.match.params.sidx;
         // console.log('sidx',sidx, props.match);
         getQuestionList(props.sidx);
-        getAnswerList();
     }, [])
+    
+    // 1. sidx 를 가지고 qidx(문제)들을 구한다. 
+    // 2. qidx 배열을 가지고 aidx(답변)를 구한다.
 
     const getQuestionList = (sidx) => {
         const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
-            setQuestionList(res.data);
-            console.log('question response: ', res.data)
-            console.log('question response: ', res.data.qidx)
+            // setQuestionList(res.data);
+            getAnswerList(res.data)
         })
         .catch(err => {
             console.log('getQuestionList', err, err.res);
         })
     }
 
-    const getAnswerList = () => {
+    const getAnswerList = async (data) => {
+        if(data.length <= 0) return;
+
         const url = `http://localhost:8080/selectAnswer`;
-        Axios.get(url)
-        .then(res => {
-            setAnswerList(res.data);
-            console.log('answer response: ', res.data)
-        })
-        .catch(err => {
-            console.log('getAnswerList', err, err.res);
-        })
+        const result = [...data]
+        console.log(result)
+        // question 1  question2, .. 
+        // ans 1 ans2  ans1 ans2
+        /*
+            queiston1 = [
+                QIDX: 1,
+                SIDX: 1, 
+                question: 'aslkdjflaksdjflkjasfd',
+                answerList: [
+
+                ]
+            ]
+        */
+        for (let i = 0; i < data.length; i++) {
+            await Axios.get(url + `?qidx=${data[i].QIDX}`)
+            .then(res => {
+                console.log('answer response: ' + i, res.data)
+                result[i].answerList = res.data
+            })
+            .catch(err => {
+                console.log('getAnswerList', err, err.res);
+            })
+        }
+        console.log('result:', result)
+        setQuestionList(result);
     }
     return (
         <ProgressQnA questionList={ questionList } answerList={answerList} />

@@ -3,20 +3,20 @@ import '../../../css/progress/progressDetail/progressQnA.css';
 
 const ProgressQnA = (props) => {
     const questionList = props.questionList;
-    const answerList = props.answerList;
+    // const answerList = props.answerList;
 
     console.log('questionList', questionList)
-    console.log('answerList', answerList)
+    // console.log('answerList', answerList)
     return (
         <div className='qnaContainer'>
             {questionList.map((item, idx) => {
                 return (
                     <div className="qnaWrap">
                         <p className="qst" key={item.AIDX}>{idx + 1}. {item.QUESTION}</p>
-                        {answerList.map((item) => {
+                        {item.answerList.map((answer) => {
                             return (
-                                <label className="aswBox" key={item.AIDX}>
-                                    <input type="radio" className='asw' />{item.ANSWER}
+                                <label className="aswBox" key={answer.AIDX}>
+                                    <input type="radio" className='asw' />{answer.ANSWER}
                                 </label>
                             );
                         })}

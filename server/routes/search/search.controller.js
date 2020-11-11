@@ -47,8 +47,10 @@ exports.searchResult = (req, res, next) => {
         progressSql = mysql.format(progress);
         end = `SELECT * FROM SURVEY WHERE TAG LIKE '%${value}%' AND EDATE < NOW();`;
         endSql = mysql.format(end);
+        notice = `SELECT * FROM SURVEY_NOTICE WHERE NCONTENT LIKE '%${value}%';`;
+        noticeSql = mysql.format(notice);
 
-        resultQuery = progressSql + endSql;
+        resultQuery = progressSql + endSql + noticeSql;
     }
 
     db.query(resultQuery, (err, rows) => {
