@@ -2,18 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/login/loginForm.css';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const loginSubmit = props.onSubmit;
+    
     return (
         <div className='loginFormContainer'>
             <div className="loginFormWrap">
                 <div className="logoBox">
                     <img src='./survey_on_logo_1.svg' alt='써베이온 로고' />
                 </div>
-                <div className="loginInputWrap">
-                    <input type='text' className='idInput' placeholder='아이디' />
-                    <input type='password' className='passwordInput' placeholder='비밀번호' />
+                <form className="loginInputWrap" onSubmit={ () => loginSubmit() }>
+                    <input type='text' className='idInput' name='id' placeholder='아이디' />
+                    <input type='password' className='passwordInput' name='password' placeholder='비밀번호' />
                     <button type='submit' className='loginBtn'>로그인</button>
-                </div>
+                </form>
                 <div className="registerBtnWrap">
                     <Link to='/register'><button className='registerBtn'>회원가입</button></Link>
                     

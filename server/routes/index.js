@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+
+// -----------------------------------------------------------------------------------
+
 const selectMember = require('./selectMember/index');
 const insertMember = require('./insertMember/index');
 

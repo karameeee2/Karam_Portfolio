@@ -1,14 +1,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const db = require('./dbconnection');
 const app = express();
 const port = process.env.PORT || 8080;
 const cors = require('cors');
 const routes = require('./routes');
+const passport = require('passport');
+const passportConfig = require('')
 
 // cors허용
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({secret: 'secret code', resave: true, saveUninitialized: false}));
+app.use(passport.initialize());
+app.use(passport.session());
+db();
+passportConfig();
 app.use(cors());
 
 app.use('/', routes);
