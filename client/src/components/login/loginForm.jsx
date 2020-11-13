@@ -25,14 +25,38 @@ const LoginFormComponent = () => {
     //     })
     // }
 
-    Axios.post()
+    const [id, setID] = useState('');
+    const [password, setPassword] = useState('');
+
+    // useEffect(() => {
+    //     getLogin();
+    // }, [])
+
+    // const getLogin = () => {
+    //     //const url = `http://localhost:8080/login`;
+    //     Axios.post('/login')
+    //     .then(res => {
+    //         setLogin(res.data);
+    //     })
+    //     .catch(err => {
+    //         console.log('login error', err, err.res);
+    //     })
+    // }
 
     const loginSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.id.value, e.target.password.value);
-        this.props.login_progress({
-            id: e.target.id.value,
-            password: e.target.password.value
+        setID('');
+        setPassword('');
+        Axios.post('/', {
+            id:'admin1@surveyon.com', 
+            password:'admin1'
+        })
+        .then(res => {
+            res.send(id, password);
+            console.log('login sucess');
+        })
+        .catch(err => {
+            console.log('login error', err, err.res);
         })
     }
 

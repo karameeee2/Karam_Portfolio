@@ -1,16 +1,20 @@
-const mysql = require('mysql');
+const passport = require('passport');
 
-const userSchema = new mysql.schema({
-    id: String,
-    password: String
-});
-
-userSchema.methods.comparePassword = (inputPassword, cb) => {
-    if(inputPassword === this.password) {
-        cb(null, true);
-    } else {
-        cb('error');
+passport.authenticate('local', (err, user, info) => {
+    if(err) {
+        console.error(err);
+        next(err);
     }
-}
 
-module.exports = mysql.model('users', userSchema, 'users');
+    if(info) {
+        return res.status(400).send(info.reason);
+    }
+    return req.login(user, (loginErr) => {
+        if(loginErr) {
+            return next(loginErr);
+        }
+        const filteredUser = Object.assign({}, user);
+        delete filteredUser.password;
+        return res.json(filteredUser);
+    });
+})(req, res, next);
