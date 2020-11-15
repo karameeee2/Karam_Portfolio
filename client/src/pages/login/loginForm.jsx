@@ -11,7 +11,12 @@ const LoginForm = (props) => {
                 <div className="logoBox">
                     <img src='./survey_on_logo_1.svg' alt='써베이온 로고' />
                 </div>
-                <form className="loginInputWrap" onSubmit={ () => loginSubmit() }>
+                <form className="loginInputWrap" onSubmit={ e => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    loginSubmit(e.target.id.value, e.target.password.value)
+                } 
+                    }>
                     <input type='text' className='idInput' name='id' placeholder='아이디' />
                     <input type='password' className='passwordInput' name='password' placeholder='비밀번호' />
                     <button type='submit' className='loginBtn'>로그인</button>
