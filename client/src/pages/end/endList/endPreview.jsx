@@ -14,13 +14,13 @@ const EndPreview = (props) => {
                     return (
                         <li className="prevBox" key={item.SIDX}>
                             <img className="prevThumbnail" src={item.SIMG || thumbnail1} alt='설문 썸네일 이미지' onError={e => e.target.src = thumbnail1} />
-                            <Link to="/endDetail"><h3 className='prevSubject'>{item.SSUBJECT}</h3></Link>
+                            <Link to={`/endDetail/${item.SIDX}`}><h3 className='prevSubject'>{item.SSUBJECT}</h3></Link>
                             <p className='prevNickname'>{item.NICKNAME}</p>
                             <p className='prevTerm'>{CommonUtils.dateFormat(new Date(item.SDATE))} ~ {CommonUtils.dateFormat(new Date(item.EDATE))}</p>
                             <p className="prevTag">참여인원 {100}명</p>
                         </li>
                     );
-                }).reverse()}
+                })}
             </ul>
         </div>
     );

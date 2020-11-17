@@ -10,6 +10,7 @@ const selectSurveyList = require('./selectSurveyList/index');
 const selectEndList = require('./selectEndList/index');
 const selectSurveyEach = require('./selectSurveyEach/index');
 const insertSurvey = require('./insertSurvey/index');
+const selectEndEach = require('./selectEndEach/index');
 
 const selectQnA = require('./selectQnA/index');
 
@@ -36,6 +37,7 @@ router.use('/selectSurveyList', selectSurveyList);
 router.use('/selectEndList', selectEndList);
 router.use('/selectSurveyEach', selectSurveyEach);
 router.use('/insertSurvey', insertSurvey);
+router.use('/selectEndEach', selectEndEach);
 
 router.use('/selectQna', selectQnA)
 
@@ -49,6 +51,26 @@ router.use('/noticeList', noticeList);
 router.use('/noticeDetail', noticeDetail);
 
 router.use('/login', login);
+
+router.use('/login/success', (req, res) => {
+    console.log('here', req.session, req.user);
+    res.redirect('/');
+    res.end();
+});
+
+router.post('/logout', (req, res) => {
+    req.logout();
+    req.session.destroy(() => {
+        res.clearCookie('connect.sid', {path: '/'});
+    });
+    res.end();
+});
+
+router.get('/ex', (req, res) => {
+    console.log(req.user);
+    res.send('done');
+})
+
 
 router.use('/withdraw', withdraw);
 

@@ -32,7 +32,7 @@ class App extends Component {
                     <Route exact path="/createSurvey" component={ CreateNewSurveyFormComponent } />
                     {/* 종료된 설문 */}
                     <Route exact path="/endList" component={ EndListComponent } />
-                    <Route exact path="/endDetail" component={ EndDetailComponent } />
+                    <Route path="/endDetail/:sidx" component={ EndDetailComponent } />
                     {/* 공지사항 */}
                     <Route exact path="/noticeList" component={ NoticeListComponent } />
                     <Route path='/noticeDetail/:nidx' component={ NoticeDetailComponent } />

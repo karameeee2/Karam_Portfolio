@@ -1,23 +1,23 @@
 import React from 'react';
-import PageTitle from '../../pageTitle/pageTitle';
 import DetailInfoComponent from '../../../components/detailInfo/detailInfo';
-import EndDetailBtnComponent from '../../../components/end/endDetail/endDetailBtn';
 import EndChartComponent from '../../../components/end/endDetail/endChart';
+import EndDetailBtnComponent from '../../../components/end/endDetail/endDetailBtn';
+import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/end/endDetail/endDetail.css';
 
-const EndDetail = () => {
+const EndDetail = (props) => {
     return (
-        <div>
+        <>
             <PageTitle pageTitle='종료된 설문' />
             {/* Detail */}
             <section className='infoQnASection'>
                 <div className="infoQnAContainer">
-                    <DetailInfoComponent />
-                    <EndChartComponent />
+                    <DetailInfoComponent surveyDetail={props.surveyDetail} sidx={props.sidx} />
+                    <EndChartComponent sidx={props.sidx} />
                 </div>
                 <EndDetailBtnComponent />
             </section>
-        </div>
+        </>
     )
 }
 

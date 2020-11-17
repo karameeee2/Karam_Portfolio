@@ -1,9 +1,11 @@
 import React from 'react';
 import EndDetail from '../../../pages/end/endDetail/endDetail';
 
-const EndDetailComponent = () => {
+const EndDetailComponent = (props) => {
+    let sidx = props.match.params.sidx;
+
     return (
-        <EndDetail pageTitle={ '진행중인 설문' } />
+        <EndDetail pageTitle={ '종료된 설문' } sidx={ sidx } />
     )
 }
 

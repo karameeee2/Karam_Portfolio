@@ -2,15 +2,15 @@ import React from 'react';
 import '../../../css/end/endDetail/endChart.css';
 
 const EndChart = (props) => {
-    const endQ = props.endQ;
-    const endA = props.endA;
+    const questionList = props.questionList;
+    // const endA = props.endA;
     return(
         <div className='endChartContainer'>
-            {endQ.map((item, idx) => {
+            {questionList.map((item, idx) => {
                 return(
                     <div className="chartWrap">
-                        <p className="qst" key={idx}>{idx+1}. {item.qst}</p>
-                        {endA.map((item, idx) => {
+                        <p className="qst" key={item.QIDX}>{idx+1}. {item.QUESTION}</p>
+                        {/* {endA.map((item, idx) => {
                             return(
                                 <p className="aswBox" key={idx}>
                                     <div className="chartBox">
@@ -26,7 +26,7 @@ const EndChart = (props) => {
                                     
                                 </p>
                             );
-                        })}
+                        })} */}
                         <ul className="categoryBox">
                             <li className='category'>
                                 <span className="categoryColor color01" />

@@ -1,9 +1,5 @@
 const passport = require('passport');
-const passportJWT = require('passport-jwt');
-const JWTStrategy = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
 const LocalStrategy = require('passport-local').Strategy
-const UserModel = require('../routes/login/login.controller');
 const db = require('../dbconnection');
 
 module.exports = () => {

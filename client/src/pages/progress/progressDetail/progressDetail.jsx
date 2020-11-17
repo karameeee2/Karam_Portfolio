@@ -8,7 +8,7 @@ import '../../../css/progress/progressDetail/progressDetail.css';
 
 const ProgressDetail = (props) => {
     return (
-        <div>
+        <>
             <PageTitle pageTitle='진행중인 설문' />
             {/* Detail */}
             <section className='infoQnASection'>
@@ -18,7 +18,7 @@ const ProgressDetail = (props) => {
                 </div>
                 <ProgressDetailBtnComponent />
             </section>
-        </div>
+        </>
     )
 }
 

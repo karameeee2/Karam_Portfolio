@@ -7,28 +7,22 @@ const port = process.env.PORT || 8080;
 const cors = require('cors');
 const routes = require('./routes');
 const passport = require('passport');
-require('dotenv').config();
-
-// view engine setup
-// app.set('veiws', path.join(__dirname, 'public'));
-// app.set('view engine', 'ejs');
+// require('dotenv').config();
 app.use(express.static('public'));
 // app.use(express.static)
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:true}));
-//app.use(session({secret: 'secret code', resave: true, saveUninitialized: false}));
-
+app.use(session({secret: 'karameeee', resave: true, saveUninitialized: false}));
 db;
 
 // cors허용
-app.use(cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
+const passportConfig = require('./config/passport');
+passportConfig();
 
-// passport
-app.use(passport.initialize());
-app.use(passport.session());
 // 처음 세션에 집어넣을때
 passport.serializeUser((user,done) => {
     console.log('done',user, user.id, user.password)
@@ -39,10 +33,12 @@ passport.serializeUser((user,done) => {
 // 재접속시 (세션유지용)
 passport.deserializeUser((user,done) => {
     console.log('deserial', user)
+    done(null, user);
 })
 
-const passportConfig = require('./config/passport');
-passportConfig();
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // routes
 app.use('/', routes);

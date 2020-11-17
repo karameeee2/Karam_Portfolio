@@ -6,8 +6,6 @@ const DetailInfoComponent = (props) => {
     const [surveyDetail, setSurveyDetail] = useState({});
 
     useEffect(() => {
-        //let sidx = props.match.params.sidx;
-        // console.log('sidx',sidx, props.match);
         getSurveyDetail(props.sidx);
     }, [])
 
