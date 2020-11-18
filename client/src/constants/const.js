@@ -13,7 +13,14 @@ export const gnb = [
     { title: '공지사항', to: 'noticeList' },
     { title: '회원가입', to: 'register' },
     { title: '로그인', to: 'login' },
+]
 
+export const gnb2 = [
+    { title: '진행중인 설문', to: 'progressList' },
+    { title: '종료된 설문', to: 'endList' },
+    { title: '공지사항', to: 'noticeList' },
+    { title: '마이페이지', to: 'mypage' },
+    { title: '로그아웃', to: '' },
 ]
 
 export const search = [

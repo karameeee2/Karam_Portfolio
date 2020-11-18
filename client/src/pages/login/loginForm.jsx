@@ -14,16 +14,15 @@ const LoginForm = (props) => {
                 <form className="loginInputWrap" onSubmit={ e => {
                     e.stopPropagation();
                     e.preventDefault();
-                    loginSubmit(e.target.id.value, e.target.password.value)
-                } 
-                    }>
+                    loginSubmit(e.target.id.value, e.target.password.value)}}>
                     <input type='text' className='idInput' name='id' placeholder='아이디' />
                     <input type='password' className='passwordInput' name='password' placeholder='비밀번호' />
                     <button type='submit' className='loginBtn'>로그인</button>
                 </form>
                 <div className="registerBtnWrap">
-                    <Link to='/register'><button className='registerBtn'>회원가입</button></Link>
-                    
+                    <Link to='/register'>
+                        <button className='registerBtn'>회원가입</button>
+                    </Link>
                 </div>
                 <p className="findIdPw">
                     <a href="#!" className="findId">아이디찾기</a>

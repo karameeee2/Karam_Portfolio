@@ -4,7 +4,6 @@ import ProgressQnA from '../../../pages/progress/progressDetail/progressQnA';
 
 const ProgressQnAComponent = (props) => {
     const [questionList, setQuestionList] = useState([]);
-    // const [answerList, setAnswerList] = useState([]);
 
     useEffect(() => {
         // let sidx = props.match.params.sidx;
@@ -19,7 +18,6 @@ const ProgressQnAComponent = (props) => {
         const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
-            // setQuestionList(res.data);
             getAnswerList(res.data)
         })
         .catch(err => {

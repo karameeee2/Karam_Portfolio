@@ -4,7 +4,7 @@ const router = express.Router();
 // -----------------------------------------------------------------------------------
 
 const selectMember = require('./selectMember/index');
-const insertMember = require('./insertMember/index');
+const register = require('./register/index');
 
 const selectSurveyList = require('./selectSurveyList/index');
 const selectEndList = require('./selectEndList/index');
@@ -31,7 +31,7 @@ const search = require('./search/index');
 // -------------------------------------------------------------------------------------
 
 router.use('/selectMember', selectMember);
-router.use('/insertMember', insertMember);
+router.use('/register', register);
 
 router.use('/selectSurveyList', selectSurveyList);
 router.use('/selectEndList', selectEndList);
@@ -54,7 +54,7 @@ router.use('/login', login);
 
 router.use('/login/success', (req, res) => {
     console.log('here', req.session, req.user);
-    res.redirect('/');
+    //res.redirect('/');
     res.end();
 });
 
@@ -70,6 +70,10 @@ router.get('/ex', (req, res) => {
     console.log(req.user);
     res.send('done');
 })
+
+// router.post('/register', (req, res) => {
+    
+// })
 
 
 router.use('/withdraw', withdraw);
