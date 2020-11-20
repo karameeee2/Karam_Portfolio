@@ -28,7 +28,7 @@ passport.serializeUser((user,done) => {
     console.log('done',user, user.id, user.password)
     // 브라우저 cookie 에 세션을 넣어주고,
     // sessions 폴더에(서버에있는) 세션파일이 생성.
-    return done(null, user)
+    return done(null, user.id)
 });
 // 재접속시 (세션유지용)
 passport.deserializeUser((user,done) => {

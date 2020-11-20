@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import LoginForm from '../../pages/login/loginForm';
 
 const LoginFormComponent = (props) => {
