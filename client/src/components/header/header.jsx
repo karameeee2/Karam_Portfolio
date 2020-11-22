@@ -2,10 +2,10 @@ import React from 'react';
 import { gnb, gnb2 } from '../../constants/const';
 import Header from '../../pages/header/header';
 import '../../css/common/header.css';
+import cookie from 'react-cookie';
 
 const HeaderComponent = (props) => {
-    // 데이터를 세팅
-    const cookie = props.cookie;
+    const cookie = props;
     
 
     return (

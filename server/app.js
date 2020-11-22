@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const db = require('./dbconnection');
 const app = express();
@@ -7,13 +8,13 @@ const port = process.env.PORT || 8080;
 const cors = require('cors');
 const routes = require('./routes');
 const passport = require('passport');
-// require('dotenv').config();
+
 app.use(express.static('public'));
 // app.use(express.static)
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended:true}));
+// app.use(express.json());
+// app.use(express.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(session({secret: 'karameeee', resave: true, saveUninitialized: false}));
 db;
 
