@@ -71,6 +71,8 @@ router.get('/ex', (req, res) => {
     res.send('done');
 })
 
+// router.use('localRegister', new Local)
+
 // router.post('/register', (req, res) => {
     
 // })

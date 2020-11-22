@@ -19,6 +19,9 @@ const LoginFormComponent = (props) => {
         .then(res => {
             // res.send(id, password);
             console.log('login success', res);
+            if(res.status === 200) {
+                res.redirect('/');
+            }
             
         })
         .catch(err => {
