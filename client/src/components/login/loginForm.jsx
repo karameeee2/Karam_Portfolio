@@ -20,7 +20,7 @@ const LoginFormComponent = (props) => {
             // res.send(id, password);
             console.log('login success', res);
             if(res.status === 200) {
-                res.redirect('/');
+                window.location.href= '/';
             }
             
         })
