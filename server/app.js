@@ -11,23 +11,27 @@ const passportConfig = require('./config/passport');
 const flash = require('connect-flash');
 
 app.use(express.static('public'));
-// app.use(express.static)
-// app.use(express.json());
-// app.use(express.urlencoded({extended:true}));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(session({
-    secret: 'karameeee', 
-    resave: true, 
-    saveUninitialized: false
-}));
-
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended:true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended:true }));
+app.use(
+    session({
+        secret: 'karameeee', 
+        resave: true, 
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            secure: false
+        }
+    })
+);
+    
 db;
-
 // cors허용
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
-passportConfig();
+passportConfig(passport);
 
 // passport
 app.use(passport.initialize());

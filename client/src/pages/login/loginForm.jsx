@@ -11,7 +11,7 @@ const LoginForm = (props) => {
                 <div className="logoBox">
                     <img src='./survey_on_logo_1.svg' alt='써베이온 로고' />
                 </div>
-                <form className="loginInputWrap" onSubmit={ e => {
+                <form className="loginInputWrap" method='post' onSubmit={ e => {
                     e.stopPropagation();
                     e.preventDefault();
                     loginSubmit(e.target.id.value, e.target.password.value)}}>
