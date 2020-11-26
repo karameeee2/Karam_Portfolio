@@ -4,9 +4,8 @@ import '../../css/common/header.css';
 import surveyOnLogo from '../../assets/logo/survey_on_logo_1.svg';
 
 const Header = (props) => {
-    const gnb = props.gnb;
-    const gnb2 = props.gnb2;
-    const cookie = props.cookie;
+    const cookies = props.cookies;
+    const logout = props.logout;
 
     return (
         <nav className='headerNav'>
@@ -16,26 +15,60 @@ const Header = (props) => {
                     <Link to='/'><img src={surveyOnLogo} alt='써베이온 로고' /></Link>
                 </p>
                 {/* gnb */}
-                {cookie != null &&
+                {document.cookie != null &&
                     <ul id="gnbWrap">
-                        {gnb2.map((item, idx) => {
+                        <li>
+                            <Link to='/progressList'>진행중인 설문</Link>
+                        </li>
+                        <li>
+                            <Link to='/endList'>종료된 설문</Link>
+                        </li>
+                        <li>
+                            <Link to='/noticeList'>공지사항</Link>
+                        </li>
+                        <li>
+                            <Link to='/mypage'>마이페이지</Link>
+                        </li>
+                        <li>
+                            <a onClick = { e => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                logout();
+                            }}>로그아웃</a>
+                        </li>
+                        {/* {gnb2.map((item, idx) => {
                             return (
                                 <li key={idx}>
                                     <Link to={`/${item.to}`}>{item.title}</Link>
                                 </li>
                             )
-                        })}
+                        })} */}
                     </ul>
                 }
-                {cookie == null &&
+                {document.cookie == null &&
                     <ul id="gnbWrap">
-                        {gnb.map((item, idx) => {
+                        <li>
+                            <Link to='/progressList'>진행중인 설문</Link>
+                        </li>
+                        <li>
+                            <Link to='/endList'>종료된 설문</Link>
+                        </li>
+                        <li>
+                            <Link to='/noticeList'>공지사항</Link>
+                        </li>
+                        <li>
+                            <Link to='/register'>회원가입</Link>
+                        </li>
+                        <li>
+                            <Link to='/login'>로그인</Link>
+                        </li>
+                        {/* {gnb.map((item, idx) => {
                             return (
                                 <li key={idx}>
                                     <Link to={`/${item.to}`}>{item.title}</Link>
                                 </li>
                             )
-                        })}
+                        })} */}
                     </ul>
                 }
 

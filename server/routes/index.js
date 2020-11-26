@@ -24,6 +24,7 @@ const noticeList = require('./noticeList/index');
 const noticeDetail = require('./noticeDetail/index');
 
 const login = require('./login/index');
+const logout = require('./logout/index');
 const withdraw = require('./withdraw/index');
 
 const search = require('./search/index');
@@ -51,19 +52,23 @@ router.use('/noticeList', noticeList);
 router.use('/noticeDetail', noticeDetail);
 
 router.use('/login', login);
+router.use('/logout', logout);
 
 router.use('/login/success', (req, res) => {
     console.log('here', req.session, req.user);
-    //res.redirect('/');
     res.end();
 });
 
-router.post('/logout', (req, res) => {
-    req.logout();
-    req.session.destroy(() => {
-        res.clearCookie('connect.sid', {path: '/'});
-    });
-    res.end();
+router.get('/logout', async (req, res) => {
+    console.log('쿠키 삭제');
+    await req.logout();
+    req.session = null;
+    res.clearCookie('connect.sid');
+    // req.logout();
+    // req.session.destroy(() => {
+    //     res.clearCookie('connect.sid', {path: '/'});
+    // });
+    // res.end();
 });
 
 router.get('/ex', (req, res) => {

@@ -9,4 +9,4 @@
 #gnbWrap li:first-child {margin-left: 0;}
 #gnbWrap li:last-child {margin-right: 0;}
 #gnbWrap li a { font-size: 16px; text-decoration: none; color: black;}
-#gnbWrap li a:hover {font-weight: bold;}
+#gnbWrap li a:hover {font-weight: bold; cursor: pointer;}
