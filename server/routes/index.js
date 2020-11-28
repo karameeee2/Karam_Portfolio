@@ -52,7 +52,7 @@ router.use('/noticeList', noticeList);
 router.use('/noticeDetail', noticeDetail);
 
 router.use('/login', login);
-router.use('/logout', logout);
+// router.use('/logout', logout);
 
 router.use('/login/success', (req, res) => {
     console.log('here', req.session, req.user);
@@ -60,15 +60,16 @@ router.use('/login/success', (req, res) => {
 });
 
 router.get('/logout', async (req, res) => {
-    console.log('쿠키 삭제');
-    await req.logout();
-    req.session = null;
-    res.clearCookie('connect.sid');
-    // req.logout();
+    // console.log('쿠키 삭제');
+    // await req.logout();
+    // req.session = null;
+    // res.clearCookie('connect.sid');
+    console.log('logout!!!!!!');
+    req.logout();
     // req.session.destroy(() => {
     //     res.clearCookie('connect.sid', {path: '/'});
     // });
-    // res.end();
+    res.end();
 });
 
 router.get('/ex', (req, res) => {

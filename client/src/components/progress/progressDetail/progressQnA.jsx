@@ -6,8 +6,6 @@ const ProgressQnAComponent = (props) => {
     const [questionList, setQuestionList] = useState([]);
 
     useEffect(() => {
-        // let sidx = props.match.params.sidx;
-        // console.log('sidx',sidx, props.match);
         getQuestionList(props.sidx);
     }, [])
     

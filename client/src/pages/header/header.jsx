@@ -4,9 +4,10 @@ import '../../css/common/header.css';
 import surveyOnLogo from '../../assets/logo/survey_on_logo_1.svg';
 
 const Header = (props) => {
-    const cookies = props.cookies;
+    const cookie = props.cookie;
     const logout = props.logout;
 
+    console.log(document.cookie);
     return (
         <nav className='headerNav'>
             <div id="navWrap">
@@ -15,7 +16,7 @@ const Header = (props) => {
                     <Link to='/'><img src={surveyOnLogo} alt='써베이온 로고' /></Link>
                 </p>
                 {/* gnb */}
-                {document.cookie != null &&
+                {cookie ? 
                     <ul id="gnbWrap">
                         <li>
                             <Link to='/progressList'>진행중인 설문</Link>
@@ -36,16 +37,8 @@ const Header = (props) => {
                                 logout();
                             }}>로그아웃</a>
                         </li>
-                        {/* {gnb2.map((item, idx) => {
-                            return (
-                                <li key={idx}>
-                                    <Link to={`/${item.to}`}>{item.title}</Link>
-                                </li>
-                            )
-                        })} */}
                     </ul>
-                }
-                {document.cookie == null &&
+                : 
                     <ul id="gnbWrap">
                         <li>
                             <Link to='/progressList'>진행중인 설문</Link>
@@ -62,16 +55,8 @@ const Header = (props) => {
                         <li>
                             <Link to='/login'>로그인</Link>
                         </li>
-                        {/* {gnb.map((item, idx) => {
-                            return (
-                                <li key={idx}>
-                                    <Link to={`/${item.to}`}>{item.title}</Link>
-                                </li>
-                            )
-                        })} */}
                     </ul>
                 }
-
             </div>
         </nav>
     )

@@ -1,13 +1,13 @@
 import Axios from 'axios';
 import React, { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
+import Cookie from 'js-cookie';
 import LoginForm from '../../pages/login/loginForm';
 
 const LoginFormComponent = (props) => {
     let id = props.match.params.id;
     let password = props.match.params.password;
 
-    const [cookies] = useCookies(['connect.sid']); // 쿠키를 클라이언트에서 찾아쓰기 위함
+    const cookies = Cookie.get('connect.sid'); // 쿠키를 클라이언트에서 찾아쓰기 위함
     const loginSubmit = (id, password) => {
         
         Axios.post('http://localhost:8080/login', {
