@@ -3,7 +3,8 @@ const LocalStrategy = require('passport-local').Strategy
 const db = require('../dbconnection');
 
 module.exports = () => {
-    passport.use(new LocalStrategy({
+    // login
+    passport.use('local-login', new LocalStrategy({
         usernameField: 'id',
         passwordField: 'password'
     },
@@ -24,8 +25,19 @@ module.exports = () => {
                     return done(null, err)
                 }
             })
-            
+        }
+    ))
 
+    // register
+    passport.use('local-register', new LocalStrategy({
+        usernameField: 'id',
+        passwordField: 'password'
+    }, 
+        async function(id, password, name, nickname, gender, birth, done) {
+            await db.query('INSERT INTO SURVEY_MEMBER (ID, PASSWORD, NAME, NICKNAME, GENDER, BIRTH) '+ 
+            `VALUES ("${id}", "${password}", "${name}", "${nickname}", "${gender}", "${birth}")`, (err, rows) => {
+                
+            })
         }
     ))
 }

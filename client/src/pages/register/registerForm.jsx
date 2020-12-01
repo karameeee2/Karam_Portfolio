@@ -16,7 +16,7 @@ const RegisterForm = (props) => {
                     e.preventDefault();
                     registerSubmit(e.target.id.value, e.target.password.value, e.target.name.value, 
                         e.target.nickName.value, e.target.gender.value, e.target.birth.value)}}>
-                    <input type="text" className='idInput' name='id' placeholder='아이디(이메일)'/>
+                    <input type="text" className='idInput' name='id' placeholder='아이디(이메일)'/> {/* onBlur 이용해서 아이디 입력될때 사용가능여부 확인 */}
                     <div className="certBox">
                         <input type="text" className="certNumber" placeholder='인증번호입력'/>
                         <button className='certNumSend'>인증번호전송</button>
