@@ -52,7 +52,7 @@ router.use('/noticeList', noticeList);
 router.use('/noticeDetail', noticeDetail);
 
 router.use('/login', login);
-// router.use('/logout', logout);
+
 
 router.use('/login/success', (req, res) => {
     console.log('here', req.session, req.user);

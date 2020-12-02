@@ -3,12 +3,21 @@ import React, { useEffect, useState } from 'react';
 import RegisterForm from '../../pages/register/registerForm';
 
 const RegisterFormComponent = (props) => {
-    // let id = props.match.params.id;
-    // let password = props.match.params.password;
-    // let name = props.match.params.name;
-    // let nickName = props.match.params.nickName;
-    // let gender = props.match.params.gender;
-    // let birth = props.match.params.birth;
+    // const [id, setId] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [name, setName] = useState('');
+    // const [nickName, setNickName] = useState('');
+    // const [gender, setGender] = useState('M');
+    // const [birth, setBirth] = useState('');
+    
+    const idCheck = (e) => {
+        e.preventDefault();
+        const usableId = false;
+
+        Axios.post('http://localhost:8080/idCheck', {
+
+        })
+    }
 
     const registerSubmit = (id, password, name, nickName, gender, birth) => {
         Axios.post('http://localhost:8080/register', {
