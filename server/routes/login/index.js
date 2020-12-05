@@ -15,7 +15,7 @@ passport.deserializeUser((id, done) => {
     done(null, id);
 })
 
-router.post('/', passport.authenticate('local', {
+router.post('/', passport.authenticate('local-login', {
     failureRedirect : '/login',
 }), (req, res) => {
     req.session.save(() => {

@@ -29,20 +29,20 @@ module.exports = () => {
     ))
 
     // register
-    passport.use('local-register', new LocalStrategy({
-        usernameField: 'id',
-        passwordField: 'password'
-    }, 
-        async function(id, password, name, nickname, gender, birth, done) {
-            await db.query('INSERT INTO SURVEY_MEMBER (ID, PASSWORD, NAME, NICKNAME, GENDER, BIRTH) '+ 
-            `VALUES ("${id}", "${password}", "${name}", "${nickname}", "${gender}", "${birth}")`, (err, rows) => {
-                if(!err) {
-                    console.log('rows', rows);
-                    return done(null, rows[0]);
-                } else {
-                    return done(null, err);
-                }
-            })
-        }
-    ))
+    // passport.use('local-register', new LocalStrategy({
+    //     usernameField: 'id',
+    //     passwordField: 'password'
+    // }, 
+    //     async function(id, password, name, nickname, gender, birth, done) {
+    //         await db.query('INSERT INTO SURVEY_MEMBER (ID, PASSWORD, NAME, NICKNAME, GENDER, BIRTH) '+ 
+    //         `VALUES ("${id}", "${password}", "${name}", "${nickname}", "${gender}", "${birth}")`, (err, rows) => {
+    //             if(!err) {
+    //                 console.log('rows', rows);
+    //                 return done(null, rows[0]);
+    //             } else {
+    //                 return done(null, err);
+    //             }
+    //         })
+    //     }
+    // ))
 }

@@ -5,6 +5,7 @@ const router = express.Router();
 
 const selectMember = require('./selectMember/index');
 const register = require('./register/index');
+const idCheck = require('./idCheck/index');
 
 const selectSurveyList = require('./selectSurveyList/index');
 const selectEndList = require('./selectEndList/index');
@@ -33,6 +34,7 @@ const search = require('./search/index');
 
 router.use('/selectMember', selectMember);
 router.use('/register', register);
+router.use('/idCheck', idCheck);
 
 router.use('/selectSurveyList', selectSurveyList);
 router.use('/selectEndList', selectEndList);
@@ -52,7 +54,6 @@ router.use('/noticeList', noticeList);
 router.use('/noticeDetail', noticeDetail);
 
 router.use('/login', login);
-
 
 router.use('/login/success', (req, res) => {
     console.log('here', req.session, req.user);
