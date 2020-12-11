@@ -21,6 +21,7 @@ router.post('/', passport.authenticate('local-login', {
     req.session.save(() => {
         if(req.user){
             // return res.redirect('/' + req.user.id );
+            // console.log('req.user::', req.user);
             return res.redirect(200, '/');
         }
         return res.redirect('/login');

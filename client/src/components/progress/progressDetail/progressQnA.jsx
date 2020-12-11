@@ -19,7 +19,7 @@ const ProgressQnAComponent = (props) => {
             getAnswerList(res.data)
         })
         .catch(err => {
-            console.log('getQuestionList', err, err.res);
+            // console.log('getQuestionList', err, err.res);
         })
     }
 
@@ -28,7 +28,7 @@ const ProgressQnAComponent = (props) => {
 
         const url = `http://localhost:8080/selectAnswer`;
         const result = [...data]
-        console.log(result)
+        // console.log(result)
         // question 1  question2, .. 
         // ans 1 ans2  ans1 ans2
         /*
@@ -44,14 +44,14 @@ const ProgressQnAComponent = (props) => {
         for (let i = 0; i < data.length; i++) {
             await Axios.get(url + `?qidx=${data[i].QIDX}`)
             .then(res => {
-                console.log('answer response: ' + i, res.data)
+                // console.log('answer response: ' + i, res.data)
                 result[i].answerList = res.data
             })
             .catch(err => {
-                console.log('getAnswerList', err, err.res);
+                // console.log('getAnswerList', err, err.res);
             })
         }
-        console.log('result:', result)
+        // console.log('result:', result)
         setQuestionList(result);
     }
     return (

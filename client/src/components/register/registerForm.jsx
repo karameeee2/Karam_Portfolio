@@ -1,9 +1,9 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { emailRegex } from '../../constants/const';
 import RegisterForm from '../../pages/register/registerForm';
 
-const RegisterFormComponent = (props) => {
+const RegisterFormComponent = () => {
 
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
@@ -12,12 +12,11 @@ const RegisterFormComponent = (props) => {
     const [gender, setGender] = useState('');
     const [birth, setBirth] = useState('');
 
-    const [isOverlap, setIsOverlap] = useState(false);
+    const [isOverlap, setIsOverlap] = useState(false); // 아이디 중복
     const [errorText, setErrorText] = useState('');
 
     const idCheck = (e) => {
         e.preventDefault();
-        // 4. 중복체크
         if (!id) {
             return alert('아이디를 입력해주세요.');
         }
@@ -25,32 +24,29 @@ const RegisterFormComponent = (props) => {
         if (!emailRegex.test(id)) {
             return alert('아이디는 이메일 형식으로 입력해주십시오.')
         }
-
-        console.log('잘되냐~', id);
-
+        // console.log('잘되냐~', id);
+        
+        // 4. 중복체크
         Axios.post('http://localhost:8080/idCheck', { 
             id: id 
         })
         .then(res => {
-            console.log('idCheck success', res);
+            // console.log('idCheck success', res);
             if(res.status === 200) {
                 setIsOverlap(false);
                 setErrorText('사용 가능한 아이디입니다.');
             } 
         })
         .catch(err => {
-            console.log('idCheck error', err, err.response.status);
+            // console.log('idCheck error', err, err.response.status);
             if(err.response.status === 409){
-                setIsOverlap(true)
-                setErrorText('중복된 이메일입니다.')
+                setIsOverlap(true);
+                setErrorText('중복된 이메일입니다.');
             }
         })
     }
 
     const registerSubmit = () => {
-        // 2. 형식체크
-        // 3. 길이체크
-
         // 1. null 체크
         if (!id) {
             return alert('아이디를 입력해주세요.');
@@ -76,6 +72,7 @@ const RegisterFormComponent = (props) => {
             return alert('비밀번호가 일치하지 않습니다.');
         }
 
+        // 3. 형식체크
         // email 정규식 검사
         if (!emailRegex.test(id)) {
             return alert('아이디는 이메일 형식으로 입력해주십시오.')
@@ -84,9 +81,7 @@ const RegisterFormComponent = (props) => {
             return alert('중복된 아이디입니다.');
         }
 
-        console.log(id, password, name, nickName, gender, birth);
-
-
+        // console.log(id, password, name, nickName, gender, birth);
         Axios.post('http://localhost:8080/register', {
             id: id,
             password: password,
@@ -97,7 +92,7 @@ const RegisterFormComponent = (props) => {
         })
         .then(res => {
             console.log('register success', res);
-            window.location.href='/';
+            window.location.href='/login';
         })
         .catch(err => {
             console.log('register error', err, err.res);
@@ -106,9 +101,8 @@ const RegisterFormComponent = (props) => {
 
     return (
         <section className="registerFormSection">
-            <RegisterForm onSubmit={registerSubmit} idCheck={idCheck} setId={setId} 
-            isOverlap={isOverlap} errorText={errorText}
-            setPassword={setPassword} setName={setName} setNickName={setNickName} setGender={setGender} setBirth={setBirth} />
+            <RegisterForm onSubmit={registerSubmit} idCheck={idCheck} isOverlap={isOverlap} errorText={errorText}
+            setId={setId} setPassword={setPassword} setName={setName} setNickName={setNickName} setGender={setGender} setBirth={setBirth} />
         </section>
     );
 }

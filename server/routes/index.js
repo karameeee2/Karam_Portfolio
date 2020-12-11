@@ -14,6 +14,7 @@ const insertSurvey = require('./insertSurvey/index');
 const selectEndEach = require('./selectEndEach/index');
 
 const selectQnA = require('./selectQnA/index');
+const joinSurveyCheck = require('./joinSurveyCheck/index');
 
 const selectQuestion = require('./selectQuestion/index');
 const insertQuestion = require('./insertQuestion/index');
@@ -43,6 +44,7 @@ router.use('/insertSurvey', insertSurvey);
 router.use('/selectEndEach', selectEndEach);
 
 router.use('/selectQna', selectQnA)
+router.use('/joinSurveyCheck', joinSurveyCheck);
 
 router.use('/selectQuestion', selectQuestion);
 router.use('/insertQuestion', insertQuestion);

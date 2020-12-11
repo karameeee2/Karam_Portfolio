@@ -19,8 +19,8 @@ const RegisterForm = (props) => {
                     registerSubmit()}}>
                     <div className="idCheckBox">
                         {/* onBlur 이용해서 아이디 입력될때 사용가능여부 확인 */}
-                        <input type="text" className='idInput' name='id' placeholder='아이디(이메일)' onChange={ e => { setId(e.target.value); }} onBlur={idCheck}/> 
-                <span className={`idCheck ${errorText ? 'show' : ''} ${isOverlap ? 'red': ''}`}>{errorText}</span>
+                        <input type="text" className='idInput' name='id' placeholder='아이디(이메일)' onChange={ e => { setId(e.target.value); }} onBlur={ idCheck }/> 
+                        <span className={`idCheck ${errorText ? 'show' : ''} ${isOverlap ? 'red': ''}`}>{errorText}</span>
                     </div>
                     {/* <div className="certBox">
                         <input type="text" className="certNumber" placeholder='인증번호입력'/>

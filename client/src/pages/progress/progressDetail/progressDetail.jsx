@@ -7,16 +7,18 @@ import '../../../css/progress/progressDetail/progressDetail.css';
 
 
 const ProgressDetail = (props) => {
+    const {surveyDetail, qnaList, sidx, isJoin} = props;
+
     return (
         <>
             <PageTitle pageTitle='진행중인 설문' />
             {/* Detail */}
             <section className='infoQnASection'>
                 <div className="infoQnAContainer">
-                    <DetailInfoComponent surveyDetail={props.surveyDetail} sidx={props.sidx} />
-                    <ProgressQnAComponent qnaList={props.qnaList} sidx={props.sidx} />
+                    <DetailInfoComponent surveyDetail={surveyDetail} sidx={sidx} />
+                    <ProgressQnAComponent qnaList={qnaList} sidx={sidx} />
                 </div>
-                <ProgressDetailBtnComponent />
+                <ProgressDetailBtnComponent sidx={sidx} isJoin={isJoin}/>
             </section>
         </>
     )
