@@ -36,7 +36,7 @@ passportConfig(passport);
 // passport
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
+// app.use(flash());
 
 // 처음 세션에 집어넣을때
 passport.serializeUser((user, done) => {

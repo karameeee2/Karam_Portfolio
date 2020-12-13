@@ -5,7 +5,7 @@ import ProgressDetail from '../../../pages/progress/progressDetail/progressDetai
 
 const ProgressDetailComponent = (props) => {
     let sidx = props.match.params.sidx;
-    let midx = props.midx;
+    let midx;
 
     useEffect(() => {
         getJoinSurveyCheck();
@@ -14,24 +14,22 @@ const ProgressDetailComponent = (props) => {
     const [joinSurveyCheck, setJoinSurveyCheck] = useState({});
 
     const [isJoin, setIsJoin] = useState(false);
-    console.log('sidx, midx', sidx, ',', midx);
 
     const getJoinSurveyCheck = (e) => {
         // e.preventDefault();
-        Axios.get(`http://localhost:8080/joinSurveyCheck`, {
-
+        Axios.get(`http://localhost:8080/joinSurveyCheck?sidx=${sidx}`,{
+            withCredentials: true
         })
         .then(res => {
             if(res.status === 200) {
                 setJoinSurveyCheck();
-                console.log('joinSurveyCheck200');
                 setIsJoin(false);
             }
         })
         .catch(err => {
+            console.log(err.response);
             if(err.response.status === 409) {
                 setJoinSurveyCheck();
-                console.log('joinSurveyCheck409');
                 setIsJoin(true);
             }
         })

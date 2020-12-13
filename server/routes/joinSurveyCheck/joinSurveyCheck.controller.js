@@ -1,10 +1,14 @@
 const db = require('../../dbconnection');
 
-exports.joinSurveyCheck = async(req, res, next) => {
+exports.joinSurveyCheck = async (req, res, next) => {
+    console.log(2222);
     try {
+        console.log('try' , req.query, req.user, req.karameeee);
+        if(!req.user) res.status(409).send()
         let sidx = req.query.sidx;
-        let midx = req.user.midx;
-        if(!sidx) res.status(400).render('error');
+        let midx = req.user.MIDX;
+        console.log(sidx, midx);
+        if(!sidx || !midx) res.status(409).send();
         await db.query(`SELECT SIDX, MIDX FROM SURVEY_COUNT WHERE SIDX = ${sidx} AND MIDX = ${midx}`, (err, rows) => {
             // console.log('midx', midx);
             console.log('rows:: ',rows);

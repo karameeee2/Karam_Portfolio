@@ -17,8 +17,6 @@ const LoginFormComponent = (props) => {
             withCredentials: true
         }) 
         .then(res => {
-            // res.send(id, password);
-            console.log('login success', res);
             if(res.status === 200) {
                 window.location.href= '/';
             }
@@ -32,16 +30,14 @@ const LoginFormComponent = (props) => {
     // deserializeUser가 호출되나
     useEffect(() => {
         if(cookies) {
-            console.log('쿠키있음');
             Axios.get('http://localhost:8080/ex', {
                 withCredentials: true
             }).then(res => {
-                console.log('res', res);
             }).catch(err => {
                 console.log(err.response);
             })
         } else {
-            console.log('쿠키없음');
+            
         }
     }, [cookies])
 

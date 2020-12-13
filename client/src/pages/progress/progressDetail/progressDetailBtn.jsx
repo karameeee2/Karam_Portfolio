@@ -6,7 +6,6 @@ const ProgressDetailBtn = (props) => {
     const joinSurveySubmit = props.onSubmit;
 
     const {isJoin} = props;
-
     return (
         <div className='progressDetailBtnBox'>
             {/*  */}

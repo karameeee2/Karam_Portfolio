@@ -7,14 +7,11 @@ import Axios from 'axios';
 const HeaderComponent = (props) => {
     const cookie = Cookie.get('connect.sid');
 
-    console.log(document.cookie);
-
     const logout = () => {
         Axios.get(`http://localhost:8080/logout`, {
             
         })
         .then(res => {
-            console.log('logout success', res);
             Cookie.remove('connect.sid');
             window.location.href = '/';
         })

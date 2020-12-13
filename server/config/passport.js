@@ -10,7 +10,7 @@ module.exports = () => {
     },
         async function (id, password, done) {
             console.log(id, password)
-            await db.query(`SELECT ID, PASSWORD, MIDX FROM SURVEY_MEMBER WHERE ID = "${id}" AND PASSWORD = "${password}"`, (err, rows) => {
+            await db.query(`SELECT ID, PASSWORD, MIDX, GENDER, BIRTH FROM SURVEY_MEMBER WHERE ID = "${id}" AND PASSWORD = "${password}"`, (err, rows) => {
                 if (!err) {
                     console.log('rows', rows);
                     if (!rows || rows.length <= 0) {

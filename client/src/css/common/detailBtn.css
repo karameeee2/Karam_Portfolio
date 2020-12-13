@@ -3,8 +3,9 @@
 }
 
 .submitCancelBox {
-    display: none; width: 240px; margin: auto;
+    width: 240px; margin: auto;
 }
+
 .submitCancelBox button {
     width: 120px; height: 36px; cursor: pointer;
 }
