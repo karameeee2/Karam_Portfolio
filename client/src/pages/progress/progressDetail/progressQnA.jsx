@@ -14,7 +14,7 @@ const ProgressQnA = (props) => {
                         {item.answerList.map((answer) => {
                             return (
                                 <label className="aswBox" key={answer.AIDX}>
-                                    <input type="radio" className='asw' />{answer.ANSWER}
+                                    <input type="radio" name={item.QIDX} className='asw' />{answer.ANSWER}
                                 </label>
                             );
                         })}
