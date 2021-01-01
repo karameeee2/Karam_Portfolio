@@ -1,9 +1,9 @@
 const db = require('../../dbconnection');
 
 exports.joinSurveyCheck = async (req, res, next) => {
-    console.log(2222);
+    // console.log(2222);
     try {
-        console.log('try' , req.query, req.user, req.karameeee);
+        // console.log('try' , req.query, req.user, req.karameeee);
         if(!req.user) res.status(409).send()
         let sidx = req.query.sidx;
         let midx = req.user.MIDX;
@@ -20,7 +20,6 @@ exports.joinSurveyCheck = async (req, res, next) => {
                 } else { // 설문참여불가
                     res.status(409).send();
                 }
-                // res.send(rows);
             } else {
                 console.log(`query error : ${err}`);
                 res.send(err);
