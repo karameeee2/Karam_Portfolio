@@ -5,7 +5,6 @@ import ProgressDetail from '../../../pages/progress/progressDetail/progressDetai
 
 const ProgressDetailComponent = (props) => {
     let sidx = props.match.params.sidx;
-    let midx;
 
     useEffect(() => {
         getJoinSurveyCheck();
