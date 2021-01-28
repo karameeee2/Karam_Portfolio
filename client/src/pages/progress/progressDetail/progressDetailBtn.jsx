@@ -17,7 +17,8 @@ const ProgressDetailBtn = (props) => {
             </div>
             :
             <div className="submitCancelBox">
-                <button type='submit' className="surveySubmitBtn" onSubmit = {e => {
+                <button type='submit' className="surveySubmitBtn" onClick = {e => {
+                    console.log('click');
                     e.stopPropagation();
                     e.preventDefault();
                     joinSurveySubmit()}}>제출</button>

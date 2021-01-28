@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/register/registerForm.css';
 
 const RegisterForm = (props) => {

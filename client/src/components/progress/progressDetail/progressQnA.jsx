@@ -55,7 +55,7 @@ const ProgressQnAComponent = (props) => {
         setQuestionList(result);
     }
     return (
-        <ProgressQnA questionList={ questionList }/>
+        <ProgressQnA questionList={ questionList } sidx={props.sidx} isJoin={props.isJoin}/>
     );
 }
 

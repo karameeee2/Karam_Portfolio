@@ -1,7 +1,6 @@
 import React from 'react';
 import DetailInfoComponent from '../../../components/detailInfo/detailInfo';
 import ProgressQnAComponent from '../../../components/progress/progressDetail/progressQnA';
-import ProgressDetailBtnComponent from '../../../components/progress/progressDetail/progressDetailBtn';
 import PageTitle from '../../pageTitle/pageTitle';
 import '../../../css/progress/progressDetail/progressDetail.css';
 
@@ -16,9 +15,9 @@ const ProgressDetail = (props) => {
             <section className='infoQnASection'>
                 <div className="infoQnAContainer">
                     <DetailInfoComponent surveyDetail={surveyDetail} sidx={sidx} />
-                    <ProgressQnAComponent qnaList={qnaList} sidx={sidx} />
+                    <ProgressQnAComponent qnaList={qnaList} sidx={sidx} isJoin={isJoin} />
                 </div>
-                <ProgressDetailBtnComponent sidx={sidx} isJoin={isJoin}/>
+                {/* <ProgressDetailBtnComponent sidx={sidx} isJoin={isJoin}/> */}
             </section>
         </>
     )

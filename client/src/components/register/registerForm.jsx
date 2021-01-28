@@ -68,7 +68,7 @@ const RegisterFormComponent = () => {
         }
 
         // 2. 비밀번호 비밀번호 확인 일치
-        if (password != document.getElementById('passwordConfirm').value) {
+        if (password !== document.getElementById('passwordConfirm').value) {
             return alert('비밀번호가 일치하지 않습니다.');
         }
 
