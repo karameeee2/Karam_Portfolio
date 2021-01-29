@@ -11,31 +11,32 @@ const ProgressDetailComponent = (props) => {
     },[])
 
     const [joinSurveyCheck, setJoinSurveyCheck] = useState({});
-
     const [isJoin, setIsJoin] = useState(false);
+    const [mySurveyAnswer, setMySurveyAnswer] = useState([]);
 
-    const getJoinSurveyCheck = (e) => {
-        // e.preventDefault();
+    const getJoinSurveyCheck = () => {
         Axios.get(`http://localhost:8080/joinSurveyCheck?sidx=${sidx}`,{
             withCredentials: true
         })
         .then(res => {
-            if(res.status === 200) {
+            // 이 안에서 if~else로 배열이 있을때와 없을때를 구분해서 없을 때 데이터도 받아올수 있도록
+            console.log('data: ', res.data);
+            if(res.data.length <= 0) {
                 setJoinSurveyCheck();
                 setIsJoin(false);
+            } else {
+                setJoinSurveyCheck();
+                setIsJoin(true);
+                setMySurveyAnswer(res.data);
             }
         })
         .catch(err => {
-            console.log(err.response);
-            if(err.response.status === 409) {
-                setJoinSurveyCheck();
-                setIsJoin(true);
-            }
+            console.log('joinSurveyCheck error', err, err.res);
         })
     }
 
     return (
-        <ProgressDetail pageTitle={ '진행중인 설문' } sidx={sidx} joinSurveyCheck={joinSurveyCheck} isJoin={isJoin} />
+        <ProgressDetail pageTitle={ '진행중인 설문' } sidx={sidx} joinSurveyCheck={joinSurveyCheck} isJoin={isJoin} mySurveyAnswer={mySurveyAnswer}/>
     )
 }
 

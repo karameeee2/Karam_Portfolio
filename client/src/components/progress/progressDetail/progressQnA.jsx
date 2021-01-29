@@ -48,14 +48,16 @@ const ProgressQnAComponent = (props) => {
                 result[i].answerList = res.data
             })
             .catch(err => {
-                // console.log('getAnswerList', err, err.res);
+                console.log('getAnswerList', err, err.res);
             })
         }
         // console.log('result:', result)
         setQuestionList(result);
     }
     return (
-        <ProgressQnA questionList={ questionList } sidx={props.sidx} isJoin={props.isJoin}/>
+        <ProgressQnA questionList={ questionList } sidx={props.sidx} isJoin={props.isJoin}
+        mySurveyAnswer={props.mySurveyAnswer}
+        />
     );
 }
 

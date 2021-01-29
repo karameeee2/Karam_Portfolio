@@ -6,7 +6,7 @@ import '../../../css/progress/progressDetail/progressDetail.css';
 
 
 const ProgressDetail = (props) => {
-    const {surveyDetail, qnaList, sidx, isJoin} = props;
+    const {surveyDetail, qnaList, sidx, isJoin, mySurveyAnswer} = props;
 
     return (
         <>
@@ -15,7 +15,7 @@ const ProgressDetail = (props) => {
             <section className='infoQnASection'>
                 <div className="infoQnAContainer">
                     <DetailInfoComponent surveyDetail={surveyDetail} sidx={sidx} />
-                    <ProgressQnAComponent qnaList={qnaList} sidx={sidx} isJoin={isJoin} />
+                    <ProgressQnAComponent qnaList={qnaList} sidx={sidx} isJoin={isJoin} mySurveyAnswer={mySurveyAnswer} />
                 </div>
                 {/* <ProgressDetailBtnComponent sidx={sidx} isJoin={isJoin}/> */}
             </section>
