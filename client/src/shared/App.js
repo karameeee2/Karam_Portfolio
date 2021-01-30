@@ -22,7 +22,7 @@ class App extends Component {
     
     render() {
         return (
-            <>
+            <>  
                 <HeaderComponent />
                 <Switch>
                     <Route exact path="/" component={ LandingComponent } />
