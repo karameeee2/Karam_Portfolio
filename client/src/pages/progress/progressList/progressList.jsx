@@ -8,13 +8,13 @@ const ProgressList = (props) => {
 
     return (
         <div>
-            <SearchComponent />
+            {/* <SearchComponent /> */}
             <PageTitle pageTitle='진행중인 설문' />
+            {/* <CreateBtnComponent /> */}
             {/* List */}
             <section className="progressPreviewSection">
                 <div className="progressPrevWrap">
-                <CreateBtnComponent />
-                <ProgressPreviewComponent surveyList={props.surveyList} />
+                    <ProgressPreviewComponent surveyList={props.surveyList} />
                 </div>
             </section>
         </div>

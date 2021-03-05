@@ -2,24 +2,32 @@
     width: 100%;
 }
 .previewWrap {
-    display: grid; grid-template-rows: 392px; grid-template-columns: repeat(3, 420px); 
+    display: grid; grid-template-rows: 448px; grid-template-columns: repeat(3, 420px); 
     width:1200px; height: auto; margin: 0 auto;
 }
 .prevBox { 
-    width:360px; height: 332px; margin-bottom: 60px; padding: 20px; box-sizing: border-box; 
-    border: 1px solid black;
+    width:360px; height: 388px; margin-bottom: 60px; box-sizing: border-box; 
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
 }
 .prevBox .prevThumbnail {
-    display: flex; width: 320px; height: 160px; background-size: contain; 
+    display: flex; width: 360px; height: 180px; background-size: contain; 
     background-position: center;
 }
-.prevBox .prevSubject {
-    display: flex; width: 320px; height: 24px; line-height: 24px; margin-top: 27px; font-size: 18px;
-    font-weight: bold; color: black; text-decoration: none;
+.prevBox .prevInfoBox {
+    padding: 24px; box-sizing: border-box;
 }
-.prevBox .prevNickname {
-    display: flex; width: 320px; height: 22px; line-height: 22px; margin-top: 12px; font-size: 16px;
+
+.prevBox .prevInfoBox .prevNickname {
+    display: flex; width: 320px; height: 24px; line-height: 24px; font-size: 16px;
 }
-.prevBox .prevTerm, .prevTag { 
-    display: flex; width: 320px; height: 22px; line-height: 22px; margin-top: 2px; font-size: 16px;
+.prevBox .prevInfoBox .prevSubject {
+    display: flex; width: 320px; height: 52px; line-height: 26px; margin-top: 12px; font-size: 22px;
+    font-weight: 500; color: black; text-decoration: none;
+}
+.prevBox .prevInfoBox .prevTerm, .prevBox .prevInfoBox .prevTag { 
+    display: flex; width: 320px; height: 24px; line-height: 24px; margin-top: 12px; font-size: 16px;
+}
+
+.prevTerm img, .prevTag img {
+    width: 16px; height: 16px; margin: 4px 12px 0 0;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import HeaderComponent from '../components/header/header';
+import SearchComponent from '../components/search/search';
 import FooterComponent from '../components/footer/footer';
 import TopBtnComponent from '../components/topBtn/topBtn';
 import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
@@ -24,6 +25,7 @@ class App extends Component {
         return (
             <>  
                 <HeaderComponent />
+                <SearchComponent />
                 <Switch>
                     <Route exact path="/" component={ LandingComponent } />
                     {/* 진행중인 설문 */}

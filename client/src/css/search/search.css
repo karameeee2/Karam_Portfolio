@@ -1,10 +1,44 @@
-#searchBox {display: inline-flex; width: 100%; height: 120px;}
-#searchWrap {width: 1200px; height: 50px; margin: 70px auto 0;}
+#search {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    top: 0;
+}
+#searchBox {
+    display: block;
+    width: 100%;
+    height: 72px;
+    background-color: #FFF;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    position: absolute;
+    top: 0;
+}
+#searchWrap {
+    width: 600px; height: 48px; margin: 12px auto; border: 2px solid #5E00FF; border-radius: 4px;
+    box-sizing: border-box;
+}
+#searchWrap .typeSearch {
+    width: 524px; height: 44px; padding: 0 0 0 24px; border-radius: 4px 0 0 4px; border: none; 
+    box-sizing: border-box; float: left;
+}
+#searchWrap .typeSearch:focus {
+    outline: none; border: none;
+}
+#searchWrap #goSearch {
+    width: 72px; height: 44px; border: none; background-color: #FFF; border-radius: 0 4px 4px 0; 
+    cursor: pointer; padding: 0;
+}
+#searchWrap #goSearch img {
+    width: 24px; height: 24px;
+}
 
-#searchWrap form {height: 50px;}
-#searchWrap form .searchValue {width:160px; height: 50px; padding: 0 20px; border: none; border-radius: 5px 0 0 5px; 
-                                background-color: #E6E6E6; box-sizing: border-box;}
-#searchWrap form .typeSearch {width: 870px; height: 50px; padding: 0 0 0 10px; border: 1px solid #E6E6E6; border-radius: 0 5px 5px 0;
-                                box-sizing: border-box;}
-#searchWrap form #goSearch { width: 160px; height: 50px; margin-left: 10px; color: white; font-weight: bold; background-color: #2A2A2A; 
-                                border: none; border-radius: 5px; cursor: pointer;}
+#searchBox .searchClose {
+    display: block; margin: 24px auto; width: 40px; height: 40px; background-color: #FFF; border: none;
+    border-radius: 20px; cursor: pointer; padding: 8px;
+}
+#searchBox .searchClose img {
+    vertical-align: top;
+}

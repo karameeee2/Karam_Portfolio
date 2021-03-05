@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import searchIconActive from '../../assets/icons/searchIcon_active.svg';
+import closeIcon from '../../assets/icons/closeIcon.svg';
 import '../../css/search/search.css';
 
 const Search = (props) => {
@@ -20,19 +22,19 @@ const Search = (props) => {
     }
 
     return (
-        <section id="searchBox">
-            <div id="searchWrap">
-                <form>
-                    <select name="searchValue" className="searchValue" onChange={changeCategory}>
-                        {search.map((item, idx) => {
-                            return (
-                                <option key={idx} value={item.value}>{item.valueTitle}</option>
-                            );
-                        })};
-                    </select>
-                    <input className="typeSearch" name="typeSearch" type="text" placeholder="검색어를 입력하세요." onChange={onChangeInput} />
-                    <Link to={`/searchResult/${value}`} ><button id="goSearch" name="goSearch" type="submit" onClick={onClickSearch} >검색</button></Link>
-                </form>
+        <section id="search">
+            <div id="searchBox">
+                <div id="searchWrap">
+                    <input className="typeSearch" name="typeSearch" type="text" placeholder="검색어 입력" onChange={onChangeInput} />
+                    <Link to={`/searchResult/${value}`} >
+                        <button id="goSearch" name="goSearch" type="submit" onClick={onClickSearch} >
+                            <img src={searchIconActive} alt="검색"/>
+                        </button>
+                    </Link>
+                </div>
+                <button className="searchClose">
+                    <img src={closeIcon} alt="검색창닫기"/>
+                </button>
             </div>
         </section>
     );
