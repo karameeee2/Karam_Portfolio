@@ -7,7 +7,21 @@
 .pageTitleWrap h2 { 
     margin: 72px 0 60px; font-size: 32px; color: black; font-weight: 500;
 }
+.titleLeft {
+    width: 80%; float: left;
+}
+.createSurveyBtn {
+    width: 120px; height: 48px; margin: 72px 0 60px; padding: 0 24px; box-sizing: border-box; 
+    float: right; border: none; background-color: #5E00FF; border-radius: 4px; color: #FFF; 
+    font-weight: 300; text-align: left;
+}
+.createSurveyBtn:hover {
+    background-color: #4E00D3; cursor: pointer;
+}
 
+.createSurveyBtn img {
+    width: 16px; float: right;
+}
 /* innerTitle */
 .innerTitleWrap {
     width: 100%; height: auto;

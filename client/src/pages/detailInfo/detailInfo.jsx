@@ -8,6 +8,12 @@ const DetailInfo = (props) => {
 
     return (
         <div className='detailInfoContainer'>
+            <div className="infoTitleWrap">
+                <p className="infoTitleLine">
+                    <span></span>
+                    <span className="infoTitle">설문 정보</span>
+                </p>
+            </div>
             <div className="detailInfoBox">
                 <img className="infoThumbnail" src={surveyDetail.SIMG || thumbnail1} alt='설문조사 대표이미지' onError={e => e.target.src = thumbnail1} />
                 <div className="detailInfoWrap">

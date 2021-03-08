@@ -1,4 +1,3 @@
-//import Axios from 'axios';
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ProgressDetail from '../../../pages/progress/progressDetail/progressDetail';
@@ -7,12 +6,29 @@ const ProgressDetailComponent = (props) => {
     let sidx = props.match.params.sidx;
 
     useEffect(() => {
+        getSurveyDetail();
+    }, [])
+
+    useEffect(() => {
         getJoinSurveyCheck();
     },[])
 
+    const [surveyDetail, setSurveyDetail] = useState({});
     const [joinSurveyCheck, setJoinSurveyCheck] = useState({});
     const [isJoin, setIsJoin] = useState(false);
     const [mySurveyAnswer, setMySurveyAnswer] = useState([]);
+
+    const getSurveyDetail = () => {
+        const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
+
+        Axios.get(url)
+        .then(response => {
+            setSurveyDetail(response.data[0])
+        })
+        .catch(err => {
+            console.log('getSurveyDetail', err , err.response)
+        })
+    }
 
     const getJoinSurveyCheck = () => {
         Axios.get(`http://localhost:8080/joinSurveyCheck?sidx=${sidx}`,{

@@ -7,11 +7,11 @@
 }
 .prevBox { 
     width:360px; height: 388px; margin-bottom: 60px; box-sizing: border-box; 
-    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1); border-radius: 4px;
 }
 .prevBox .prevThumbnail {
     display: flex; width: 360px; height: 180px; background-size: contain; 
-    background-position: center;
+    background-position: center; border-radius: 4px 4px 0 0;
 }
 .prevBox .prevInfoBox {
     padding: 24px; box-sizing: border-box;
