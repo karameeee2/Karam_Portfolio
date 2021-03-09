@@ -1,26 +1,33 @@
 .progressDetailBtnBox, .endDetailBtnBox, .noticeDetailBtnBox {
-    width: 1200px; margin: 30px auto 100px;
+    width: 1200px; margin: 0 auto 100px;
 }
 
 .submitCancelBox {
-    width: 240px; margin: auto;
+    width: 264px; margin: auto;
 }
 
 .submitCancelBox button {
-    width: 120px; height: 36px; cursor: pointer;
+    width: 120px; height: 48px; border-radius: 4px; cursor: pointer; font-weight: 300;
 }
 .surveySubmitBtn {
-    background-color: #C7C7C7; border: none; color: white;
+    margin-right: 24px; background-color: #5E00FF; border: none; color: white;
+}
+.surveySubmitBtn:hover {
+    background-color: #4E00D3; font-weight: 400;
 }
 .surveyCancelBtn {
-    background-color: white; border: 1px solid #C7C7C7;
+    background-color: white; border: 1px solid #C7C7C7; color: #5A5A5A; 
+}
+.surveyCancelBtn:hover {
+    font-weight: 400;
 }
 
 .listBox {
     width: 120px; margin: auto;
 }
 .goSurveyListBtn {
-    width: 120px; height: 36px; background-color: #C7C7C7; border: none; color: white; cursor: pointer;
+    width: 120px; height: 48px; color: #5A5A5A; background-color: white; border: 1px solid #C7C7C7;
+    border-radius: 4px; cursor: pointer;
 }
 
 .infoQnASection { 

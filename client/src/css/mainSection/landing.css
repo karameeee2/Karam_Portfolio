@@ -1,4 +1,4 @@
-#landingBox {display: flex;  width: 100%; height: auto; margin-top:70px;}
+#landingBox {display: flex;  width: 100%; height: auto;}
 
 .landingImg {display: flex; flex-direction: column; width: 100%; height: auto;}
 .landingImg img {width: 100%; height: 1080px;}

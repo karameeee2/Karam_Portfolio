@@ -1,13 +1,17 @@
 import React from 'react';
+import '../../../css/common/pageTitle.css';
 import '../../../css/common/detailInfo.css';
-import thumbnail1 from '../../../assets/thumbnail1.jpg';
-import { CommonUtils } from '../../../utils/common';
-import ProgressQnAComponent from '../../../components/progress/progressDetail/progressQnA';
 import '../../../css/progress/progressDetail/progressDetail.css';
+import '../../../css/progress/progressDetail/progressQnA.css';
+import '../../../css/common/detailBtn.css';
+import thumbnail1 from '../../../assets/thumbnail/thumbnail_basic.png';
+import { CommonUtils } from '../../../utils/common';
+import { Link } from 'react-router-dom';
 
 
 const ProgressDetail = (props) => {
-    const {surveyDetail, qnaList, sidx, isJoin, mySurveyAnswer} = props;
+    const {surveyDetail, questionList, _setCheckedList, isJoin, mySurveyAnswer} = props;
+    const joinSurveySubmit = props.onSubmit;
 
     return (
         <>
@@ -23,10 +27,10 @@ const ProgressDetail = (props) => {
                 <div className="infoQnAContainer">
                     {/* detailInfo */}
                     <div className='detailInfoContainer'>
-                        <div className="infoTitleWrap">
-                            <p className="infoTitleLine">
-                                <span></span>
-                                <span className="infoTitle">설문 정보</span>
+                        {/* subTitle */}
+                        <div className="subTitleWrap">
+                            <p className="subTitleLine">
+                                <span className="subTitle">설문 정보</span>
                             </p>
                         </div>
                         <div className="detailInfoBox">
@@ -44,10 +48,59 @@ const ProgressDetail = (props) => {
                             </div>
                         </div>
                     </div>
-                    
-                    <ProgressQnAComponent qnaList={qnaList} sidx={sidx} isJoin={isJoin} mySurveyAnswer={mySurveyAnswer} />
+                    <div className='qnaContainer'>
+                        {/* progressQnA */}
+                        <div className="subTitleWrap">
+                            <p className="subTitleLine">
+                                <span className="subTitle">설문</span>
+                            </p>
+                        </div>
+                        {/* subTitle */}
+                        {questionList.map((item, idx) => {
+                            return (
+                                <div className="qnaWrap" key={item.QIDX}>
+                                    <p className="qst">{idx + 1}. {item.QUESTION}</p>
+                                    {item.answerList.map((answer) => {
+                                        console.log(answer,);
+                                        // mySurveyAnswer[idx].AIDX === answer.AIDX
+                                        return (
+                                            <label className="aswBox" key={answer.AIDX} >
+                                                <input type="radio" name={item.QIDX} className='asw' checked={mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX}
+                                                // disabled={mySurveyAnswer[idx] !== undefined}
+                                                disabled={isJoin}
+                                                onClick={() => _setCheckedList(idx, {aidx: answer.AIDX, qidx: item.QIDX })} />{answer.ANSWER}
+                                            </label>
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-            </section> 
+            </section>
+            
+            {/* progressDetailBtn */}
+            <div className='progressDetailBtnBox'>
+                {/*  */}
+                {isJoin ?
+                <div className="listBox">
+                    <Link to="/progressList">
+                        <button type='button' className="goSurveyListBtn">목록</button>
+                    </Link>
+                </div>
+                :
+                <div className="submitCancelBox">
+                    <button type='submit' className="surveySubmitBtn" onClick = {e => {
+                        console.log('click');
+                        e.stopPropagation();
+                        e.preventDefault();
+                        joinSurveySubmit()}}>제출</button>
+                    <Link to="/progressList">
+                        <button type='button' className="surveyCancelBtn">그만하기</button>
+                    </Link>
+                </div>
+                }
+            </div>
 
             {/* <PageTitle pageTitle='진행중인 설문' />
             <section className='infoQnASection'>

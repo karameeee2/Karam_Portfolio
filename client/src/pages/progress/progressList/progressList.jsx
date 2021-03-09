@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { CommonUtils } from '../../../utils/common';
 import '../../../css/common/pageTitle.css';
 import '../../../css/common/previewList.css';
 import '../../../css/progress/progressList/progressPreview.css';
 import '../../../css/progress/progressList/progressPreview.css';
-import { CommonUtils } from '../../../utils/common';
 import thumbnail1 from '../../../assets/thumbnail/thumbnail_basic.png';
 import termIcon from '../../../assets/icons/termIcon.svg';
 import hashIcon from '../../../assets/icons/hashIcon.svg';

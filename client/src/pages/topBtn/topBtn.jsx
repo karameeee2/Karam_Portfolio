@@ -1,4 +1,5 @@
 import React from 'react';
+import topIcon from '../../assets/icons/topIcon.svg';
 import '../../css/common/topBtn.css';
 
 const TopBtn = (props) => {
@@ -7,9 +8,8 @@ const TopBtn = (props) => {
     return (
         <div id="topBtnWrap">
             {/* topBtn */}
-
             <a href='#!' className='topBtn' onClick={() => scrollTop()}>
-                TOP
+                <img src={topIcon} alt="맨위로"/>
             </a>
         </div>
     )

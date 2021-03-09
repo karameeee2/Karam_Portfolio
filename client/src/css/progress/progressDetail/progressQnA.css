@@ -1,6 +1,27 @@
-.qnaContainer { border-bottom: 1px solid black;}
-.qnaWrap {width: 1200px; height: auto; margin: 60px auto;}
+.qnaContainer { 
+    margin: 60px 0 72px;
+}
+.qnaWrap {
+    width: 1200px; margin-top: 24px; padding: 48px; box-sizing: border-box; border-radius: 4px;
+    background-color: #FFF; box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}
 
-.qst {font-size: 24px; line-height: 32px;}
-.aswBox {display: inline-flex; height: 24px; line-height: 24px; margin: 10px 60px 0 0;font-size: 16px; }
-.asw {height: 24px;line-height: 24px; margin-right: 6px;}
+.qst {
+    height: 28px; margin-bottom: 24px; line-height: 28px; font-size: 22px; font-weight: 400;
+}
+.aswBox {
+    display: inline-flex; height: 40px; font-size: 16px; margin-right: 24px; padding: 8px;
+    border: 1px solid #C7C7C7; box-sizing: border-box; border-radius: 4px;
+}
+.asw {
+    width: 24px; height: 24px; line-height: 24px; margin-right: 8px; border-radius: 4px;
+}
+
+input[type='radio'] {
+    appearance: none; border-radius: 4px; background-color: #C7C7C7; color: #FFF; font-size: 14px; 
+    font-weight: 300;
+}
+
+input[type='radio']:checked {
+    background-color: #5E00FF; font-weight: 400;
+}

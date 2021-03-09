@@ -1,6 +1,12 @@
-.detailInfoBox {display: flex; width: 1200px; margin: 60px auto;}
+.detailInfoBox {
+    display: flex; width: 1200px; margin: 24px auto; padding: 48px; background-color: #FFF;
+    box-sizing: border-box; border-radius: 4px; box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}
 
-.infoThumbnail {width: 320px; height: 160px; margin-right: 30px;}
-.infoSubject { height: 60px; line-height: 30px; font-size: 24px; font-weight: bold;}
-.infoContent, .infoSpanWrap { margin-top: 20px; font-size: 16px; line-height: 20px;}
-.verLine { margin: 0 10px;}
+.infoThumbnail {
+    width: 360px; height: 180px; margin-right: 48px; border-radius: 4px;
+}
+.infoSubject { height: 56px; line-height: 28px; font-size: 22px; font-weight: 500;}
+.infoContent { height: 48px; margin-top: 24px; line-height: 24px;}
+.infoSpanWrap { height: 24px; margin-top: 24px; line-height: 24px; color: #5A5A5A}
+.verLine { margin: 0 12px; color: #5A5A5A}
