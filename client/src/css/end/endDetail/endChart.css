@@ -1,3 +1,45 @@
+.endChartContainer {
+    margin: 60px auto 72px;
+}
+/* catetory */
+.categoryWrap {
+    margin-top: 24px; padding: 24px; box-sizing: border-box; background-color: #FFF; 
+    border-radius: 4px; box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}
+.categoryBox {
+    width: fit-content; height: 24px; margin: 0 auto;
+}
+.category {
+    display: inline-flex; align-items: center; height: 24px; line-height: 24px; margin-right: 48px;
+}
+.category:last-child {
+    margin-right: 0;
+}
+
+.categoryColor {
+    display: inline-block; width: 16px; height: 16px; margin-right: 12px; 
+}
+
+.categoryName {
+    display: inline-block; height: 24px; line-height: 24px;
+}
+.answer01, .color01 {
+    background-color: #5E00FF;
+}
+.answer02, .color02 {
+    background-color: #7E33FF;
+}
+.answer03, .color03 {
+    background-color: #9E66FF;
+}
+.answer04, .color04 {
+    background-color: #BF99FF;
+}
+.answer05, .color05 {
+    background-color: #DFCCFF;
+}
+
+/* chart */
 .chartWrap {
     display: flex; flex-direction: column; width: 1200px; margin: 60px auto;
 }
@@ -20,34 +62,5 @@
 .chartBar li {
     display: inline-block; height: 30px;
 }
-.answer01, .color01 {
-    background-color: #484848;
-}
-.answer02, .color02 {
-    background-color: #858585;
-}
-.answer03, .color03 {
-    background-color: #B7B7B7;
-}
-.answer04, .color04 {
-    background-color: #D2D2D2;
-}
-.answer05, .color05 {
-    background-color: #E4E4E4;
-}
 
-.categoryBox {
-    display: flex; justify-content: flex-end; line-height: 20px; margin-top: 6px;
-}
-.category {
-    display: flex;
-    margin-left: 20px;
-}
 
-.categoryColor {
-    display: inline-block; width: 16px; height: 16px; margin: 2px 6px 0 0; 
-}
-
-.categoryName {
-
-}
