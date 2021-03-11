@@ -10,9 +10,10 @@ import { Link } from 'react-router-dom';
 
 
 const ProgressDetail = (props) => {
-    const {surveyDetail, questionList, _setCheckedList, isJoin, mySurveyAnswer} = props;
+    const { surveyDetail, questionList, _setCheckedList, isJoin, mySurveyAnswer, checkedList } = props;
     const joinSurveySubmit = props.onSubmit;
 
+    console.log('checkedList', checkedList)
     return (
         <>
             {/* pageTitle */}
@@ -60,16 +61,23 @@ const ProgressDetail = (props) => {
                             return (
                                 <div className="qnaWrap" key={item.QIDX}>
                                     <p className="qst">{idx + 1}. {item.QUESTION}</p>
-                                    {item.answerList.map((answer) => {
-                                        console.log(answer,);
+                                    {item.answerList.map((answer, answerIndex) => {
+                                        // console.log(answer,);
                                         // mySurveyAnswer[idx].AIDX === answer.AIDX
                                         return (
-                                            <label className="aswBox" key={answer.AIDX} >
-                                                <input type="radio" name={item.QIDX} className='asw' value={idx} checked={mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX}
+                                            <div className={`aswBox ${mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX ? 'checked' : ''}
+                                            ${checkedList[idx] && checkedList[idx].aidx === answer.AIDX ? 'checked' : ''}
+                                            `}
+                                                key={answer.AIDX} onClick={() => { _setCheckedList(idx, { aidx: answer.AIDX, qidx: item.QIDX }) }} >
+                                                <div className={`asw ${checkedList[idx] && checkedList[idx].aidx === answer.AIDX ? 'active' : ''}
+                                                ${mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX ? 'active' : ''}
+                                                `}
+                                                // <input type="radio" name={item.QIDX} className='asw' checked={mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX}
                                                 // disabled={mySurveyAnswer[idx] !== undefined}
-                                                disabled={isJoin}
-                                                onClick={() => _setCheckedList(idx, {aidx: answer.AIDX, qidx: item.QIDX })} />{answer.ANSWER}
-                                            </label>
+                                                // disabled={isJoin}
+                                                >{answerIndex+1}</div>
+                                                {answer.ANSWER}
+                                            </div>
                                         );
                                     })}
                                 </div>
@@ -78,27 +86,28 @@ const ProgressDetail = (props) => {
                     </div>
                 </div>
             </section>
-            
+
             {/* progressDetailBtn */}
             <div className='progressDetailBtnBox'>
                 {/*  */}
                 {isJoin ?
-                <div className="listBox">
-                    <Link to="/progressList">
-                        <button type='button' className="goSurveyListBtn">목록</button>
-                    </Link>
-                </div>
-                :
-                <div className="submitCancelBox">
-                    <button type='submit' className="surveySubmitBtn" onClick = {e => {
-                        console.log('click');
-                        e.stopPropagation();
-                        e.preventDefault();
-                        joinSurveySubmit()}}>제출</button>
-                    <Link to="/progressList">
-                        <button type='button' className="surveyCancelBtn">그만하기</button>
-                    </Link>
-                </div>
+                    <div className="listBox">
+                        <Link to="/progressList">
+                            <button type='button' className="goSurveyListBtn">목록</button>
+                        </Link>
+                    </div>
+                    :
+                    <div className="submitCancelBox">
+                        <button type='submit' className="surveySubmitBtn" onClick={e => {
+                            console.log('click');
+                            e.stopPropagation();
+                            e.preventDefault();
+                            joinSurveySubmit()
+                        }}>제출</button>
+                        <Link to="/progressList">
+                            <button type='button' className="surveyCancelBtn">그만하기</button>
+                        </Link>
+                    </div>
                 }
             </div>
 
