@@ -12,14 +12,14 @@
 .aswBox {
     display: inline-flex; height: 40px; font-size: 16px; margin-right: 24px; padding: 7px;
     border: 1px solid #C7C7C7; box-sizing: border-box; border-radius: 4px; background-color: rgba(199,199,199,0.14);
-    cursor: pointer;
+    align-items: baseline; cursor: pointer;
 }
 .checked {
     padding: 6px;border: 2px solid #5E00FF; background-color: rgba(94,0,255,0.14); font-weight: 400;
 }
 .asw {
     width: 24px; height: 24px; line-height: 24px; margin-right: 8px; border-radius: 4px;
-    background-color: #C7C7C7; color: white; font-size: 14px; text-align: center; align-items: center;
+    background-color: #C7C7C7; color: white; font-size: 14px; text-align: center;
 }
 .asw.active {
     background-color: #5E00FF;

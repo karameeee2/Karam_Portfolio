@@ -3,8 +3,7 @@
 }
 
 .loginFormContainer {
-    width: 800px; margin:100px auto; padding: 70px; box-sizing: border-box; border: 1px solid black;
-    border-radius: 5px;
+    width: 480px; margin: 0 auto; box-sizing: border-box; 
 }
 
 .loginFormWrap {
@@ -19,32 +18,36 @@
 }
 
 .loginInputWrap {
-    display: flex; flex-direction: column; margin-top: 60px;
+    display: flex; flex-direction: column;
     border-bottom: 1px solid #C7C7C7;
 }
 .idInput, .passwordInput {
-    width: 480px; height: 48px; margin-bottom: 10px; padding: 0 10px;
-    box-sizing: border-box; border: 1px solid #C7C7C7
+    width: 480px; height: 60px; margin-bottom: 12px; padding: 0 24px;
+    box-sizing: border-box; border: 1px solid #C7C7C7; border-radius: 4px;
+    outline: none;
 }
 .loginBtn {
-    width: 100%; height: 48px; margin-bottom: 20px; border: none;
-    background-color: #C7C7C7; color: white; font-weight: bold;
+    width: 100%; height: 60px; margin-bottom: 12px; border: none;
+    background-color: #5E00FF; color: white; font-weight: 400;
+    border-radius: 4px; font-size: 18px; cursor: pointer;
 }
 .registerBtnWrap {
-    width: 100%; height: 48px; background-color: blueviolet;
-    margin: 20px 0 10px;
+    width: 100%; height: 60px; margin: 12px 0;
 }
 .registerBtnWrap .registerBtn {
-    width: 100%; height: 48px; background-color: white; border: 1px solid #C7C7C7;
-    color: #C7C7C7;
+    width: 100%; height: 60px; background-color: white; border: 1px solid #C7C7C7;
+    color: #5A5A5A; border-radius: 4px; cursor: pointer;
 }
 
 .findIdPw {
     width: 100%; height: auto; text-align: center;
 }
 .findIdPw a {
-    color: #C7C7C7;
+    color: #5A5A5A;
 }
-.findIdPw .verLine {
-    color: #C7C7C7;
+.findId {
+    float: left;
+}
+.findPassword {
+    float: right;
 }

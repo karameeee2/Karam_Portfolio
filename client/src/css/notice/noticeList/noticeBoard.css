@@ -1,26 +1,33 @@
 .noticeBoardContainer {
-    width: 1200px; margin: 0 auto 100px;
+    width: 1200px; margin: 0 auto 100px; background-color: #FFF; border-radius: 4px;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
 }
 .noticeBoardWrap {
     width: 1200px;
 }
 .noticeRowWrap {
-    height: 48px; line-height: 48px; border-bottom: 1px solid #C7C7C7;
+    height: 48px; line-height: 48px; border-bottom: 2px solid #F0F0F0;
+    color: #5A5A5A;
 }
 .noticeContentWrap {
     height: 48px; line-height: 48px; border-bottom: 1px solid #F0F0F0;
+    color:#000; font-weight: 400;
 }
-.noticeContentWrap:last-child {
-    border-bottom: 1px solid black;
+.noticeContentWrap td a {
+    color: #000;
 }
+.noticeContentWrap td a:hover {
+    color: #5E00FF;
+}
+
 .rowSmall {
     width: 100px;
 }
 .rowMidium {
     width: 150px;
 }
-.rowLarge {
-    width: 780px;
+.noticeRowWrap .rowLarge {
+    width: 780px; text-align: center;
 }
 .noticeContentWrap .num, .noticeContentWrap .regdate, .noticeContentWrap .hit {
     text-align: center;
