@@ -1,20 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/register/registerComplete.css';
+import '../../css/common/pageTitle.css';
 
 const RegisterComplete = () => {
     return (
         <div className='registerCompleteContainer'>
             <div className="completeWrap">
-                <div className="titleBox">
-                    <h3 className="completeTitle">회원가입</h3>
+                {/* pageTitle */}
+                <div className="pageTitleBox">
+                    <div className="pageTitleWrap">
+                        <h2 className='titleLeft'>회원가입</h2>
+                    </div>
                 </div>
                 <div className="completeTextBox">
-                    <p className="completeText">회원가입을 축하드립니다.</p>
+                    <p className="completeText">회원가입 완료~!</p>
                     <br />
                     <p className="completeText">
-                        로그인 후 다양한 설문에 응답하고 내가 필요한 설문을 등록해 다양한 데이터를 얻어보세요! 
-                        많은 이용 부탁드립니다.
+                    로그인 후 다양한 설문에 응답하고 내가 필요한 설문을 등록해 다양한 데이터를 얻어보세요!
                     </p>
                     <br />
                     <p className="completeText">감사합니다.</p>

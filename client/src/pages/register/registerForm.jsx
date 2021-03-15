@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../css/register/registerForm.css';
+import '../../css/common/pageTitle.css';
 
 const RegisterForm = (props) => {
     const registerSubmit = props.onSubmit;
@@ -9,8 +10,11 @@ const RegisterForm = (props) => {
     return(
         <div className='registerFormContainer'>
             <div className="registerFormWrap">
-                <div className="titleBox">
-                    <h3 className="registerTitle">회원가입</h3>
+                {/* pageTitle */}
+                <div className="pageTitleBox">
+                    <div className="pageTitleWrap">
+                        <h2 className='titleLeft'>회원가입</h2>
+                    </div>
                 </div>
                 <form className="registerInputWrap" onSubmit= { e => {
                     e.stopPropagation();
@@ -39,10 +43,10 @@ const RegisterForm = (props) => {
                             <option value="F" name='gender'>여자</option>
                         </select>
                         {/* 추후 캘린더로 바꿈 */}
-                        <input type="text" className="birthInput" name='birth' placeholder='생년월일 ex)19930307' onChange={ e => { setBirth(e.target.value) }}/>
+                        <input type="text" className="birthInput" name='birth' placeholder='생년월일 8자리' onChange={ e => { setBirth(e.target.value) }}/>
                     </div>
                     <div className="registerBtnWrap">
-                        <button className='registerBtn' type='submit'>회원가입</button>
+                        <button className='registerSubmitBtn' type='submit'>회원가입</button>
                     </div>
                 </form>
             </div>
