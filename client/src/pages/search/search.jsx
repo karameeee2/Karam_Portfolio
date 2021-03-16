@@ -9,12 +9,19 @@ const Search = (props) => {
     const search = props.search;
 
     const onClickSearch = () => {
+        let search = document.getElementById('search');
+        search.style.display = 'none';
         // 검색어 담아서 요청보내기
         return value;
     }
 
     const onChangeInput = (e) => {
         setValue(e.currentTarget.value);
+    }
+
+    const closeSearch = () => {
+        let search = document.getElementById('search');
+        search.style.display = 'none';
     }
 
     const changeCategory = (e) => {
@@ -32,7 +39,7 @@ const Search = (props) => {
                         </button>
                     </Link>
                 </div>
-                <button className="searchClose">
+                <button className="searchClose" onClick={closeSearch}>
                     <img src={closeIcon} alt="검색창닫기"/>
                 </button>
             </div>
