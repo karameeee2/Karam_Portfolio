@@ -2,11 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/common/header.css';
 import surveyOnLogo from '../../assets/logo/survey_on_logo_1.svg';
-import userIcon from '../../assets/icons/userIcon.svg';
-import searchIcon from '../../assets/icons/searchIcon.svg';
 
 const Header = (props) => {
-    // const [toggle, setToggle] = useState('none');
     const cookie = props.cookie;
     const logout = props.logout;
 
@@ -20,24 +17,13 @@ const Header = (props) => {
         polygon.classList.toggle('none');
         userView.classList.toggle('block');
         polygon.classList.toggle('block');
-
-        // if(userView.classList.contains('none')) {
-        //     userView.classList.remove('none');
-        //     polygon.classList.remove('none');
-        //     userView.classList.add('block');
-        //     polygon.classList.add('block');
-        // } else if(userView.classList.contains('block')) {
-        //     userView.classList.remove('block');
-        //     polygon.classList.remove('block');
-        //     userView.classList.add('none');
-        //     polygon.classList.add('none');
-        // }
     }
 
     const showSearch = () => {
-        let search = document.getElementById('search')
+        let search = document.getElementById('search');
         search.style.display = 'block';
     }
+
 
     return (
         <>
@@ -58,13 +44,13 @@ const Header = (props) => {
                         </li>
                         <li>
                             <span className="iconBox userIcon" onClick={onClickBlock}>
-                                <img src={userIcon} alt='회원' />
+                                <p id="userIcon" className='navIcon'></p>
                                 <p className="polygon none"></p>
                             </span>
                         </li>
                         <li>
                             <span className="iconBox" onClick={showSearch}>
-                                <img src={searchIcon} alt='검색'/>
+                                <p id="searchIcon" className='navIcon'></p>
                             </span>
                         </li>
                     </ul>

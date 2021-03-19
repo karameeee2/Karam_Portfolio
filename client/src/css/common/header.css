@@ -11,7 +11,26 @@
 #gnbWrap { display: flex; justify-content: space-between; width: 100%; height: 40px; line-height: 40px;}
 #gnbWrap li a { font-size: 16px; font-weight: 400; text-decoration: none; color: black;}
 #gnbWrap li a:hover {color: #5E00FF; font-weight: 500; cursor: pointer;}
-#gnbWrap li .iconBox img {display: inline-block; vertical-align: text-bottom;}
+#gnbWrap li .iconBox .navIcon {
+    display: inline-block; width: 24px; height: 24px; vertical-align: text-bottom; background-color: #D95767;
+}
+.nowPage {
+    color: #5E00FF; font-weight: 500;
+}
+#gnbWrap li .iconBox #userIcon {
+    background: url('../../assets/icons/userIcon.svg') center no-repeat;
+}
+#gnbWrap li .iconBox #userIcon:hover, #gnbWrap li .iconBox #userIcon:active {
+    background: url('../../assets/icons/userIcon_active.svg') center no-repeat; cursor: pointer;
+}
+
+#gnbWrap li .iconBox #searchIcon {
+    background: url('../../assets/icons/searchIcon.svg') center no-repeat;
+}
+#gnbWrap li .iconBox #searchIcon:hover {
+    background: url('../../assets/icons/searchIcon_active.svg') center no-repeat; cursor: pointer;
+}
+
 #gnbWrap li .iconBox img:hover {cursor: pointer;}
 
 /* balloon pointer */
@@ -36,7 +55,7 @@
 
 /* aside_userView */
 .userView {
-    position: absolute; top: 0; right: 0; margin: 63px 184px 0 0;
+    position: absolute; top: 0; right: 0; margin: 63px 192px 0 0;
 }
 
 .userViewWrap {
