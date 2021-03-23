@@ -42,8 +42,7 @@ const RegisterForm = (props) => {
                             <option value="M" name='gender'>남자</option>
                             <option value="F" name='gender'>여자</option>
                         </select>
-                        {/* 추후 캘린더로 바꿈 */}
-                        <input type="text" className="birthInput" name='birth' placeholder='생년월일 8자리' onChange={ e => { setBirth(e.target.value) }}/>
+                        <input type="text" className="birthInput" name='birth' placeholder='출생년도 4자리' onChange={ e => { setBirth(e.target.value) }}/>
                     </div>
                     <div className="registerBtnWrap">
                         <button className='registerSubmitBtn' type='submit'>회원가입</button>
