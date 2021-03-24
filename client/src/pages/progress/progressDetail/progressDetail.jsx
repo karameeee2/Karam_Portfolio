@@ -72,9 +72,6 @@ const ProgressDetail = (props) => {
                                                 <div className={`asw ${checkedList[idx] && checkedList[idx].aidx === answer.AIDX ? 'active' : ''}
                                                 ${mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX ? 'active' : ''}
                                                 `}
-                                                // <input type="radio" name={item.QIDX} className='asw' checked={mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX}
-                                                // disabled={mySurveyAnswer[idx] !== undefined}
-                                                // disabled={isJoin}
                                                 >{answerIndex+1}</div>
                                                 {answer.ANSWER}
                                             </div>

@@ -23,6 +23,8 @@ const insertQuestion = require('./insertQuestion/index');
 const selectAnswer = require('./selectAnswer/index');
 const insertAnswer = require('./insertAnswer/index');
 
+const selectAgeCount = require('./selectAgeCount/index');
+
 const noticeList = require('./noticeList/index');
 const noticeDetail = require('./noticeDetail/index');
 
@@ -53,6 +55,8 @@ router.use('/insertQuestion', insertQuestion);
 
 router.use('/selectAnswer', selectAnswer);
 router.use('/insertAnswer', insertAnswer);
+
+router.use('/selectAgeCount', selectAgeCount);
 
 router.use('/noticeList', noticeList);
 router.use('/noticeDetail', noticeDetail);

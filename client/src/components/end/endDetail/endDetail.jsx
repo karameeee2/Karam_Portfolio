@@ -4,18 +4,23 @@ import EndDetail from '../../../pages/end/endDetail/endDetail';
 
 const EndDetailComponent = (props) => {
     let sidx = props.match.params.sidx;
-
+    
     const [surveyDetail, setSurveyDetail] = useState({});
     const [questionList, setQuestionList] = useState([]);
-
+    // const [ageCount, setAgeCount] = useState([]);
+    
     useEffect(() => {
         getSurveyDetail();
     }, [])
-
+    
     useEffect(() => {
-        getQuestionList();
+        getQuestionList(sidx);
     }, [])
 
+    // useEffect(() => {
+    //     getAgeCount();
+    // }, [])
+    
     const getSurveyDetail = () => {
         const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
 
@@ -32,15 +37,52 @@ const EndDetailComponent = (props) => {
         const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
-            setQuestionList(res.data);
+            getAnswerList(res.data)
         })
         .catch(err => {
-            console.log('getQuestionList', err, err.res);
+            // console.log('getQuestionList', err, err.res);
         })
     }
 
+    const getAnswerList = async (data) => {
+        if(data.length <= 0) return;
+
+        const url = `http://localhost:8080/selectAnswer`;
+        const result = [...data]
+
+        for (let i = 0; i < data.length; i++) {
+            await Axios.get(url + `?qidx=${data[i].QIDX}`)
+            .then(res => {
+                // console.log('answer response: ' + i, res.data)
+                result[i].answerList = res.data
+                getAgeCount(res.data);
+                console.log('ageCount::', res.data[i]);
+            })
+            .catch(err => {
+                console.log('getAnswerList', err, err.res);
+            })
+        }
+        // console.log('result:', result)
+        setQuestionList(result);
+    }
+
+    const getAgeCount = (data) => {
+        const url = `http://localhost:8080/selectAgeCount`;
+        const result = [...data]
+
+        for(let i = 0; i < data.length; i++) {
+            Axios.get(url + `?aidx=${data[i].AIDX}`)
+            .then(res => {
+                console.log('aidx::', data[i]);
+            })
+            .catch(err => {
+    
+            })
+        }
+    }
+
     return (
-        <EndDetail pageTitle={ '종료된 설문' } sidx={ sidx } surveyDetail={ surveyDetail } questionList={questionList}  />
+        <EndDetail sidx={ sidx } surveyDetail={ surveyDetail } questionList={questionList}  />
     )
 }
 

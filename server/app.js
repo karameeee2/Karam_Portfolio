@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const session = require('express-session');
 const db = require('./dbconnection');
 const app = express();
@@ -8,7 +7,6 @@ const cors = require('cors');
 const routes = require('./routes');
 const passport = require('passport');
 const passportConfig = require('./config/passport');
-const flash = require('connect-flash');
 
 app.use(express.static('public'));
 // app.use(bodyParser.json());

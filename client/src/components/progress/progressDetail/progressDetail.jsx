@@ -4,6 +4,13 @@ import ProgressDetail from '../../../pages/progress/progressDetail/progressDetai
 
 const ProgressDetailComponent = (props) => {
     let sidx = props.match.params.sidx;
+    
+    const [surveyDetail, setSurveyDetail] = useState({});
+    const [joinSurveyCheck, setJoinSurveyCheck] = useState({});
+    const [isJoin, setIsJoin] = useState(false);
+    const [mySurveyAnswer, setMySurveyAnswer] = useState([]);
+    const [questionList, setQuestionList] = useState([]);
+    const [checkedList, setCheckedList] = useState({});
 
     useEffect(() => {
         getSurveyDetail();
@@ -16,13 +23,6 @@ const ProgressDetailComponent = (props) => {
     useEffect(() => {
         getQuestionList(sidx);
     }, [])
-
-    const [surveyDetail, setSurveyDetail] = useState({});
-    const [joinSurveyCheck, setJoinSurveyCheck] = useState({});
-    const [isJoin, setIsJoin] = useState(false);
-    const [mySurveyAnswer, setMySurveyAnswer] = useState([]);
-    const [questionList, setQuestionList] = useState([]);
-    const [checkedList, setCheckedList] = useState({});
 
     const getSurveyDetail = () => {
         const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
@@ -57,7 +57,7 @@ const ProgressDetailComponent = (props) => {
         })
     }
 
-    const getQuestionList = (sidx) => {
+    const getQuestionList = () => {
         const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {

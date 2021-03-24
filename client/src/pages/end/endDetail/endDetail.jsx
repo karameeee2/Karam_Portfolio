@@ -1,16 +1,15 @@
 import React from 'react';
 import { CommonUtils } from '../../../utils/common';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import thumbnail1 from '../../../assets/thumbnail/thumbnail_basic.png';
 import '../../../css/end/endDetail/endDetail.css';
 import '../../../css/end/endDetail/endChart.css';
 import '../../../css/common/pageTitle.css';
 import '../../../css/common/detailInfo.css';
 import '../../../css/common/detailBtn.css';
-import thumbnail1 from '../../../assets/thumbnail/thumbnail_basic.png';
 
 const EndDetail = (props) => {
-    const surveyDetail = props.surveyDetail;
-    const questionList = props.questionList;
+    const { surveyDetail, questionList, ageCount } = props;
     
     return (
         <>
@@ -82,7 +81,26 @@ const EndDetail = (props) => {
                                 <div className="chartWrap">
                                     <p className="qst" key={item.QIDX}>{idx+1}. {item.QUESTION}</p>
                                     <div className="endAswBox">
-                                        <div className="chartBox">
+                                        {item.answerList.map((answer, answerIndex) => {
+                                            return (
+                                                <div className="chartBox">
+                                                    <p className="labelPercent">
+                                                        <span className="chartLabel">{answer.ANSWER}</span>
+                                                        <span className="chartPercent">12%</span>
+                                                    </p>
+                                                    <p className="chartLine">
+                                                        <ul className="chartBar">
+                                                            <li className="answer01"></li>
+                                                            <li className="answer02"></li>
+                                                            <li className="answer03"></li>
+                                                            <li className="answer04"></li>
+                                                            <li className="answer05"></li>
+                                                        </ul>
+                                                    </p>
+                                                </div>
+                                            )
+                                        })}
+                                        {/* <div className="chartBox">
                                             <p className="labelPercent">
                                                 <span className="chartLabel">answer01</span>
                                                 <span className="chartPercent">12%</span>
@@ -96,85 +114,8 @@ const EndDetail = (props) => {
                                                     <li className="answer05"></li>
                                                 </ul>
                                             </p>
-                                        </div>
-                                        <div className="chartBox">
-                                            <p className="labelPercent">
-                                                <span className="chartLabel">answer02</span>
-                                                <span className="chartPercent">5%</span>
-                                            </p>
-                                            <p className="chartLine">
-                                                <ul className="chartBar">
-                                                    <li className="answer01"></li>
-                                                    <li className="answer02"></li>
-                                                    <li className="answer03"></li>
-                                                    <li className="answer04"></li>
-                                                    <li className="answer05"></li>
-                                                </ul>
-                                            </p>
-                                        </div>
-                                        <div className="chartBox">
-                                            <p className="labelPercent">
-                                                <span className="chartLabel">answer03</span>
-                                                <span className="chartPercent">21%</span>
-                                            </p>
-                                            <p className="chartLine">
-                                                <ul className="chartBar">
-                                                    <li className="answer01"></li>
-                                                    <li className="answer02"></li>
-                                                    <li className="answer03"></li>
-                                                    <li className="answer04"></li>
-                                                    <li className="answer05"></li>
-                                                </ul>
-                                            </p>
-                                        </div>
-                                        <div className="chartBox">
-                                            <p className="labelPercent">
-                                                <span className="chartLabel">answer04</span>
-                                                <span className="chartPercent">8%</span>
-                                            </p>
-                                            <p className="chartLine">
-                                                <ul className="chartBar">
-                                                    <li className="answer01"></li>
-                                                    <li className="answer02"></li>
-                                                    <li className="answer03"></li>
-                                                    <li className="answer04"></li>
-                                                    <li className="answer05"></li>
-                                                </ul>
-                                            </p>
-                                        </div>
-                                        <div className="chartBox">
-                                            <p className="labelPercent">
-                                                <span className="chartLabel">answer05</span>
-                                                <span className="chartPercent">14%</span>
-                                            </p>
-                                            <p className="chartLine">
-                                                <ul className="chartBar">
-                                                    <li className="answer01"></li>
-                                                    <li className="answer02"></li>
-                                                    <li className="answer03"></li>
-                                                    <li className="answer04"></li>
-                                                    <li className="answer05"></li>
-                                                </ul>
-                                            </p>
-                                        </div>
+                                        </div> */}
                                     </div>
-                                    {/* {endA.map((item, idx) => {
-                                        return(
-                                            <p className="aswBox" key={idx}>
-                                                <div className="chartBox">
-                                                    <span className="age">{item.asw}</span>
-                                                    <ul className="chartBar">
-                                                        <li className='answer01' style={{width: '33%'}}></li>
-                                                        <li className='answer02' style={{width: '24%'}}></li>
-                                                        <li className='answer03' style={{width: '19%'}}></li>
-                                                        <li className='answer04' style={{width: '15%'}}></li>
-                                                        <li className='answer05' style={{width: '9%'}}></li>
-                                                    </ul>
-                                                </div>
-                                                
-                                            </p>
-                                        );
-                                    })} */}
                                 </div>
                             );
                         })}
