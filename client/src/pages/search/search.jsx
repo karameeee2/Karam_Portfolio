@@ -4,9 +4,8 @@ import searchIconActive from '../../assets/icons/searchIcon_active.svg';
 import closeIcon from '../../assets/icons/closeIcon.svg';
 import '../../css/search/search.css';
 
-const Search = (props) => {
+const Search = () => {
     const [value, setValue] = useState('');
-    const search = props.search;
 
     const onClickSearch = () => {
         let search = document.getElementById('search');
@@ -22,10 +21,6 @@ const Search = (props) => {
     const closeSearch = () => {
         let search = document.getElementById('search');
         search.style.display = 'none';
-    }
-
-    const changeCategory = (e) => {
-        if(props.categoryChange) props.categoryChange(e.target.value)
     }
 
     return (

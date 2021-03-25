@@ -53,7 +53,6 @@ const EndDetailComponent = (props) => {
         for (let i = 0; i < data.length; i++) {
             await Axios.get(url + `?qidx=${data[i].QIDX}`)
             .then(res => {
-                // console.log('answer response: ' + i, res.data)
                 result[i].answerList = res.data
                 getAgeCount(res.data);
                 console.log('ageCount::', res.data[i]);
@@ -62,7 +61,6 @@ const EndDetailComponent = (props) => {
                 console.log('getAnswerList', err, err.res);
             })
         }
-        // console.log('result:', result)
         setQuestionList(result);
     }
 
@@ -73,7 +71,9 @@ const EndDetailComponent = (props) => {
         for(let i = 0; i < data.length; i++) {
             Axios.get(url + `?aidx=${data[i].AIDX}`)
             .then(res => {
-                console.log('aidx::', data[i]);
+                result[i].ageCount = res.data;
+                // console.log('aidx::', res.data);
+                // console.log('result[i].ageCount', result[i].ageCount);
             })
             .catch(err => {
     

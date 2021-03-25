@@ -48,4 +48,5 @@ export const takesurveyList = [
 ]
 
 // 이메일정규식
+// eslint-disable-next-line
 export const emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/

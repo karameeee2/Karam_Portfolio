@@ -9,7 +9,7 @@ import '../../../css/common/detailInfo.css';
 import '../../../css/common/detailBtn.css';
 
 const EndDetail = (props) => {
-    const { surveyDetail, questionList, ageCount } = props;
+    const { surveyDetail, questionList } = props;
     
     return (
         <>
@@ -78,43 +78,31 @@ const EndDetail = (props) => {
                         </div>
                         {questionList.map((item, idx) => {
                             return(
-                                <div className="chartWrap">
+                                <div className="chartWrap" key={item.QIDX}>
                                     <p className="qst" key={item.QIDX}>{idx+1}. {item.QUESTION}</p>
                                     <div className="endAswBox">
-                                        {item.answerList.map((answer, answerIndex) => {
+                                        {item.answerList.map((answer) => {
+                                            console.log('answer::::::',answer);
                                             return (
-                                                <div className="chartBox">
+                                                <div className="chartBox" key={answer.AIDX}>
                                                     <p className="labelPercent">
                                                         <span className="chartLabel">{answer.ANSWER}</span>
                                                         <span className="chartPercent">12%</span>
                                                     </p>
-                                                    <p className="chartLine">
+                                                    <div className="chartLine">
                                                         <ul className="chartBar">
-                                                            <li className="answer01"></li>
+                                                            <li className="answer01" style={
+                                                                {width:(answer.TOTAL/answer['10s'] || 0) * 100}
+                                                            }></li>
                                                             <li className="answer02"></li>
                                                             <li className="answer03"></li>
                                                             <li className="answer04"></li>
                                                             <li className="answer05"></li>
                                                         </ul>
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             )
                                         })}
-                                        {/* <div className="chartBox">
-                                            <p className="labelPercent">
-                                                <span className="chartLabel">answer01</span>
-                                                <span className="chartPercent">12%</span>
-                                            </p>
-                                            <p className="chartLine">
-                                                <ul className="chartBar">
-                                                    <li className="answer01"></li>
-                                                    <li className="answer02"></li>
-                                                    <li className="answer03"></li>
-                                                    <li className="answer04"></li>
-                                                    <li className="answer05"></li>
-                                                </ul>
-                                            </p>
-                                        </div> */}
                                     </div>
                                 </div>
                             );

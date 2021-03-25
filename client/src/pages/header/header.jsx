@@ -114,8 +114,14 @@ const Header = (props) => {
                             <p className="myPageLine line22">
                                 <Link to='/mypage'>마이페이지</Link>
                             </p>
+                            {/* <p className="logoutLine line22" onClick = { e => {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    logout();
+                                }}>로그아웃
+                            </p> */}
                             <p className="logoutLine line22">
-                                <a onClick = { e => {
+                                <a href='#!' onClick = { e => {
                                     e.stopPropagation();
                                     e.preventDefault();
                                     logout();
