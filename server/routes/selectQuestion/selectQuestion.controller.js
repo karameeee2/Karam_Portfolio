@@ -1,7 +1,9 @@
 const db = require('../../dbconnection');
+const mysql = require('mysql');
 
 exports.selectQuestion = (req, res, next) => {
     let sidx = req.query.sidx;
+
     
     db.query(`SELECT q.*, s.SIDX FROM SURVEY_QUESTION q LEFT JOIN SURVEY s ON q.SIDX = s.SIDX WHERE q.SIDX = ${sidx}`, (err, rows) => {
         if(!err) {

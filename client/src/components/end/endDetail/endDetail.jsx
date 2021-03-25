@@ -55,7 +55,7 @@ const EndDetailComponent = (props) => {
             .then(res => {
                 result[i].answerList = res.data
                 getAgeCount(res.data);
-                console.log('ageCount::', res.data[i]);
+                // console.log('ageCount::', res.data[i]);
             })
             .catch(err => {
                 console.log('getAnswerList', err, err.res);
