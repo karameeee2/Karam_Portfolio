@@ -92,7 +92,8 @@ const EndDetail = (props) => {
                                                     </p>
                                                     <div className="chartLine">
                                                         <ul className="chartBar">
-                                                            <li className="answer01" style={answer && answer.ageCount && answer.ageCount[0]['teen'] / answer.ageCount[0]['TOTAL']}></li>
+                                                            {/* <li className="answer01" style={answer && answer.ageCount && answer.ageCount[0]['teen'] / answer.ageCount[0]['TOTAL']}></li> */}
+                                                            <li className="answer01"></li>
                                                             <li className="answer02"></li>
                                                             <li className="answer03"></li>
                                                             <li className="answer04"></li>

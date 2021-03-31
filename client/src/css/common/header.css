@@ -14,8 +14,11 @@
 #gnbWrap li .iconBox .navIcon {
     display: inline-block; width: 24px; height: 24px; vertical-align: text-bottom; background-color: #D95767;
 }
+.item{
+    color: #000;
+}
 .nowPage {
-    color: #5E00FF; font-weight: 500;
+    color: #5E00FF !important; font-weight: 500 !important;
 }
 #gnbWrap li .iconBox #userIcon {
     background: url('../../assets/icons/userIcon.svg') center no-repeat;

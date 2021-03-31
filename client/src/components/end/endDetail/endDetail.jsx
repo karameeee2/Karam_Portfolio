@@ -8,7 +8,7 @@ const EndDetailComponent = (props) => {
     const [surveyDetail, setSurveyDetail] = useState({});
     const [questionList, setQuestionList] = useState([]);
     // const [ageCount, setAgeCount] = useState([]);
-    
+        
     useEffect(() => {
         getSurveyDetail();
     }, [])
@@ -37,6 +37,7 @@ const EndDetailComponent = (props) => {
         const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
+            console.log('questionRowCount', res.data.length);
             getAnswerList(res.data)
         })
         .catch(err => {
@@ -72,6 +73,7 @@ const EndDetailComponent = (props) => {
             Axios.get(url + `?aidx=${data[i].AIDX}`)
             .then(res => {
                 result[i].ageCount = res.data;
+                console.log('ageCountRowCount', res.data.length);
                 // console.log('aidx::', res.data);
                 // console.log('result[i].ageCount', result[i].ageCount);
             })
