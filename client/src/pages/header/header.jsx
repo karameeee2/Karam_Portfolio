@@ -21,7 +21,10 @@ const Header = (props) => {
 
     const showSearch = () => {
         let search = document.getElementById('search');
+        let typeSearch = document.getElementById('typeSearch');
+
         search.style.display = 'block';
+        typeSearch.focus();
     }
 
 

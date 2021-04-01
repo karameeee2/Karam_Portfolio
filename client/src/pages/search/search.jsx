@@ -5,6 +5,10 @@ import closeIcon from '../../assets/icons/closeIcon.svg';
 import '../../css/search/search.css';
 
 const Search = () => {
+    // window.onload = function() {
+    //     document.getElementById('typeSearch').setAttribute('autofocus', true);
+    // }
+
     const [value, setValue] = useState('');
 
     const onClickSearch = () => {
@@ -27,7 +31,7 @@ const Search = () => {
         <section id="search">
             <div id="searchBox">
                 <div id="searchWrap">
-                    <input className="typeSearch" name="typeSearch" type="text" placeholder="검색어 입력" onChange={onChangeInput} />
+                    <input className="typeSearch" id='typeSearch' name="typeSearch" type="text" placeholder="검색어 입력" onChange={onChangeInput} />
                     <Link to={`/searchResult/${value}`} >
                         <button id="goSearch" name="goSearch" type="submit" onClick={onClickSearch} >
                             <img src={searchIconActive} alt="검색"/>
