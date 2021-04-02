@@ -11,15 +11,9 @@ const EndDetailComponent = (props) => {
         
     useEffect(() => {
         getSurveyDetail();
-    }, [])
-    
-    useEffect(() => {
         getQuestionList(sidx);
     }, [])
-
-    // useEffect(() => {
-    //     getAgeCount();
-    // }, [])
+    
     
     const getSurveyDetail = () => {
         const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
@@ -55,24 +49,26 @@ const EndDetailComponent = (props) => {
             .then(res => {
                 result[i].answerList = res.data
                 getAgeCount(res.data);
-                console.log('totalCount', res.data.length);
             })
             .catch(err => {
                 console.log('getAnswerList', err, err.res);
             })
         }
-        setQuestionList(result);
+
+        setTimeout(() => {
+            
+            setQuestionList(result);
+        }, 1000);
     }
 
-    const getAgeCount = (data) => {
+    const getAgeCount = async (data) => {
         const url = `http://localhost:8080/selectAgeCount`;
         const result = [...data]
 
         for(let i = 0; i < data.length; i++) {
-            Axios.get(url + `?aidx=${data[i].AIDX}`)
+            await Axios.get(url + `?aidx=${data[i].AIDX}&qidx=${data[i].QIDX}`)
             .then(res => {
                 result[i].ageCount = res.data;
-                console.log('ageCountRowCount', res.data.length);
             })
             .catch(err => {
     

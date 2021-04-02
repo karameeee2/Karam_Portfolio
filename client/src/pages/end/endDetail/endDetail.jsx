@@ -77,27 +77,26 @@ const EndDetail = (props) => {
                             </ul>
                         </div>
                         {questionList.map((item, idx) => {
-                            console.log(item);
+
                             return(
                                 <div className="chartWrap" key={item.QIDX}>
                                     <p className="qst" key={item.QIDX}>{idx+1}. {item.QUESTION}</p>
                                     <div className="endAswBox">
                                         {item.answerList.map((answer) => {
-                                            console.log('answer::::::',answer.ageCount && answer.ageCount[0]);
+                                            console.log('answer::::::',answer);
                                             return (
                                                 <div className="chartBox" key={answer.AIDX}>
                                                     <p className="labelPercent">
                                                         <span className="chartLabel">{answer.ANSWER}</span>
-                                                        <span className="chartPercent">12%</span>
+                                                        <span className="chartPercent">{answer.ageCount[`ca${answer.AIDX}Rate`] + '%'}</span>
                                                     </p>
                                                     <div className="chartLine">
-                                                        <ul className="chartBar">
-                                                            {/* <li className="answer01" style={answer && answer.ageCount && answer.ageCount[0]['teen'] / answer.ageCount[0]['TOTAL']}></li> */}
-                                                            <li className="answer01"></li>
-                                                            <li className="answer02"></li>
-                                                            <li className="answer03"></li>
-                                                            <li className="answer04"></li>
-                                                            <li className="answer05"></li>
+                                                        <ul className="chartBar" style={{width: answer && answer.ageCount && answer.ageCount[`ca${answer.AIDX}Rate`] + '%' || '0%'}}>
+                                                            <li className="answer01" style={{width: answer && answer.ageCount && answer.ageCount['c10Rate'] + '%' || '0%'}} />
+                                                            <li className="answer02" style={{width: answer && answer.ageCount && answer.ageCount['c20Rate'] + '%' || '0%'}} />
+                                                            <li className="answer03" style={{width: answer && answer.ageCount && answer.ageCount['c30Rate'] + '%' || '0%'}} />
+                                                            <li className="answer04" style={{width: answer && answer.ageCount && answer.ageCount['c40Rate'] + '%' || '0%'}} />
+                                                            <li className="answer05" style={{width: answer && answer.ageCount && answer.ageCount['othersRate'] + '%' || '0%'}} />
                                                         </ul>
                                                     </div>
                                                 </div>
