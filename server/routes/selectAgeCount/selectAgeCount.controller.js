@@ -1,24 +1,28 @@
 const db = require('../../dbconnection');
 
 exports.selectAgeCount = (req, res, next) => {
-    let qidx = req.query.qidx;
-    let aidx = req.query.aidx;
+    const qidx = req.query.qidx;
+    const aidx = req.query.aidx;
 
-    let answerCount = 
-    `SELECT
-        COUNT(*) 'TOTAL',
-        SUM(AIDX=${aidx}) 'ca${aidx}',
-        (SUM(AIDX=${aidx}) / COUNT(*)) * 100 'ca${adix}Rate',
-    FROM
-        SURVEY_COUNT c WHERE QIDX=${qidx}`;
-        // SUM(AIDX=${aidx}) 'ca${aidx}',
-        // (SUM(AIDX=${aidx}) / COUNT(*)) * 100 'ca${adix}Rate',
-        // 위에 부분이 for문 돌아야함 insertJoinSurvey 참고
+    // let answerCount = 
+    // `SELECT
+    //     COUNT(*) 'caTotal',
+    //     SUM(AIDX=${aidx}) 'ca${aidx}',
+    //     (SUM(AIDX=${aidx}) / COUNT(*)) * 100 'ca${adix}Rate',
+    // FROM
+    //     SURVEY_COUNT c WHERE QIDX=${qidx}`;
+    // let fixedQuery = `SELECT COUNT(*) 'caTotal', `;
+    // for(let i = 0; i < aidx.length; i++) {
+    //     fixedQuery += `(SUM(AIDX=${aidx}) 'ca${aidx}', (SUM(AIDX=${aidx}) / COUNT(*)) * 100 'ca${adix}Rate') `;
+    //     if(aidx.length !== i+1) fixedQuery += ','
+    // }
+
+    // let answerCount = (fixedQuery += `FROM SURVEY_COUNT c WHERE QIDX=${qidx}`);
 
     let ageCount = 
     `SELECT 
         c.AIDX,
-        COUNT(*) 'TOTAL',
+        COUNT(*) 'cTotal',
         SUM(IF(DATE_FORMAT(NOW(), '%Y') - c.BIRTH BETWEEN 10 AND 19, 1, 0)) 'c10',
         (SUM(IF(DATE_FORMAT(NOW(), '%Y') - c.BIRTH BETWEEN 10 AND 19, 1, 0)) / COUNT(*)) * 100 'c10Rate',
         SUM(IF(DATE_FORMAT(NOW(), '%Y') - c.BIRTH BETWEEN 20 AND 29, 1, 0)) 'c20',
