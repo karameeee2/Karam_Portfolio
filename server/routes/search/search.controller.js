@@ -6,9 +6,9 @@ exports.searchResult = (req, res, next) => {
     // 검색창에 입력된 검색어  value
     let value = req.query.value;
     
-    let progress = `SELECT * FROM SURVEY WHERE (SSUBJECT LIKE '%${value}%' OR SCONTENT LIKE '%${value}%' OR TAG LIKE '%${value}%') AND EDATE > NOW();`;
+    let progress = `SELECT s.*, m.NICKNAME FROM SURVEY s LEFT JOIN SURVEY_MEMBER m ON s.MIDX = m.MIDX WHERE (s.SSUBJECT LIKE '%${value}%' OR s.SCONTENT LIKE '%${value}%' OR s.TAG LIKE '%${value}%') AND s.EDATE > NOW();`;
     let progressSql = mysql.format(progress);
-    let end = `SELECT * FROM SURVEY WHERE (SSUBJECT LIKE '%${value}%' OR SCONTENT LIKE '%${value}%' OR TAG LIKE '%${value}%') AND EDATE < NOW();`;
+    let end = `SELECT s.*, m.NICKNAME FROM SURVEY s LEFT JOIN SURVEY_MEMBER m ON s.MIDX = m.MIDX WHERE (s.SSUBJECT LIKE '%${value}%' OR s.SCONTENT LIKE '%${value}%' OR s.TAG LIKE '%${value}%') AND s.EDATE < NOW();`;
     let endSql = mysql.format(end);
     let notice = `SELECT * FROM SURVEY_NOTICE WHERE NSUBJECT LIKE '%${value}%' OR NCONTENT LIKE '%${value}%';`;
     let noticeSql = mysql.format(notice);
