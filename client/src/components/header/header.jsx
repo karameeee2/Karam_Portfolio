@@ -3,11 +3,8 @@ import Header from '../../pages/header/header';
 import '../../css/common/header.css';
 import Cookie from 'js-cookie';
 import Axios from 'axios';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const HeaderComponent = (props) => {
-    // const history = useHistory();
-    // console.log('history', history);
 
     const cookie = Cookie.get('connect.sid');
 

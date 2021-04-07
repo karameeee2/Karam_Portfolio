@@ -1,7 +1,4 @@
 import React from 'react';
-import EndPreviewComponent from '../../components/end/endList/endPreview';
-import NoticeBoardComponent from '../../components/notice/noticeList/noticeBoard';
-import ProgressPreviewComponent from '../../components/progress/progressList/progressPreview';
 import '../../css/search/searchResult.css';
 import { CommonUtils } from '../../utils/common';
 import thumbnail1 from '../../assets/thumbnail/thumbnail_basic.png';

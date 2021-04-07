@@ -91,12 +91,12 @@ const EndDetail = (props) => {
                                                         <span className="chartPercent">{answer.ageCount[`ca${answer.AIDX}Rate`] + '%'}</span>
                                                     </p>
                                                     <div className="chartLine">
-                                                        <ul className="chartBar" style={{width: answer && answer.ageCount && answer.ageCount[`ca${answer.AIDX}Rate`] + '%' || '0%'}}>
-                                                            <li className="answer01" style={{width: answer && answer.ageCount && answer.ageCount['c10Rate'] + '%' || '0%'}} />
-                                                            <li className="answer02" style={{width: answer && answer.ageCount && answer.ageCount['c20Rate'] + '%' || '0%'}} />
-                                                            <li className="answer03" style={{width: answer && answer.ageCount && answer.ageCount['c30Rate'] + '%' || '0%'}} />
-                                                            <li className="answer04" style={{width: answer && answer.ageCount && answer.ageCount['c40Rate'] + '%' || '0%'}} />
-                                                            <li className="answer05" style={{width: answer && answer.ageCount && answer.ageCount['othersRate'] + '%' || '0%'}} />
+                                                        <ul className="chartBar" style={{width: (answer && answer.ageCount && answer.ageCount[`ca${answer.AIDX}Rate`] + '%') || '0%'}}>
+                                                            <li className="answer01" style={{width: (answer && answer.ageCount && answer.ageCount['c10Rate'] + '%') || '0%'}} />
+                                                            <li className="answer02" style={{width: (answer && answer.ageCount && answer.ageCount['c20Rate'] + '%') || '0%'}} />
+                                                            <li className="answer03" style={{width: (answer && answer.ageCount && answer.ageCount['c30Rate'] + '%') || '0%'}} />
+                                                            <li className="answer04" style={{width: (answer && answer.ageCount && answer.ageCount['c40Rate'] + '%') || '0%'}} />
+                                                            <li className="answer05" style={{width: (answer && answer.ageCount && answer.ageCount['othersRate'] + '%') || '0%'}} />
                                                         </ul>
                                                     </div>
                                                 </div>
