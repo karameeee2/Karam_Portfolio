@@ -1,6 +1,6 @@
 /* 전체 사이즈 */
 .createNewSurveyInfoContainer {
-    display: flex; flex-direction: column; width: 1200px; margin: 60px auto 30px;
+    display: flex; flex-direction: column; width: 1200px; margin: 0 auto 60px;
 }
 
 /* 하단 30px 여백 */
@@ -10,43 +10,64 @@
 
 /* newSurvey info input */
 /* row */
-.newSurveyRow {
-    width: 100%; margin-bottom: 10px;
+.surveyInfoBox {
+    width: 100%; margin: 24px 0 0; padding: 48px; border-radius: 4px; box-sizing: border-box;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1); background-color: #FFF;
 }
+
+.titleRow, .newSurveyRow {
+    margin-bottom: 12px;
+}
+
+.titleRow input{
+    width: 100%; height: 48px; line-height: 48px;  border:none; border-bottom: 1px solid #FFF; outline: none;
+    font-size: 28px; padding: 0 0 4px 0;
+}
+
 .newSurveyRow input, .newSurveyHalfRow input {
-    width: 100%; height: 40px; line-height: 40px; padding: 0 10px; 
-    border:1px solid #C7C7C7; box-sizing: border-box;
+    width: 100%; height: 28px; line-height: 28px; border: none;
+    border-bottom:1px solid #FFF; outline:none; padding: 0 0 4px 0;
 }
 .newSurveyRow textarea {
-    display: block; width: 100%; height: 60px; line-height: 24px; 
-    border:1px solid #C7C7C7; padding: 6px 10px; box-sizing: border-box;
+    display: block; width: 100%; line-height: 28px; padding: 0; border: none; border-bottom: 1px solid #FFF;
+    box-sizing: border-box; outline: none; resize: none;
 }
 .newSurveyHalfRow {
-    display: flex;
+    display: inline-flex; margin-bottom: 12px;
 }
+
+.titleRow input:hover, .newSurveyRow input:hover, .newSurveyRow textarea:hover, .newSurveyHalfRow input:hover {
+    border-bottom: 1px solid #F0F0F0;
+}
+.infoActiveFocus {
+    border-bottom: 2px solid #5E00FF !important;
+}
+
 /* halfRow */
 .halfRowLeft {
-    width: 590px; margin-right: 20px;
+    width: 546px; margin-right: 24px;
 }
 .halfRowRight {
-    width: 590px;
+    width: 546px;
 }
 
 /* file, datePicker, comment */
 .fileInputBox, .datePickerBox {
-    width: 100%;
+    width: 100%; display: flex; align-items: center;
 }
 .fileInputBox .fileName, .datePickerBox .datePick {
-    width: 500px; border-radius: 0;
+    width: 516px; border-radius: 0;
 }
 .fileInputBox button, .datePickerBox button {
-    width: 90px; height: 40px; background-color: #2A2a2A; color: white; 
+    width: 24px; height: 28px; line-height: 28px; padding: 2px 0; background-color: #FFF; 
     border: none; box-sizing: border-box; cursor: pointer;
 }
 .commentBox {
     width: 100%; height: 16px; line-height: 16px;
 }
-.newSurveyComment { font-size: 12px;}
+.newSurveyComment { 
+    font-size: 14px; font-weight: 100; color: #5A5A5A;
+}
 
 
 
