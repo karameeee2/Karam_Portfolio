@@ -16,7 +16,8 @@
     "react-paginate": "^7.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-select": "^4.3.0"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",

@@ -28,6 +28,12 @@
     width: 240px; height: 40px; padding: 0 10px; border: 1px solid #C7C7C7;
     background-color: white;
 }
+.flagimg {
+    width: 24px; height: 24px;
+}
+#radioIcon {
+    background-image: url('../../assets/icons/radioSelect.svg') center no-repeat;
+}
 /* answer, delete */
 .answerDeleteWrap {
     display: flex; justify-content: space-between; width: 100%;
