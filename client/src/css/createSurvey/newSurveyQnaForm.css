@@ -5,34 +5,39 @@
 /* qna */
 /* qna box */
 .surveyForm {
-    width: 100%; padding: 30px; border: 1px solid #C7C7C7; box-sizing: border-box;
+    position: relative; width: 100%; margin-bottom: 24px; padding: 48px; box-sizing: border-box; border-radius: 4px; background-color: #FFF;
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}
+.createSurveyQnaContainer div.surveyForm:last-child {
+    margin-bottom: 0;
 }
 
 /* question, type */
 .questionTypeWrap {
-    display: flex; justify-content: space-between; width: 100%; height: 40px;
+    display: flex; justify-content: space-between; width: 100%; height: 54px;
     margin-bottom: 20px;
 }
 /* question */
 .questionBox {
-    width: 800px;
+    width: 780px;height: 54px;
 }
 .questionBox input {
-    background-color: #F4F4F4; border: none; color: black;
+    width: 780px; height: 48px; border: none; border-bottom: 1px solid #FFF; 
+    color: black; font-size: 18px; padding: 0; padding-bottom: 4px; outline: none; 
+}
+.questionBox input:hover {
+    border-bottom: 1px solid #F0F0F0;
 }
 /* type */
 .typeBox {
-    width: 240px;
+    width: 276px;
 }
 .typeBox select {
-    width: 240px; height: 40px; padding: 0 10px; border: 1px solid #C7C7C7;
+    width: 276px; height: 54px; padding: 0 10px; border: 1px solid #C7C7C7;
     background-color: white;
 }
 .flagimg {
     width: 24px; height: 24px;
-}
-#radioIcon {
-    background-image: url('../../assets/icons/radioSelect.svg') center no-repeat;
 }
 /* answer, delete */
 .answerDeleteWrap {
@@ -40,52 +45,82 @@
 }
 /* answer */
 .answerBox {
-    width: 800px;
+    width: 780px;
 }
 
-/* shortAnswer */
-#shortAnswer input {
-    border: none; border-bottom: 1px solid black;
+/* shortText */
+.shortText input, .longText input {
+    width: 752px; height: 28px; padding: 0; padding-bottom: 4px;
+    border: none; border-bottom: 1px solid #FFF; outline: none;
+}
+.shortText input:hover, .longText input:hover {
+    border-bottom: 1px solid #F0F0F0;
 }
 
 /* selectOne, selectMulti */
-#selectOne .optionBox, #selectMulti .optionBox {
-    display: flex; width: 800px; margin-bottom: 10px;
+.radioIcon {
+    width:16px; height: 16px;
+    background: url('../../assets/icons/radioIcon.svg') center no-repeat;
 }
-#selectOne .optionBox:last-child, #selectMulti .optionBox:last-child {
+.deleteOptionIcon {
+    width: 16px; height: 16px; 
+    background: url('../../assets/icons/closeIcon_lg.svg') center no-repeat;
+}
+.checkBoxIcon {
+    width: 16px; height: 16px;
+    background: url('../../assets/icons/checkboxIcon.svg') center no-repeat;
+}
+.selectOne .optionBox, .selectMulti .optionBox {
+    display: flex; width: 780px; margin-bottom: 12px; align-items: center;
+}
+.selectOne .optionBox:last-child, .selectMulti .optionBox:last-child {
     margin-bottom: 0;
 }
-#selectOne .radio, #selectMulti .checkbox {
-    width: 16px; line-height: 40px; margin-right: 10px;
+.selectOne .radio, .selectMulti .checkbox {
+    width: 16px; margin-right: 12px;
 }
-#selectOne .options, #selectMulti .options {
-    width:748px;  border: none;
+.selectOne .options, .selectMulti .options {
+    width:724px; height: 28px; padding:0; padding-bottom: 4px; box-sizing: border-box; 
+    border: none; border-bottom: 1px solid #FFF; outline: none;
 }
-#selectOne .optionsActive, #selectMulti .optionsActive {
-    width: 748px; border: none; border-bottom: 1px solid black;
+.selectOne .options:hover, .selectMulti .options:hover {
+    border-bottom: 1px solid #F0F0F0;
 }
-#selectOne .deleteOption, #selectMulti .deleteOption {
+.selectOne .deleteOption, .selectMulti .deleteOption {
     width: 16px; height: 40px; line-height: 40px; margin-left: 10px; border: none;
     background-color: transparent; padding: 0;
 }
-#selectOne .addOption, #selectOne .addTextField, #selectMulti .addOption, #selectMulti .addTextField {
-    width:748px; line-height: 40px; padding: 0 10px; box-sizing: border-box; 
+.selectOne .addOption, .selectOne .addTextField, .selectMulti .addOption, .selectMulti .addTextField {
+    width:724px; line-height: 40px; padding: 0 10px; box-sizing: border-box; 
     color: #C7C7C7; text-decoration: underline;
 }
 
 /* delete */
 .deleteBox {
-    height: 40px;
+    position: absolute; right: 48px; bottom: 48px;
 }
-.deleteBox button{
-    border: none; background-color: white; text-decoration: underline; 
-    font-weight: bold;
+.deleteBox button.deleteBtn{
+    padding: 0; border: none; background: none; outline: none; cursor: pointer;
+    
+}
+.deleteBtn .deleteIcon {
+    width: 24px; height: 24px; cursor: pointer;
+    background: url('../../assets/icons/deleteIcon.svg') center no-repeat; 
+}
+.deleteBtn .deleteIcon:hover {
+    background: url('../../assets/icons/deleteIcon_active.svg') center no-repeat;
 }
 
 /* addBtn */
 .addBox {
-    width: 40px; margin: 20px auto 60px;
+    width: 40px; margin: 48px auto 72px;
 }
 .addQnA {
-    width: 40px; height: 40px;  margin: auto; border-radius: 20px; border: none;
+    width: 40px; height: 40px; margin: auto; padding: 0; 
+    border-radius: 20px; border: none; cursor: pointer; outline: none;
+    background-color: #FFF; box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}
+.addQnA .addIcon {
+    width: 16px; height: 16px; margin: auto;
+    background: url('../../assets/icons/addIcon.svg') center no-repeat;
 }

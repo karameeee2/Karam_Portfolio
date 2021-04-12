@@ -99,11 +99,11 @@ const CreateNewSurvey = () => {
                             <span className="subTitle">질문 입력</span>
                         </p>
                     </div>
-                    <div className='newSurveyRow surveyForm'>
+                    <div className='surveyForm'>
                         {/* surveyForm = 테두리 스타일링, padding 값 */}
                         <div className='questionTypeWrap'>
                             <div className='questionBox'>
-                                <input type="text" placeholder='질문' />
+                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} />
                             </div>
                             <div className='typeBox'>
                                 <Select
@@ -113,123 +113,172 @@ const CreateNewSurvey = () => {
                                     getOptionValue={(option) => option.value}
                                     getOptionLabel={(option) => option.value}
                                 />
-                                {/* <select defaultValue={1}>
-                                    value 값은 임의로 숫자로해놨어욘
-                                    <option value={1}>객관식 질문</option>
-                                    <option value={2}>체크박스</option>
-                                    <option value={3}>단답형 텍스트</option>
-                                    <option value={4}>장문형 텍스트</option>
-                                </select> */}
                             </div>
                         </div>
-                        <div className='answerDeleteWrap'>
-                            {/* 주관식 옵션 */}
-                            <div className='answerBox' id='shortAnswer'>
-                                <input type="text" placeholder='주관식 텍스트' />
-                            </div>
-                            <div className='deleteBox'>
-                                <button>삭제</button>
-                            </div>
+                        {/* 객관식 질문 */}
+                        <div className='answerBox selectOne'>
+                            <span className="optionBox">
+                                <span className="radio">
+                                    <p className="radioIcon"></p>
+                                </span>
+                                <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                <button className="deleteOption">
+                                    <p className="deleteOptionIcon"></p>
+                                </button>
+                            </span>
+                            <span className="optionBox">
+                                <span className="radio">
+                                    <p className="radioIcon"></p>
+                                </span>
+                                <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                <button className="deleteOption">
+                                    <p className="deleteOptionIcon"></p>
+                                </button>
+                            </span>
+                            <span className="optionBox">
+                                <span className="radio">
+                                    <p className="radioIcon"></p>
+                                </span>
+                                <a href='#!' className='addOption'>옵션 추가</a>
+                            </span>
+                            <span className="optionBox">
+                                <span className="radio">
+                                    <p className="radioIcon"></p>
+                                </span>
+                                <a href='#!' className='addTextField'>기타 추가</a>
+                            </span>
                         </div>
-                    </div>
-                    {/* --------------------------------------------------------------------------------- */}
-                    <div className='newSurveyRow surveyForm'>
-                        {/* surveyForm = 테두리 스타일링, padding 값 */}
-                        <div className='questionTypeWrap'>
-                            <div className='questionBox'>
-                                <input type="text" placeholder='질문' />
-                            </div>
-                            <div className='typeBox'>
-                                <select defaultValue={2}>
-                                    {/* value 값은 임의로 숫자로해놨어욘 */}
-                                    <option value={1}>주관식</option>
-                                    <option value={2}>객관식(1개 선택)</option>
-                                    <option value={3}>객관식(중복 선택 가능)</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className='answerDeleteWrap'>
-                            {/* 한개 선택 옵션 */}
-                            <div className='answerBox' id='selectOne'>
-                                <span className="optionBox">
-                                    <span className="radio">○</span>
-                                    <input className='optionsActive' type="text" placeholder='옵션1' />
-                                    <button className="deleteOption">Ⅹ</button>
-                                </span>
-                                <span className="optionBox">
-                                    <span className="radio">○</span>
-                                    <input className='options' type="text" placeholder='옵션2' />
-                                    <span className="deleteOption">Ⅹ</span>
-                                </span>
-                                <span className="optionBox">
-                                    <span className="radio">○</span>
-                                    <a href='#!' className='addOption'>옵션 추가</a>
-                                </span>
-                                <span className="optionBox">
-                                    <span className="radio">○</span>
-                                    <a href='#!' className='addTextField'>기타 추가</a>
-                                </span>
-                            </div>
-                            <div className='deleteBox'>
-                                <button>삭제</button>
-                            </div>
+                        <div className='deleteBox'>
+                            <button className='deleteBtn'>
+                                <p className="deleteIcon"></p>
+                            </button>
                         </div>
                     </div>
                     {/* --------------------------------------------------------------------------------- */}
-                    <div className='newSurveyRow surveyForm'>
+                    <div className='surveyForm'>
                         {/* surveyForm = 테두리 스타일링, padding 값 */}
                         <div className='questionTypeWrap'>
                             <div className='questionBox'>
-                                <input type="text" placeholder='질문' />
+                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} />
                             </div>
                             <div className='typeBox'>
-                                <select defaultValue={3}>
-                                    {/* value 값은 임의로 숫자로해놨어욘 */}
-                                    <option value={1}>주관식</option>
-                                    <option value={2}>객관식(1개 선택)</option>
-                                    <option value={3}>객관식(중복 선택 가능)</option>
-                                </select>
+                                <Select
+                                    value={region}
+                                    onChange={onChangeSelect}
+                                    options={options}
+                                    getOptionValue={(option) => option.value}
+                                    getOptionLabel={(option) => option.value}
+                                />
                             </div>
                         </div>
-                        <div className='answerDeleteWrap'>
-                            {/* 여러개 선택 옵션 */}
-                            <div className='answerBox' id='selectMulti'>
-                                <span className="optionBox">
-                                    <span className="checkbox">□</span>
-                                    <input className='optionsActive' type="text" placeholder='옵션1' />
-                                    <button className="deleteOption">X</button>
+                        {/* 체크박스 */}
+                        <div className='answerBox selectMulti'>
+                            <span className="optionBox">
+                                <span className="checkbox">
+                                    <p className="checkBoxIcon"></p>
                                 </span>
-                                <span className="optionBox">
-                                    <span className="checkbox">□</span>
-                                    <input className='options' type="text" placeholder='옵션2' />
-                                    <button className="deleteOption">X</button>
+                                <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                <button className="deleteOption">
+                                    <p className="deleteOptionIcon"></p>
+                                </button>
+                            </span>
+                            <span className="optionBox">
+                                <span className="checkbox">
+                                    <p className="checkBoxIcon"></p>
                                 </span>
-                                <span className="optionBox">
-                                    <span className="checkbox">□</span>
-                                    <a href='#!' className='addOption'>옵션 추가</a>
+                                <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                <button className="deleteOption">
+                                    <p className="deleteOptionIcon"></p>
+                                </button>
+                            </span>
+                            <span className="optionBox">
+                                <span className="checkbox">
+                                    <p className="checkBoxIcon"></p>
                                 </span>
-                                <span className="optionBox">
-                                    <span className="checkbox">□</span>
-                                    <a href='#!' className='addTextField'>기타 추가</a>
+                                <a href='#!' className='addOption'>옵션 추가</a>
+                            </span>
+                            <span className="optionBox">
+                                <span className="checkbox">
+                                    <p className="checkBoxIcon"></p>
                                 </span>
-                            </div>
-                            <div className='deleteBox'>
-                                <button>삭제</button>
-                            </div>
+                                <a href='#!' className='addTextField'>기타 추가</a>
+                            </span>
+                        </div>
+                        <div className='deleteBox'>
+                            <button className='deleteBtn'>
+                                <p className="deleteIcon"></p>
+                            </button>
                         </div>
                     </div>
-                    <div className='newSurveyRow'>
-                        <div className="addBox">
-                            <button className='addQnA'>+</button>
+                    {/* --------------------------------------------------------------------------------- */}
+                    <div className='surveyForm'>
+                        {/* surveyForm = 테두리 스타일링, padding 값 */}
+                        <div className='questionTypeWrap'>
+                            <div className='questionBox'>
+                                <input type="text" placeholder='질문 입력'onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            </div>
+                            <div className='typeBox'>
+                                <Select
+                                    value={region}
+                                    onChange={onChangeSelect}
+                                    options={options}
+                                    getOptionValue={(option) => option.value}
+                                    getOptionLabel={(option) => option.value}
+                                />
+                            </div>
                         </div>
+                        {/* 단답형 텍스트 */}
+                        <div className='answerBox shortText'>
+                            <input type="text" placeholder='단답형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                        </div>
+                        <div className='deleteBox'>
+                            <button className='deleteBtn'>
+                                <p className="deleteIcon"></p>
+                            </button>
+                        </div>
+                        
+                    </div>
+                    {/* --------------------------------------------------------------------------------- */}
+                    <div className='surveyForm'>
+                        {/* surveyForm = 테두리 스타일링, padding 값 */}
+                        <div className='questionTypeWrap'>
+                            <div className='questionBox'>
+                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            </div>
+                            <div className='typeBox'>
+                                <Select
+                                    value={region}
+                                    onChange={onChangeSelect}
+                                    options={options}
+                                    getOptionValue={(option) => option.value}
+                                    getOptionLabel={(option) => option.value}
+                                />
+                            </div>
+                        </div>
+                        {/* 장문형 텍스트 */}
+                        <div className='answerBox longText'>
+                            <input type="text" placeholder='장문형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                        </div>
+                        <div className='deleteBox'>
+                            <button className='deleteBtn'>
+                                <p className="deleteIcon"></p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className='addWrap'>
+                    <div className="addBox">
+                        <button className='addQnA'>
+                            <p className="addIcon"></p>
+                        </button>
                     </div>
                 </div>
 
                 {/* <NewSurveyBtnFormComponent /> */}
                 <div className='createNewSurveyBtnContainer'>
-                    <div className='newSurveyRow'>
-                        <div className="submitCancelBtn">
-                            <button className='cancelBtn'>목록</button>
+                    <div className='submitListWrap'>
+                        <div className="submitListBtn">
+                            <button className='listBtn'>목록</button>
                             <button type='submit' className='submitNewSurvey'>제출</button>
                         </div>
                     </div>
