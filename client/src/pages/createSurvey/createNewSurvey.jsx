@@ -4,8 +4,6 @@ import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
 import '../../css/createSurvey/newSurveyQnaForm.css';
 import '../../css/createSurvey/newSurveyBtnForm.css';
-import raidoIcon from '../../assets/icons/radioIcon.svg';
-import checkboxIcon from '../../assets/icons/checkboxIcon.svg';
 import radioSelect from '../../assets/icons/radioSelect.svg';
 import checkboxSelect from '../../assets/icons/checkboxSelect.svg';
 import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
