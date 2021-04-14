@@ -47,16 +47,9 @@
 .answerBox {
     width: 780px;
 }
-
-/* shortText */
-.shortText input, .longText input {
-    width: 752px; height: 28px; padding: 0; padding-bottom: 4px;
-    border: none; border-bottom: 1px solid #FFF; outline: none;
+.selectMulti, .shortText, .longText {
+    display: none;
 }
-.shortText input:hover, .longText input:hover {
-    border-bottom: 1px solid #F0F0F0;
-}
-
 /* selectOne, selectMulti */
 .radioIcon {
     width:16px; height: 16px;
@@ -93,6 +86,15 @@
 .selectOne .addOption, .selectOne .addTextField, .selectMulti .addOption, .selectMulti .addTextField {
     width:724px; line-height: 40px; padding: 0 10px; box-sizing: border-box; 
     color: #C7C7C7; text-decoration: underline;
+}
+
+/* shortText, longText */
+.shortText input, .longText input {
+    width: 752px; height: 28px; padding: 0; padding-bottom: 4px;
+    border: none; border-bottom: 1px solid #FFF; outline: none;
+}
+.shortText input:hover, .longText input:hover {
+    border-bottom: 1px solid #F0F0F0;
 }
 
 /* delete */
