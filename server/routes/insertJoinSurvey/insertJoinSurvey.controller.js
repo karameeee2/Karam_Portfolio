@@ -3,7 +3,6 @@ const db = require('../../dbconnection');
 exports.insertJoinSurvey = (req, res, next) => {
     const sidx = req.body.sidx;
     const checkedList = req.body.checkedList;
-    console.log('req user',req.user);
     const midx = req.user.MIDX;
     const gender = req.user.GENDER;
     const birth = req.user.BIRTH;
@@ -18,7 +17,6 @@ exports.insertJoinSurvey = (req, res, next) => {
         fixedQuery += `(${sidx}, ${qidx}, ${aidx}, ${midx}, '${gender}', '${birth}')`
         if(checkedList.length !== i+1) fixedQuery += ','
     }
-    console.log(fixedQuery);
 
     db.query(fixedQuery, (err, rows) => {
         if(!err) {
@@ -28,5 +26,4 @@ exports.insertJoinSurvey = (req, res, next) => {
             res.send(err);
         }
     })
-    // for(fixedQuery += `('${sidx}', )`)
 }

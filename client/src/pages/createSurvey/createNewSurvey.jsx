@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -8,9 +8,9 @@ import radioSelect from '../../assets/icons/radioSelect.svg';
 import checkboxSelect from '../../assets/icons/checkboxSelect.svg';
 import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
 import longTextSelect from '../../assets/icons/longTextSelect.svg';
-import arrowDown from '../../assets/icons/arrowDown.svg'
 
 const CreateNewSurvey = () => {
+    // input 활성화/비활성화 css 추가
     const inputOnFocus = (e) => {
         console.log('active');
         e.target.classList.add('infoActiveFocus');
@@ -20,7 +20,6 @@ const CreateNewSurvey = () => {
         console.log('normal');
         e.target.classList.remove('infoActiveFocus');
     }
-
     // select
     const styles = {
         // 옵션들에 대한 스타일 정의
@@ -28,7 +27,7 @@ const CreateNewSurvey = () => {
             return {
                 backgroundColor: isFocused ? '#F0F0F0' : '',
                 color: isDisabled ? '#C7C7C7' : '',
-                cursor: isDisabled ? 'default' : 'cursor',
+                cursor: isDisabled ? 'default' : 'pointer',
                 padding: '0 24px'
             };
         },
@@ -72,7 +71,7 @@ const CreateNewSurvey = () => {
     // label 은 보여줄 컴포넌트
     const options = [
         {
-            value: '1',
+            value: 'selectOne',
             label: (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={radioSelect} style={{ width: '24px', marginRight: '12px' }} alt='객관식질문아이콘' />{''}객관식 질문
@@ -80,7 +79,7 @@ const CreateNewSurvey = () => {
             )
         },
         {
-            value: '2',
+            value: 'selectMulti',
             label: (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={checkboxSelect} style={{ width: '24px', marginRight: '12px' }} alt='체크박스아이콘' />{''}체크박스
@@ -89,7 +88,7 @@ const CreateNewSurvey = () => {
             // isDisabled: true
         },
         {
-            value: '3',
+            value: 'shortText',
             label: (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={shortTextSelect} style={{ width: '24px', marginRight: '12px' }} alt='단답형텍스트아이콘' />{''}단답형 텍스트
@@ -98,7 +97,7 @@ const CreateNewSurvey = () => {
             // isDisabled: true
         },
         {
-            value: '4',
+            value: 'longText',
             label: (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={longTextSelect} style={{ width: '24px', marginRight: '12px' }} alt='장문형텍스트아이콘' />{''}장문형 텍스트
@@ -107,38 +106,185 @@ const CreateNewSurvey = () => {
             // isDisabled: true
         },
     ]
-    
-    const onChangeSelect = (item) => {
-        let radioSelected = document.getElementsByClassName('selectOne')[0];
-        let checkSelected = document.getElementsByClassName('selectMulti')[0];
-        let shortSelected = document.getElementsByClassName('shortText')[0];
-        let longSelected = document.getElementsByClassName('longText')[0];
-        if(item.value === '1') {
-            console.log('객관식 질문');
-            radioSelected.style.display = 'block';
-            checkSelected.style.display = 'none';
-            shortSelected.style.display = 'none';
-            longSelected.style.display = 'none';
-        } else if(item.value === '2') {
-            console.log('체크박스');
-            radioSelected.style.display = 'none'; 
-            checkSelected.style.display = 'block';
-            shortSelected.style.display = 'none';
-            longSelected.style.display = 'none';
-        } else if(item.value === '3') {
-            console.log('단답형 텍스트');
-            radioSelected.style.display = 'none'; 
-            checkSelected.style.display = 'none';
-            shortSelected.style.display = 'block';
-            longSelected.style.display = 'none';
-        } else if(item.value === '4') {
-            console.log('장문형 텍스트');
-            radioSelected.style.display = 'none'; 
-            checkSelected.style.display = 'none';
-            shortSelected.style.display = 'none';
-            longSelected.style.display = 'block';
-        }
+    // 폼 배열
+    const [surveyForm, setSurveyForm] = useState([]);
+
+    // 폼 초기값
+    const initialForm = {
+        _id: 0,
+        answer_type: 'selectOne',
+        answer: undefined
     };
+
+    // 입력 폼 추가
+    const addForm = () => {
+        if(!surveyForm || surveyForm.length <= 0) {
+            setSurveyForm([...surveyForm, initialForm]);
+            return;
+        }
+        // 객체의 불변성 때문에 객체복사 필요
+        const obj = {...initialForm};
+        obj._id = surveyForm.length;
+        setSurveyForm([...surveyForm, obj]);
+    };
+
+    const popForm = (idx) => (e) => {
+        // 폼이 비었다면 동작하지 않음
+        // if(!surveyForm || surveyForm.length <= 0) {
+        //     return;
+        // }
+
+        let copy_form = [...surveyForm];
+        let obj = {...copy_form[idx]};
+        copy_form.splice(obj, 1);
+        setSurveyForm(copy_form);
+    }
+
+    // 답변 형태 선택
+    const setAnswerType = (idx) => (e) => {
+        // 객체의 불변성 때문에 객체 복사 필요
+        let copy_form = [...surveyForm];
+        let obj = { ...copy_form[idx] };
+
+        obj.answer_type = e.target.value;
+        copy_form[idx] = obj;
+        setSurveyForm(copy_form);
+    }
+
+    const renderAnswerInputType = (survey, idx) => {
+        let result = <></>;
+
+        switch (survey.answer_type) {
+            case 'selectOne':
+                result = (
+                    <div className='answerBox selectOne' onChange={ handleOneAnswer(idx) } value={undefined}>
+                        <span className="optionBox">
+                            <span className="radio">
+                                <p className="radioIcon"></p>
+                            </span>
+                            <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            <button className="deleteOption">
+                                <p className="deleteOptionIcon"></p>
+                            </button>
+                        </span>
+                        <span className="optionBox">
+                            <span className="radio">
+                                <p className="radioIcon"></p>
+                            </span>
+                            <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            <button className="deleteOption">
+                                <p className="deleteOptionIcon"></p>
+                            </button>
+                        </span>
+                        <span className="optionBox">
+                            <span className="radio">
+                                <p className="radioIcon"></p>
+                            </span>
+                            <a href='#!' className='addOption'>옵션 추가</a>
+                        </span>
+                        <span className="optionBox">
+                            <span className="radio">
+                                <p className="radioIcon"></p>
+                            </span>
+                            <a href='#!' className='addTextField'>기타 추가</a>
+                        </span>
+                    </div>
+                );
+                break;
+            case 'selectMulti':
+                result = (
+                    <div className='answerBox selectMulti' onChange={ handleMultiAnswer(idx, 1) }>
+                        <span className="optionBox">
+                            <span className="checkbox">
+                                <p className="checkBoxIcon"></p>
+                            </span>
+                            <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            <button className="deleteOption">
+                                <p className="deleteOptionIcon"></p>
+                            </button>
+                        </span>
+                        <span className="optionBox">
+                            <span className="checkbox">
+                                <p className="checkBoxIcon"></p>
+                            </span>
+                            <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            <button className="deleteOption">
+                                <p className="deleteOptionIcon"></p>
+                            </button>
+                        </span>
+                        <span className="optionBox">
+                            <span className="checkbox">
+                                <p className="checkBoxIcon"></p>
+                            </span>
+                            <a href='#!' className='addOption'>옵션 추가</a>
+                        </span>
+                        <span className="optionBox">
+                            <span className="checkbox">
+                                <p className="checkBoxIcon"></p>
+                            </span>
+                            <a href='#!' className='addTextField'>기타 추가</a>
+                        </span>
+                    </div>
+                );
+                break;
+            case 'shortText':
+                result = (
+                    <div className='answerBox shortText' onChange={ handleStringAnswer(idx) }>
+                        <input type="text" placeholder='단답형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                    </div>
+                );
+                break;
+            case 'longText':
+                result = (
+                    <div className='answerBox longText' onChange={ handleStringAnswer(idx) }>
+                        <input type="text" placeholder='장문형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                    </div>
+                );
+                break;
+        }
+
+        return result;
+    }
+    // selectOne
+    const handleOneAnswer = (idx) => (e) => {
+        let copy_form = [...surveyForm];
+        let obj = { ...copy_form[idx] };
+
+        obj.answer = e.target.value;
+        copy_form[idx] = obj;
+        setSurveyForm(copy_form);
+    }
+
+    // selectMulti
+    const handleMultiAnswer = (idx, num) => (e) => {
+        let copy_form = [...surveyForm];
+        let obj = { ...copy_form[idx] };
+
+        // 없다면 객체형태의 answer를 만들어줌
+        if(obj.answer === undefined)
+            obj.answer = {};
+        else 
+            obj.answer = { ...obj.answer };
+
+        obj.answer[num] = e.target.checked;
+        copy_form[idx] = obj;
+        setSurveyForm(copy_form);
+    }
+
+    // shortText, longText
+    const handleStringAnswer = (idx) => (e) => {
+        let copy_form = [...surveyForm];
+        let obj = { ...copy_form[idx] };
+
+        obj.answer = e.target.value;
+        copy_form[idx] = obj;
+        setSurveyForm(copy_form);
+    }
+
+    // 최종값 확인
+    const onFormSubmit = () => {
+        console.log('최종값', surveyForm);
+    }
 
     return (
         <>
@@ -197,115 +343,44 @@ const CreateNewSurvey = () => {
                 </div>
 
                 {/* <NewSurveyQnaFormComponent /> */}
-                <div className='createSurveyQnaContainer'>
-                    <div className="subTitleWrap">
-                        <p className="subTitleLine">
-                            <span className="subTitle">질문 입력</span>
-                        </p>
-                    </div>
-                    <div className='surveyForm'>
-                        {/* surveyForm = 테두리 스타일링, padding 값 */}
-                        <div className='questionTypeWrap'>
-                            <div className='questionBox'>
-                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                        <div className='createSurveyQnaContainer'>
+                            <div className="subTitleWrap">
+                                <p className="subTitleLine">
+                                    <span className="subTitle">질문 입력</span>
+                                </p>
                             </div>
-                            <div className='typeBox'>
-                                <Select
-                                    styles={styles}
-                                    options={options}
-                                    onChange={onChangeSelect}
-                                    isSearchable={false}
-                                    defaultValue={options[0]}
-                                />
-                            </div>
-                        </div>
-                        {/* 객관식 질문 */}
-                        <div className='answerBox selectOne'>
-                            <span className="optionBox">
-                                <span className="radio">
-                                    <p className="radioIcon"></p>
-                                </span>
-                                <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                                <button className="deleteOption">
-                                    <p className="deleteOptionIcon"></p>
-                                </button>
-                            </span>
-                            <span className="optionBox">
-                                <span className="radio">
-                                    <p className="radioIcon"></p>
-                                </span>
-                                <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                                <button className="deleteOption">
-                                    <p className="deleteOptionIcon"></p>
-                                </button>
-                            </span>
-                            <span className="optionBox">
-                                <span className="radio">
-                                    <p className="radioIcon"></p>
-                                </span>
-                                <a href='#!' className='addOption'>옵션 추가</a>
-                            </span>
-                            <span className="optionBox">
-                                <span className="radio">
-                                    <p className="radioIcon"></p>
-                                </span>
-                                <a href='#!' className='addTextField'>기타 추가</a>
-                            </span>
-                        </div>
+                            {surveyForm.map((item, idx) => {
+                                return (
+                                    <div className='surveyEach' key={idx}>
+                                        {/* surveyForm = 테두리 스타일링, padding 값 */}
+                                        <div className='questionTypeWrap'>
+                                            <div className='questionBox'>
+                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                            </div>
+                                            <div className='typeBox'>
+                                                <Select
+                                                    styles={styles}
+                                                    options={options}
+                                                    onChange={setAnswerType(idx)}
+                                                    isSearchable={false}
+                                                    defaultValue={options[0]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div>{ renderAnswerInputType(item, idx) }</div>
 
-                        {/* 체크박스 */}
-                        <div className='answerBox selectMulti'>
-                            <span className="optionBox">
-                                <span className="checkbox">
-                                    <p className="checkBoxIcon"></p>
-                                </span>
-                                <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                                <button className="deleteOption">
-                                    <p className="deleteOptionIcon"></p>
-                                </button>
-                            </span>
-                            <span className="optionBox">
-                                <span className="checkbox">
-                                    <p className="checkBoxIcon"></p>
-                                </span>
-                                <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                                <button className="deleteOption">
-                                    <p className="deleteOptionIcon"></p>
-                                </button>
-                            </span>
-                            <span className="optionBox">
-                                <span className="checkbox">
-                                    <p className="checkBoxIcon"></p>
-                                </span>
-                                <a href='#!' className='addOption'>옵션 추가</a>
-                            </span>
-                            <span className="optionBox">
-                                <span className="checkbox">
-                                    <p className="checkBoxIcon"></p>
-                                </span>
-                                <a href='#!' className='addTextField'>기타 추가</a>
-                            </span>
+                                        <div className='deleteBox'>
+                                            <button className='deleteBtn' onClick={popForm}>
+                                                <p className="deleteIcon"></p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </div>
-                        {/* 단답형 텍스트 */}
-                        <div className='answerBox shortText'>
-                            <input type="text" placeholder='단답형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                        </div>
-                        {/* 장문형 텍스트 */}
-                        <div className='answerBox longText'>
-                            <input type="text" placeholder='장문형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                        </div>
-
-
-                        <div className='deleteBox'>
-                            <button className='deleteBtn'>
-                                <p className="deleteIcon"></p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
                 <div className='addWrap'>
                     <div className="addBox">
-                        <button className='addQnA'>
+                        <button className='addQnA' onClick={addForm}>
                             <p className="addIcon"></p>
                         </button>
                     </div>
