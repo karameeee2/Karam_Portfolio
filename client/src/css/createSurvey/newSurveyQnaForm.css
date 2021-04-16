@@ -47,9 +47,9 @@
 .answerBox {
     width: 780px;
 }
-.selectMulti, .shortText, .longText {
+/* .selectMulti, .shortText, .longText {
     display: none;
-}
+} */
 /* selectOne, selectMulti */
 .radioIcon {
     width:16px; height: 16px;

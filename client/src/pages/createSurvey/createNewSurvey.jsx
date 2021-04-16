@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -9,7 +9,9 @@ import checkboxSelect from '../../assets/icons/checkboxSelect.svg';
 import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
 import longTextSelect from '../../assets/icons/longTextSelect.svg';
 
-const CreateNewSurvey = () => {
+const CreateNewSurvey = (props) => {
+    const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, onSubmit} = props;
+
     // input 활성화/비활성화 css 추가
     const inputOnFocus = (e) => {
         console.log('active');
@@ -26,9 +28,10 @@ const CreateNewSurvey = () => {
         option: (styles, {isFocused, isDisabled}) => {
             return {
                 backgroundColor: isFocused ? '#F0F0F0' : '',
-                color: isDisabled ? '#C7C7C7' : '',
+                // color: isDisabled ? '#C7C7C7' : '',
                 cursor: isDisabled ? 'default' : 'pointer',
-                padding: '0 24px'
+                padding: '0 24px',
+                filter: isDisabled ? 'opacity(0.3)': ''
             };
         },
         // styles =>  ...styles는 이 라이브러리가 쓰고있는 기본 스타일을 일단 복사한다는 의미
@@ -36,7 +39,7 @@ const CreateNewSurvey = () => {
         control: (styles) => (
             {
                 ...styles, height: "48px", cursor: "pointer", padding: '0 24px', boxShadow: 'none', 
-                border: '1px solid #C7C7C7', borderRadius: '4px'
+                border: '1px solid #C7C7C7 !important', borderRadius: '4px'
             }
         ),
 
@@ -85,7 +88,7 @@ const CreateNewSurvey = () => {
                     <img src={checkboxSelect} style={{ width: '24px', marginRight: '12px' }} alt='체크박스아이콘' />{''}체크박스
                 </div>
             ),
-            // isDisabled: true
+            isDisabled: true
         },
         {
             value: 'shortText',
@@ -106,15 +109,15 @@ const CreateNewSurvey = () => {
             // isDisabled: true
         },
     ]
-    // 폼 배열
-    const [surveyForm, setSurveyForm] = useState([]);
-
     // 폼 초기값
     const initialForm = {
         _id: 0,
         answer_type: 'selectOne',
         answer: undefined
     };
+    
+    // 폼 배열
+    const [surveyForm, setSurveyForm] = useState([{...initialForm}]);
 
     // 입력 폼 추가
     const addForm = () => {
@@ -124,21 +127,24 @@ const CreateNewSurvey = () => {
         }
         // 객체의 불변성 때문에 객체복사 필요
         const obj = {...initialForm};
-        obj._id = surveyForm.length;
+        obj._id = surveyForm[surveyForm.length - 1]._id + 1;
         setSurveyForm([...surveyForm, obj]);
     };
 
     const popForm = (idx) => (e) => {
         // 폼이 비었다면 동작하지 않음
-        // if(!surveyForm || surveyForm.length <= 0) {
-        //     return;
-        // }
+        if(!surveyForm || surveyForm.length <= 0) {
+            return;
+        }
 
         let copy_form = [...surveyForm];
-        let obj = {...copy_form[idx]};
-        copy_form.splice(obj, 1);
+        console.log(copy_form);
+        copy_form.splice(idx, 1);
         setSurveyForm(copy_form);
     }
+    useEffect(() => {
+        console.log('surveyform', surveyForm);
+    }, [surveyForm])
 
     // 답변 형태 선택
     const setAnswerType = (idx) => (e) => {
@@ -146,7 +152,7 @@ const CreateNewSurvey = () => {
         let copy_form = [...surveyForm];
         let obj = { ...copy_form[idx] };
 
-        obj.answer_type = e.target.value;
+        obj.answer_type = e.value;
         copy_form[idx] = obj;
         setSurveyForm(copy_form);
     }
@@ -192,6 +198,7 @@ const CreateNewSurvey = () => {
                 );
                 break;
             case 'selectMulti':
+                console.log('multi');
                 result = (
                     <div className='answerBox selectMulti' onChange={ handleMultiAnswer(idx, 1) }>
                         <span className="optionBox">
@@ -291,7 +298,7 @@ const CreateNewSurvey = () => {
             {/* pageTitle */}
             <div className="pageTitleBox">
                 <div className="pageTitleWrap">
-                    <h2 className='titleLeft'>종료된 설문</h2>
+                    <h2 className='titleLeft'>새 설문 등록</h2>
                 </div>
             </div>
             
@@ -307,18 +314,22 @@ const CreateNewSurvey = () => {
                     {/* newSurveyRow = 100% 다 차지, newSurveyHalfRow = 반만 차지 */}
                     <div className="surveyInfoBox">
                         <div className='titleRow'>
-                            <input type='text' id='titleInput' placeholder='제목입력' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100' 
+                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setSsubject(e.target.value); }} />
                         </div>
                         <div className='newSurveyRow'>
-                            <textarea rows='2' cols='100' id='contentInput' placeholder='설문조사 참여에 참고할 설문의 목적, 내용 기술' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            <textarea rows='2' cols='100' id='contentInput' placeholder='설문 설명 입력' maxLength='200'
+                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setScontent(e.target.value); }} />
                         </div>
                         <div className='newSurveyRow'>
-                            <input type='text' placeholder='태그 (쉼표로 구분해서 입력 > 태그, 태그, 태그)' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                            <input type='text' placeholder='태그 입력 (쉼표로 구분해서 입력)' maxLength='50' 
+                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setTag(e.target.value); }} />
                         </div>
                         <div className='newSurveyHalfRow'>
                             <div className="halfRowLeft">
                                 <div className='fileInputBox'>
-                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부'  maxLength='200'
+                                    onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setImg(e.target.value) }} />
                                     <button><p id="appendIcon" className='infoIcon'></p></button>
                                 </div>
                                 <div className="commentBox">
@@ -329,7 +340,8 @@ const CreateNewSurvey = () => {
                             {/* 현재는 text로 입력 */}
                             <div className='halfRowRight'>
                                 <div className="datePickerBox">
-                                    <input className='datePick' readOnly type='text' placeholder='기간' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                    <input className='datePick' readOnly type='text' placeholder='기간' 
+                                    onFocus={inputOnFocus} onBlur={inputOnBlur} />
                                     {/* date picker 사용법 참고 사이트 */}
                                     {/* https://reactnicedates.hernansartorio.com/ */}
                                     <button><p id="calendarIcon" className='infoIcon'></p></button>
@@ -370,7 +382,7 @@ const CreateNewSurvey = () => {
                                         <div>{ renderAnswerInputType(item, idx) }</div>
 
                                         <div className='deleteBox'>
-                                            <button className='deleteBtn' onClick={popForm}>
+                                            <button className='deleteBtn' onClick={popForm(idx)}>
                                                 <p className="deleteIcon"></p>
                                             </button>
                                         </div>
@@ -391,7 +403,8 @@ const CreateNewSurvey = () => {
                     <div className='submitListWrap'>
                         <div className="submitListBtn">
                             <button className='listBtn'>목록</button>
-                            <button type='submit' className='submitNewSurvey'>제출</button>
+                            <button type='submit' className='submitNewSurvey' onClick={onSubmit}>제출
+                            </button>
                         </div>
                     </div>
                 </div>
