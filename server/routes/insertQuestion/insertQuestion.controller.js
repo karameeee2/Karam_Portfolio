@@ -1,7 +1,10 @@
 const db = require('../../dbconnection');
 
 exports.insertQuestion = (req, res, next) => {
-    db.query('INSERT INTO SURVEY_QUESTION (SIDX, QUESTION) VALUES (6, "질문질문 질문질문 귀찮다")', (err, rows) => {
+    const sidx = req.query.sidx;
+    const question = req.body.question;
+
+    db.query(`INSERT INTO SURVEY_QUESTION (SIDX, QUESTION) VALUES (${sidx}, ${question})`, (err, rows) => {
         if(!err) {
             res.send(rows);
         } else {
