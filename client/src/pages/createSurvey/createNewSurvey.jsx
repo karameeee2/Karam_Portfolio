@@ -4,10 +4,12 @@ import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
 import '../../css/createSurvey/newSurveyQnaForm.css';
 import '../../css/createSurvey/newSurveyBtnForm.css';
+import 'react-nice-dates/build/style.css';
 import radioSelect from '../../assets/icons/radioSelect.svg';
 import checkboxSelect from '../../assets/icons/checkboxSelect.svg';
 import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
 import longTextSelect from '../../assets/icons/longTextSelect.svg';
+import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
 
 const CreateNewSurvey = (props) => {
     const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, onSubmit} = props;
@@ -293,6 +295,12 @@ const CreateNewSurvey = (props) => {
         console.log('최종값', surveyForm);
     }
 
+
+    // react-nice-dates
+    // datePicker
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
+
     return (
         <>
             {/* pageTitle */}
@@ -328,7 +336,7 @@ const CreateNewSurvey = (props) => {
                         <div className='newSurveyHalfRow'>
                             <div className="halfRowLeft">
                                 <div className='fileInputBox'>
-                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부'  maxLength='200'
+                                    <input className='fileName' readOnly type='file' placeholder='썸네일 이미지 파일 첨부'  maxLength='200'
                                     onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setImg(e.target.value) }} />
                                     <button><p id="appendIcon" className='infoIcon'></p></button>
                                 </div>
@@ -340,12 +348,33 @@ const CreateNewSurvey = (props) => {
                             {/* 현재는 text로 입력 */}
                             <div className='halfRowRight'>
                                 <div className="datePickerBox">
-                                    <input className='datePick' readOnly type='text' placeholder='기간' 
-                                    onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                    <DateRangePicker 
+                                        startDate={startDate}
+                                        endDate={endDate}
+                                        onStartDateChange={setStartDate}
+                                        onEndDateChange={setEndDate}
+                                        minimumDate={new Date()}
+                                        minimumLength={1}
+                                        format='yyyy/MM/dd'
+                                        // locale={}
+                                    >
+                                        {({startDateInputProps, endDateInputProps, focus}) => (
+                                            <p className="date-range">
+                                                <input className={'input' + (focus === START_DATE ? ' -focused' : '')}
+                                                {...startDateInputProps} placeholder='시작 날짜' />
+                                                <span className='inputCenter'> ~ </span>
+                                                <input className={'input' + (focus === END_DATE ? ' -focused' : '')}
+                                                {...endDateInputProps} placeholder='종료 날짜' />
+                                            </p>
+                                        )}
+                                    </DateRangePicker>
                                     {/* date picker 사용법 참고 사이트 */}
                                     {/* https://reactnicedates.hernansartorio.com/ */}
-                                    <button><p id="calendarIcon" className='infoIcon'></p></button>
+                                    <button>
+                                        <p id="calendarIcon" className='infoIcon'></p>
+                                    </button>
                                 </div>
+                                
                                 <div className="commentBox">
                                     <p className='newSurveyComment'>* 기간은 최소1일부터 최대 30일까지 가능합니다.</p>
                                 </div>
