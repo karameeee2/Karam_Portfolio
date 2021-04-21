@@ -1,7 +1,10 @@
 const db = require('../../dbconnection');
 
 exports.insertAnswer = (req, res, next) => {
-    db.query('INSERT INTO SURVEY_ANSWER (QIDX, ANSWER) VALUES (16, "답변답변 답변답변 랄라")', (err, rows) => {
+    const qidx = req.query.qidx;
+    const answer = req.body.answer;
+
+    db.query(`INSERT INTO SURVEY_ANSWER (QIDX, ANSWER) VALUES (${qidx}, ${answer})`, (err, rows) => {
         if(!err) {
             res.send(rows);
         } else {

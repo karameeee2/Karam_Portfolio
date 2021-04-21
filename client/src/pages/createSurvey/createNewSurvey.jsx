@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -295,6 +295,11 @@ const CreateNewSurvey = (props) => {
         console.log('최종값', surveyForm);
     }
 
+    //fileUpload
+    const [imgFile, setImgFIle] = useState('');
+    const handleFile = (e) => {
+        setImgFIle(e.target.files[0]);
+    }
 
     // react-nice-dates
     // datePicker
@@ -336,9 +341,13 @@ const CreateNewSurvey = (props) => {
                         <div className='newSurveyHalfRow'>
                             <div className="halfRowLeft">
                                 <div className='fileInputBox'>
-                                    <input className='fileName' readOnly type='file' placeholder='썸네일 이미지 파일 첨부'  maxLength='200'
-                                    onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setImg(e.target.value) }} />
-                                    <button><p id="appendIcon" className='infoIcon'></p></button>
+                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부'  maxLength='200'
+                                    onFocus={inputOnFocus} onBlur={inputOnBlur} value={imgFile.name} onChange={e => { setImg(e.target.value) }} />
+                                    
+                                    <label htmlFor="file">
+                                        <p id="appendIcon" className='infoIcon'></p>
+                                    </label>
+                                    <input type="file" id='file' onChange={handleFile} style={{ display:'none' }} />
                                 </div>
                                 <div className="commentBox">
                                     <p className='newSurveyComment'>* 썸네일로 사용할 이미지가 첨부되지 않았을 시에는 임의의 이미지로 대체합니다.</p>
@@ -361,10 +370,10 @@ const CreateNewSurvey = (props) => {
                                         {({startDateInputProps, endDateInputProps, focus}) => (
                                             <p className="date-range">
                                                 <input className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                                                {...startDateInputProps} placeholder='시작 날짜' />
+                                                {...startDateInputProps} placeholder='시작 날짜' onChange={e => { setSdate(e.target.value) }} />
                                                 <span className='inputCenter'> ~ </span>
                                                 <input className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                                                {...endDateInputProps} placeholder='종료 날짜' />
+                                                {...endDateInputProps} placeholder='종료 날짜' onChange={e => { setEdate(e.target.value) }} />
                                             </p>
                                         )}
                                     </DateRangePicker>
