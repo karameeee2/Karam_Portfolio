@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
-    "date-fns": "^2.21.1",
+    "date-fns": "^2.9.0",
     "js-cookie": "^2.2.1",
     "moment": "^2.29.1",
     "query-string": "^6.13.4",

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -10,18 +10,17 @@ import checkboxSelect from '../../assets/icons/checkboxSelect.svg';
 import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
 import longTextSelect from '../../assets/icons/longTextSelect.svg';
 import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
+import ko from 'date-fns/locale/ko'
 
 const CreateNewSurvey = (props) => {
-    const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, onSubmit} = props;
+    const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, onSubmit, sdate, edate} = props;
 
     // input 활성화/비활성화 css 추가
     const inputOnFocus = (e) => {
-        console.log('active');
         e.target.classList.add('infoActiveFocus');
     }
 
     const inputOnBlur = (e) => {
-        console.log('normal');
         e.target.classList.remove('infoActiveFocus');
     }
     // select
@@ -117,9 +116,17 @@ const CreateNewSurvey = (props) => {
         answer_type: 'selectOne',
         answer: undefined
     };
+
+    // 옵션 초기값
+    const initialOption = {
+
+    }
     
     // 폼 배열
     const [surveyForm, setSurveyForm] = useState([{...initialForm}]);
+    
+    // 옵션 배열
+    const [optionForm, setOptionForm] = useState([])
 
     // 입력 폼 추가
     const addForm = () => {
@@ -143,6 +150,12 @@ const CreateNewSurvey = (props) => {
         console.log(copy_form);
         copy_form.splice(idx, 1);
         setSurveyForm(copy_form);
+    }
+    const addOption = () => {
+
+    }
+    const popOptions = (idx) => {
+
     }
     useEffect(() => {
         console.log('surveyform', surveyForm);
@@ -171,7 +184,7 @@ const CreateNewSurvey = (props) => {
                                 <p className="radioIcon"></p>
                             </span>
                             <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                            <button className="deleteOption">
+                            <button className="deleteOption" onClick={popOptions}>
                                 <p className="deleteOptionIcon"></p>
                             </button>
                         </span>
@@ -188,7 +201,7 @@ const CreateNewSurvey = (props) => {
                             <span className="radio">
                                 <p className="radioIcon"></p>
                             </span>
-                            <a href='#!' className='addOption'>옵션 추가</a>
+                            <a href='#!' className='addOption' onClick={addOption} >옵션 추가</a>
                         </span>
                         <span className="optionBox">
                             <span className="radio">
@@ -208,7 +221,7 @@ const CreateNewSurvey = (props) => {
                                 <p className="checkBoxIcon"></p>
                             </span>
                             <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                            <button className="deleteOption">
+                            <button className="deleteOption" onClick={popOptions}>
                                 <p className="deleteOptionIcon"></p>
                             </button>
                         </span>
@@ -295,6 +308,7 @@ const CreateNewSurvey = (props) => {
         console.log('최종값', surveyForm);
     }
 
+
     //fileUpload
     const [imgFile, setImgFIle] = useState('');
     const handleFile = (e) => {
@@ -358,22 +372,22 @@ const CreateNewSurvey = (props) => {
                             <div className='halfRowRight'>
                                 <div className="datePickerBox">
                                     <DateRangePicker 
-                                        startDate={startDate}
-                                        endDate={endDate}
-                                        onStartDateChange={setStartDate}
-                                        onEndDateChange={setEndDate}
+                                        startDate={sdate}
+                                        endDate={edate}
+                                        onStartDateChange={setSdate}
+                                        onEndDateChange={setEdate}
                                         minimumDate={new Date()}
                                         minimumLength={1}
                                         format='yyyy/MM/dd'
-                                        // locale={}
+                                        locale={ko}
                                     >
                                         {({startDateInputProps, endDateInputProps, focus}) => (
                                             <p className="date-range">
                                                 <input className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                                                {...startDateInputProps} placeholder='시작 날짜' onChange={e => { setSdate(e.target.value) }} />
+                                                {...startDateInputProps} placeholder='시작 날짜' />
                                                 <span className='inputCenter'> ~ </span>
                                                 <input className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                                                {...endDateInputProps} placeholder='종료 날짜' onChange={e => { setEdate(e.target.value) }} />
+                                                {...endDateInputProps} placeholder='종료 날짜' />
                                             </p>
                                         )}
                                     </DateRangePicker>

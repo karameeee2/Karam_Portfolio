@@ -1,7 +1,8 @@
 import Axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateNewSurvey from '../../pages/createSurvey/createNewSurvey';
-
+import { CommonUtils } from '../../utils/common';
+import format from 'date-fns/format'
 
 const CreateNewSurveyComponent = () => {
     const [ssubject, setSsubject] = useState('');
@@ -29,11 +30,14 @@ const CreateNewSurveyComponent = () => {
             return alert('기간을 설정해주세요.')
         }
 
+        let start = CommonUtils.dateFormat(sdate)
+        let end = CommonUtils.dateFormat(edate)
+
         Axios.post('http://localhost:8080/insertSurvey', {
             ssubject: ssubject,
             scontent: scontent,
-            sdate: sdate,
-            edate: edate,
+            sdate: start,
+            edate: end,
             tag: tag,
             img: img
         })
@@ -48,7 +52,7 @@ const CreateNewSurveyComponent = () => {
 
     return (
         <CreateNewSurvey onSubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
-        setSdate={setSdate} setEdate={setEdate} setTag={setTag} setImg={setImg} />
+        setSdate={setSdate} setEdate={setEdate} setTag={setTag} setImg={setImg} sdate={sdate} edate={edate} />
     )
 }
 
