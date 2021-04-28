@@ -2,7 +2,6 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CreateNewSurvey from '../../pages/createSurvey/createNewSurvey';
 import { CommonUtils } from '../../utils/common';
-import format from 'date-fns/format'
 
 const CreateNewSurveyComponent = () => {
     const [ssubject, setSsubject] = useState('');
@@ -52,7 +51,7 @@ const CreateNewSurveyComponent = () => {
 
     return (
         <CreateNewSurvey onSubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
-        setSdate={setSdate} setEdate={setEdate} setTag={setTag} setImg={setImg} sdate={sdate} edate={edate} />
+        setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}/>
     )
 }
 

@@ -65,6 +65,9 @@
 .infoIcon {
     width: 24px; height: 24px;
 }
+.datePickerBox input {
+    text-align: center;
+}
 #appendIcon {
     background: url('../../assets/icons/appendIcon.svg') center no-repeat; cursor: pointer;
 }
@@ -85,24 +88,3 @@
 }
 
 /* datePicker */
-.nice-dates {
-    width: 516px
-}
-.nice-dates .input {
-    width: 45%; text-align: center;
-}
-.nice-dates .innputCenter {
-    width: 10%
-}
-.nice-dates-popover  {
-    width: 516px !important; 
-}
-.nice-dates-day:before {
-    background-color: #5E00FF !important;
-}
-.nice-dates-day:after {
-    border: 2px solid #5E00FF !important;
-}
-.nice-dates-day.-today {
-    color: #5E00FF
-}

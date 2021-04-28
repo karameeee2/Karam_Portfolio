@@ -4,13 +4,14 @@ import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
 import '../../css/createSurvey/newSurveyQnaForm.css';
 import '../../css/createSurvey/newSurveyBtnForm.css';
-import 'react-nice-dates/build/style.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import radioSelect from '../../assets/icons/radioSelect.svg';
 import checkboxSelect from '../../assets/icons/checkboxSelect.svg';
 import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
 import longTextSelect from '../../assets/icons/longTextSelect.svg';
-import { DateRangePicker, START_DATE, END_DATE } from 'react-nice-dates';
-import ko from 'date-fns/locale/ko'
+import DatePicker from 'react-datepicker';
+import ko from 'date-fns/locale/ko';
+
 
 const CreateNewSurvey = (props) => {
     const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, onSubmit, sdate, edate} = props;
@@ -315,10 +316,8 @@ const CreateNewSurvey = (props) => {
         setImgFIle(e.target.files[0]);
     }
 
-    // react-nice-dates
+    // react-date-picker
     // datePicker
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
 
     return (
         <>
@@ -367,32 +366,30 @@ const CreateNewSurvey = (props) => {
                                     <p className='newSurveyComment'>* 썸네일로 사용할 이미지가 첨부되지 않았을 시에는 임의의 이미지로 대체합니다.</p>
                                 </div>
                             </div>
-                            {/* 추후 datepicker 모듈 사용이 좋아보임 */}
-                            {/* 현재는 text로 입력 */}
                             <div className='halfRowRight'>
                                 <div className="datePickerBox">
-                                    <DateRangePicker 
+                                    <DatePicker 
+                                        selected={sdate}
+                                        onChange={date => setSdate(date)}
+                                        selectsStart
                                         startDate={sdate}
                                         endDate={edate}
-                                        onStartDateChange={setSdate}
-                                        onEndDateChange={setEdate}
-                                        minimumDate={new Date()}
-                                        minimumLength={1}
-                                        format='yyyy/MM/dd'
+                                        minDate={new Date()}
+                                        dateFormat='yyyy/MM/dd'
+                                        placeholderText='시작 날짜'
                                         locale={ko}
-                                    >
-                                        {({startDateInputProps, endDateInputProps, focus}) => (
-                                            <p className="date-range">
-                                                <input className={'input' + (focus === START_DATE ? ' -focused' : '')}
-                                                {...startDateInputProps} placeholder='시작 날짜' />
-                                                <span className='inputCenter'> ~ </span>
-                                                <input className={'input' + (focus === END_DATE ? ' -focused' : '')}
-                                                {...endDateInputProps} placeholder='종료 날짜' />
-                                            </p>
-                                        )}
-                                    </DateRangePicker>
-                                    {/* date picker 사용법 참고 사이트 */}
-                                    {/* https://reactnicedates.hernansartorio.com/ */}
+                                    />
+                                    <span className='inputCenter'> ~ </span>
+                                    <DatePicker 
+                                        selected={edate}
+                                        onChange={date => {setEdate(date)}}
+                                        selectsEnd
+                                        startDate={sdate}
+                                        endDate={edate}
+                                        minDate={sdate}
+                                        dateFormat='yyyy/MM/dd'
+                                        placeholderText='종료 날짜'
+                                    />
                                     <button>
                                         <p id="calendarIcon" className='infoIcon'></p>
                                     </button>
