@@ -55,8 +55,11 @@
 .fileInputBox, .datePickerBox {
     width: 100%; display: flex; align-items: center;
 }
-.fileInputBox .fileName, .datePickerBox .datePick {
+.fileInputBox .fileName {
     width: 516px; border-radius: 0;
+}
+.datePickerBox .datePick {
+    width: 236px; border-radius: 0;
 }
 .fileInputBox button, .datePickerBox button {
     width: 24px; height: 28px; line-height: 28px; padding: 2px 0; background-color: #FFF; 

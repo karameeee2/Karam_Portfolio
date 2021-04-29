@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -14,7 +14,7 @@ import ko from 'date-fns/locale/ko';
 
 
 const CreateNewSurvey = (props) => {
-    const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, onSubmit, sdate, edate} = props;
+    const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, insertSurveySubmit, sdate, edate} = props;
 
     // input 활성화/비활성화 css 추가
     const inputOnFocus = (e) => {
@@ -111,6 +111,8 @@ const CreateNewSurvey = (props) => {
             // isDisabled: true
         },
     ]
+
+
     // 폼 초기값
     const initialForm = {
         _id: 0,
@@ -118,17 +120,9 @@ const CreateNewSurvey = (props) => {
         answer: undefined
     };
 
-    // 옵션 초기값
-    const initialOption = {
-
-    }
-    
     // 폼 배열
     const [surveyForm, setSurveyForm] = useState([{...initialForm}]);
     
-    // 옵션 배열
-    const [optionForm, setOptionForm] = useState([])
-
     // 입력 폼 추가
     const addForm = () => {
         if(!surveyForm || surveyForm.length <= 0) {
@@ -140,27 +134,47 @@ const CreateNewSurvey = (props) => {
         obj._id = surveyForm[surveyForm.length - 1]._id + 1;
         setSurveyForm([...surveyForm, obj]);
     };
-
     const popForm = (idx) => (e) => {
         // 폼이 비었다면 동작하지 않음
         if(!surveyForm || surveyForm.length <= 0) {
             return;
         }
-
+        
         let copy_form = [...surveyForm];
         console.log(copy_form);
         copy_form.splice(idx, 1);
         setSurveyForm(copy_form);
     }
+
+
+    // 옵션 초기값
+    const initialOption = {
+        _id: 0
+    }
+    // 옵션 배열
+    const [optionForm, setOptionForm] = useState([{...initialOption}]);
+    // 옵션 추가
     const addOption = () => {
-
+        if(!optionForm || optionForm.length <= 0) {
+            setOptionForm([...optionForm, initialOption]);
+            return;
+        }
+        const obj = {...initialOption};
+        obj._id = optionForm[optionForm.length - 1]._id + 1;
+        setOptionForm([...optionForm, obj]);
     }
-    const popOptions = (idx) => {
+    // 옵션 삭제
+    const popOption = (idx) => (e) => {
+        if(!optionForm || optionForm.length <= 0) {
+            return;
+        }
 
+        let copy_form = [...optionForm];
+        console.log(copy_form);
+        copy_form.splice(idx, 1);
+        setOptionForm(copy_form);
     }
-    useEffect(() => {
-        console.log('surveyform', surveyForm);
-    }, [surveyForm])
+
 
     // 답변 형태 선택
     const setAnswerType = (idx) => (e) => {
@@ -180,36 +194,31 @@ const CreateNewSurvey = (props) => {
             case 'selectOne':
                 result = (
                     <div className='answerBox selectOne' onChange={ handleOneAnswer(idx) } value={undefined}>
-                        <span className="optionBox">
-                            <span className="radio">
-                                <p className="radioIcon"></p>
-                            </span>
-                            <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                            <button className="deleteOption" onClick={popOptions}>
-                                <p className="deleteOptionIcon"></p>
-                            </button>
-                        </span>
-                        <span className="optionBox">
-                            <span className="radio">
-                                <p className="radioIcon"></p>
-                            </span>
-                            <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                            <button className="deleteOption">
-                                <p className="deleteOptionIcon"></p>
-                            </button>
-                        </span>
+                        {optionForm.map((item, idx) => {
+                            return (
+                                <span className="optionBox" key={idx}>
+                                    <span className="radio">
+                                        <p className="radioIcon"></p>
+                                    </span>
+                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                    <button className="deleteOption" onClick={popOption(idx)}>
+                                        <p className="deleteOptionIcon"></p>
+                                    </button>
+                                </span>
+                            )
+                        })}
                         <span className="optionBox">
                             <span className="radio">
                                 <p className="radioIcon"></p>
                             </span>
                             <a href='#!' className='addOption' onClick={addOption} >옵션 추가</a>
                         </span>
-                        <span className="optionBox">
+                        {/* <span className="optionBox">
                             <span className="radio">
                                 <p className="radioIcon"></p>
                             </span>
                             <a href='#!' className='addTextField'>기타 추가</a>
-                        </span>
+                        </span> */}
                     </div>
                 );
                 break;
@@ -217,52 +226,49 @@ const CreateNewSurvey = (props) => {
                 console.log('multi');
                 result = (
                     <div className='answerBox selectMulti' onChange={ handleMultiAnswer(idx, 1) }>
-                        <span className="optionBox">
-                            <span className="checkbox">
-                                <p className="checkBoxIcon"></p>
-                            </span>
-                            <input className='options' type="text" placeholder='옵션1' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                            <button className="deleteOption" onClick={popOptions}>
-                                <p className="deleteOptionIcon"></p>
-                            </button>
-                        </span>
-                        <span className="optionBox">
-                            <span className="checkbox">
-                                <p className="checkBoxIcon"></p>
-                            </span>
-                            <input className='options' type="text" placeholder='옵션2' onFocus={inputOnFocus} onBlur={inputOnBlur} />
-                            <button className="deleteOption">
-                                <p className="deleteOptionIcon"></p>
-                            </button>
-                        </span>
+                        {optionForm.map((item, idx) => {
+                            return (
+                                <span className="optionBox" key={idx}>
+                                    <span className="checkbox">
+                                        <p className="checkBoxIcon"></p>
+                                    </span>
+                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                    <button className="deleteOption" onClick={popOption(idx)}>
+                                        <p className="deleteOptionIcon"></p>
+                                    </button>
+                                </span>
+                            )
+                        })}
                         <span className="optionBox">
                             <span className="checkbox">
                                 <p className="checkBoxIcon"></p>
                             </span>
                             <a href='#!' className='addOption'>옵션 추가</a>
                         </span>
-                        <span className="optionBox">
+                        {/* <span className="optionBox">
                             <span className="checkbox">
                                 <p className="checkBoxIcon"></p>
                             </span>
                             <a href='#!' className='addTextField'>기타 추가</a>
-                        </span>
+                        </span> */}
                     </div>
                 );
                 break;
             case 'shortText':
                 result = (
                     <div className='answerBox shortText' onChange={ handleStringAnswer(idx) }>
-                        <input type="text" placeholder='단답형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                        <input type="text" placeholder='단답형 텍스트' readOnly />
                     </div>
                 );
                 break;
             case 'longText':
                 result = (
                     <div className='answerBox longText' onChange={ handleStringAnswer(idx) }>
-                        <input type="text" placeholder='장문형 텍스트' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                        <input type="text" placeholder='장문형 텍스트' readOnly />
                     </div>
                 );
+                break;
+            default :
                 break;
         }
 
@@ -305,9 +311,9 @@ const CreateNewSurvey = (props) => {
     }
 
     // 최종값 확인
-    const onFormSubmit = () => {
-        console.log('최종값', surveyForm);
-    }
+    // const onFormSubmit = () => {
+    //     console.log('최종값', surveyForm);
+    // }
 
 
     //fileUpload
@@ -318,6 +324,18 @@ const CreateNewSurvey = (props) => {
 
     // react-date-picker
     // datePicker
+    const CustomInput = forwardRef(({sdate, edate, onClick}, ref) => {
+        return (
+            <p className="date-range">
+                <input className='datePick' onChange={date => setSdate(date)} value={sdate} placeholder='시작 날짜' />
+                <span className='inputCenter'> ~ </span>
+                <input className='datePick' onChange={date => setEdate(date)} value={edate} placeholder='종료 날짜' />
+                <button className='example-custom-input' onClick={onClick} ref={ref}>
+                    <p id="calendarIcon" className='infoIcon'></p>
+                </button>
+            </p>
+        )
+    })
 
     return (
         <>
@@ -355,7 +373,7 @@ const CreateNewSurvey = (props) => {
                             <div className="halfRowLeft">
                                 <div className='fileInputBox'>
                                     <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부'  maxLength='200'
-                                    onFocus={inputOnFocus} onBlur={inputOnBlur} value={imgFile.name} onChange={e => { setImg(e.target.value) }} />
+                                    onFocus={inputOnFocus} onBlur={inputOnBlur} value={imgFile.name || ''} onChange={e => { setImg(e.target.value) }} />
                                     
                                     <label htmlFor="file">
                                         <p id="appendIcon" className='infoIcon'></p>
@@ -369,6 +387,21 @@ const CreateNewSurvey = (props) => {
                             <div className='halfRowRight'>
                                 <div className="datePickerBox">
                                     <DatePicker 
+                                        selected={sdate}
+                                        // onChange={date => setSdate(date)}
+                                        customInput={<CustomInput />}
+                                        selectsRange
+                                        startDate={sdate}
+                                        endDate={edate}
+                                        minDate={new Date()}
+                                        shouldCloseOnSelect={false}
+                                        dateFormat='yyyy/MM/dd'
+                                        placeholderText='시작 날짜'
+                                        locale={ko}
+                                    />
+                                    {/* <span className='inputCenter'> ~ </span> */}
+                                    
+                                    {/* <DatePicker 
                                         selected={sdate}
                                         onChange={date => setSdate(date)}
                                         selectsStart
@@ -389,10 +422,11 @@ const CreateNewSurvey = (props) => {
                                         minDate={sdate}
                                         dateFormat='yyyy/MM/dd'
                                         placeholderText='종료 날짜'
+                                        locale={ko}
                                     />
                                     <button>
                                         <p id="calendarIcon" className='infoIcon'></p>
-                                    </button>
+                                    </button> */}
                                 </div>
                                 
                                 <div className="commentBox">
@@ -452,7 +486,7 @@ const CreateNewSurvey = (props) => {
                     <div className='submitListWrap'>
                         <div className="submitListBtn">
                             <button className='listBtn'>목록</button>
-                            <button type='submit' className='submitNewSurvey' onClick={onSubmit}>제출
+                            <button type='submit' className='submitNewSurvey' onClick={insertSurveySubmit}>제출
                             </button>
                         </div>
                     </div>

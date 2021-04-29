@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CreateNewSurvey from '../../pages/createSurvey/createNewSurvey';
 import { CommonUtils } from '../../utils/common';
 
@@ -50,7 +50,7 @@ const CreateNewSurveyComponent = () => {
     }
 
     return (
-        <CreateNewSurvey onSubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
+        <CreateNewSurvey insertSurveySubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
         setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}/>
     )
 }
