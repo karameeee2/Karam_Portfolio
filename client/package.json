@@ -12,6 +12,7 @@
     "moment": "^2.29.1",
     "query-string": "^6.13.4",
     "react": "^16.13.1",
+    "react-date-range": "^1.1.3",
     "react-datepicker": "^3.8.0",
     "react-dom": "^16.13.1",
     "react-paginate": "^7.1.0",

@@ -37,6 +37,9 @@ exports.insertSurvey = (req, res, next) => {
                 const qidx = results.QIDX;
                 const answer = req.body.answer;
                 expect(qidx).to.be.above(1);
+
+                // let fixedQuery = `INSERT INTO SURVEY_ANSWER (QIDX, ANSWER) VALUES `;
+                // for(let i = 0; i < )
                 db.query(`INSERT INTO SURVEY_ANSWER (QIDX, ANSWER) VALUES (${qidx}, ${answer})`, (insertErr, results, fields) => {
                     if(insertErr) {
                         console.error('Insert3 Error >>' , insertErr);

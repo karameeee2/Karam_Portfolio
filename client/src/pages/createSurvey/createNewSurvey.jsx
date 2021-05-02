@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -11,10 +11,10 @@ import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
 import longTextSelect from '../../assets/icons/longTextSelect.svg';
 import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
-
+import addDays from 'date-fns/addDays'
 
 const CreateNewSurvey = (props) => {
-    const {setSsubject, setScontent, setSdate, setEdate, setTag, setImg, insertSurveySubmit, sdate, edate} = props;
+    const {setSsubject, setScontent, setSdate, setEdate, sdate, edate, setTag, setImg, insertSurveySubmit, setQuestion, setAnswer } = props;
 
     // input 활성화/비활성화 css 추가
     const inputOnFocus = (e) => {
@@ -200,7 +200,7 @@ const CreateNewSurvey = (props) => {
                                     <span className="radio">
                                         <p className="radioIcon"></p>
                                     </span>
-                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setAnswer(e.target.value) }} />
                                     <button className="deleteOption" onClick={popOption(idx)}>
                                         <p className="deleteOptionIcon"></p>
                                     </button>
@@ -232,7 +232,7 @@ const CreateNewSurvey = (props) => {
                                     <span className="checkbox">
                                         <p className="checkBoxIcon"></p>
                                     </span>
-                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setAnswer(e.target.value) }} />
                                     <button className="deleteOption" onClick={popOption(idx)}>
                                         <p className="deleteOptionIcon"></p>
                                     </button>
@@ -318,24 +318,14 @@ const CreateNewSurvey = (props) => {
 
     //fileUpload
     const [imgFile, setImgFIle] = useState('');
+
     const handleFile = (e) => {
         setImgFIle(e.target.files[0]);
     }
 
     // react-date-picker
     // datePicker
-    const CustomInput = forwardRef(({sdate, edate, onClick}, ref) => {
-        return (
-            <p className="date-range">
-                <input className='datePick' onChange={date => setSdate(date)} value={sdate} placeholder='시작 날짜' />
-                <span className='inputCenter'> ~ </span>
-                <input className='datePick' onChange={date => setEdate(date)} value={edate} placeholder='종료 날짜' />
-                <button className='example-custom-input' onClick={onClick} ref={ref}>
-                    <p id="calendarIcon" className='infoIcon'></p>
-                </button>
-            </p>
-        )
-    })
+   
 
     return (
         <>
@@ -378,7 +368,7 @@ const CreateNewSurvey = (props) => {
                                     <label htmlFor="file">
                                         <p id="appendIcon" className='infoIcon'></p>
                                     </label>
-                                    <input type="file" id='file' onChange={handleFile} style={{ display:'none' }} />
+                                    <input type="file" id='file' accept='image/jpg, image/jpeg, image/png' onChange={handleFile} style={{ display:'none' }} />
                                 </div>
                                 <div className="commentBox">
                                     <p className='newSurveyComment'>* 썸네일로 사용할 이미지가 첨부되지 않았을 시에는 임의의 이미지로 대체합니다.</p>
@@ -388,29 +378,11 @@ const CreateNewSurvey = (props) => {
                                 <div className="datePickerBox">
                                     <DatePicker 
                                         selected={sdate}
-                                        // onChange={date => setSdate(date)}
-                                        customInput={<CustomInput />}
-                                        selectsRange
-                                        startDate={sdate}
-                                        endDate={edate}
-                                        minDate={new Date()}
-                                        shouldCloseOnSelect={false}
-                                        dateFormat='yyyy/MM/dd'
-                                        placeholderText='시작 날짜'
-                                        locale={ko}
-                                    />
-                                    {/* <span className='inputCenter'> ~ </span> */}
-                                    
-                                    {/* <DatePicker 
-                                        selected={sdate}
                                         onChange={date => setSdate(date)}
-                                        selectsStart
-                                        startDate={sdate}
-                                        endDate={edate}
-                                        minDate={new Date()}
                                         dateFormat='yyyy/MM/dd'
-                                        placeholderText='시작 날짜'
+                                        placeholderText={sdate}
                                         locale={ko}
+                                        readOnly
                                     />
                                     <span className='inputCenter'> ~ </span>
                                     <DatePicker 
@@ -420,13 +392,14 @@ const CreateNewSurvey = (props) => {
                                         startDate={sdate}
                                         endDate={edate}
                                         minDate={sdate}
+                                        maxDate={addDays(new Date(), 30)}
                                         dateFormat='yyyy/MM/dd'
                                         placeholderText='종료 날짜'
                                         locale={ko}
                                     />
                                     <button>
                                         <p id="calendarIcon" className='infoIcon'></p>
-                                    </button> */}
+                                    </button>
                                 </div>
                                 
                                 <div className="commentBox">
@@ -450,7 +423,7 @@ const CreateNewSurvey = (props) => {
                                         {/* surveyForm = 테두리 스타일링, padding 값 */}
                                         <div className='questionTypeWrap'>
                                             <div className='questionBox'>
-                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} />
+                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setQuestion(e.target.value) }} />
                                             </div>
                                             <div className='typeBox'>
                                                 <Select

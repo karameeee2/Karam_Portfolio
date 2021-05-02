@@ -6,10 +6,16 @@ import { CommonUtils } from '../../utils/common';
 const CreateNewSurveyComponent = () => {
     const [ssubject, setSsubject] = useState('');
     const [scontent, setScontent] = useState('');
-    const [sdate, setSdate] = useState('');
+    const [sdate, setSdate] = useState(new Date());
     const [edate, setEdate] = useState('');
     const [tag, setTag] = useState('');
     const [img, setImg] = useState('');
+    
+    const [question, setQuestion] = useState('');
+    
+    const [answer, setAnswer] = useState('');
+
+    
 
     const insertSurveySubmit = () => {
         // null check
@@ -32,13 +38,15 @@ const CreateNewSurveyComponent = () => {
         let start = CommonUtils.dateFormat(sdate)
         let end = CommonUtils.dateFormat(edate)
 
-        Axios.post('http://localhost:8080/insertSurvey', {
+        Axios.post(`http://localhost:8080/insertSurvey`, {
             ssubject: ssubject,
             scontent: scontent,
             sdate: start,
             edate: end,
             tag: tag,
-            img: img
+            img: img,
+            question: question,
+            answer: answer
         })
         .then(res => {
             console.log('insert newSurvey success', res);
@@ -51,7 +59,8 @@ const CreateNewSurveyComponent = () => {
 
     return (
         <CreateNewSurvey insertSurveySubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
-        setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}/>
+        setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}
+        setQuestion={setQuestion} setAnswer={setAnswer} />
     )
 }
 
