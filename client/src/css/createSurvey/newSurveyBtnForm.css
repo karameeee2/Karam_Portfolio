@@ -14,12 +14,12 @@
 
 .submitNewSurvey {
     background-color: #5E00FF; border: none; border-radius: 4px; color:white; 
-    outline: none;
+    outline: none; cursor: pointer;
 }
 .submitNewSurvey:hover {
     background-color: #4E00D3;
 }
 .listBtn {
     background-color: white; border: 1px solid #C7C7C7; border-radius: 4px; 
-    color: #5A5A5A; margin-right: 24px; outline: none;
+    color: #5A5A5A; margin-right: 24px; outline: none; cursor: pointer;
 }

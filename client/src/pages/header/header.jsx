@@ -7,7 +7,7 @@ const Header = (props) => {
     const cookie = props.cookie;
     const logout = props.logout;
 
-    console.log(document.cookie);
+    console.log(props);
 
     const onClickBlock = () => {
         let polygon = document.getElementsByClassName('polygon')[0];
@@ -65,7 +65,7 @@ const Header = (props) => {
                         <div className="userViewBox">
                             <div className="helloBox">
                                 <p className="hello">안녕하세요!</p>
-                                <p className="nickName">닉네임은열글자만허용님</p>
+                                <p className="nickName">{cookie.nickName}님</p>
                             </div>
                             <p className="myPageLine line22">
                                 <Link to='/mypage'>마이페이지</Link>

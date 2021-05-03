@@ -10,12 +10,19 @@ const CreateNewSurveyComponent = () => {
     const [edate, setEdate] = useState('');
     const [tag, setTag] = useState('');
     const [img, setImg] = useState('');
-    
-    const [question, setQuestion] = useState('');
-    
-    const [answer, setAnswer] = useState('');
+    const [question, setQuestion] = useState({});
+    const [answer, setAnswer] = useState({});
 
-    
+    // const [questionList, setQuestionList] = useState({});
+    // const [answerList, setAnswerList] = useState({});
+
+    // const _setQuestionList = (key, value) => {
+    //     setQuestion({...question, [key] : value})
+    // }
+
+    // const _setAnswerList = (key, value) => {
+    //     setAnswer({...answer, [key] : value});
+    // }
 
     const insertSurveySubmit = () => {
         // null check
@@ -38,6 +45,9 @@ const CreateNewSurveyComponent = () => {
         let start = CommonUtils.dateFormat(sdate)
         let end = CommonUtils.dateFormat(edate)
 
+        let questionArr = Object.values({...question});
+        let answerArr = Object.values({...answer});
+
         Axios.post(`http://localhost:8080/insertSurvey`, {
             ssubject: ssubject,
             scontent: scontent,
@@ -45,12 +55,12 @@ const CreateNewSurveyComponent = () => {
             edate: end,
             tag: tag,
             img: img,
-            question: question,
-            answer: answer
-        })
+            question: questionArr,
+            answer: answerArr
+        },{withCredentials:true})
         .then(res => {
             console.log('insert newSurvey success', res);
-            window.location.href='/progress';
+            window.location.href='/progressList';
         })
         .catch(err => {
             console.log('insert newSurvey error', err, err.res);

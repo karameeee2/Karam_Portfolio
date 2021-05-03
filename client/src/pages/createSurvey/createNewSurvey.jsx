@@ -200,6 +200,7 @@ const CreateNewSurvey = (props) => {
                                     <span className="radio">
                                         <p className="radioIcon"></p>
                                     </span>
+                                    {/* <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={() => {setAnswer(idx, {qidx: item.QIDX})}} /> */}
                                     <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setAnswer(e.target.value) }} />
                                     <button className="deleteOption" onClick={popOption(idx)}>
                                         <p className="deleteOptionIcon"></p>
@@ -350,6 +351,8 @@ const CreateNewSurvey = (props) => {
                         <div className='titleRow'>
                             <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100' 
                             onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setSsubject(e.target.value); }} />
+                            {/* <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100' 
+                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setSsubject(e.target.value); }} /> */}
                         </div>
                         <div className='newSurveyRow'>
                             <textarea rows='2' cols='100' id='contentInput' placeholder='설문 설명 입력' maxLength='200'
@@ -423,7 +426,8 @@ const CreateNewSurvey = (props) => {
                                         {/* surveyForm = 테두리 스타일링, padding 값 */}
                                         <div className='questionTypeWrap'>
                                             <div className='questionBox'>
-                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setQuestion(e.target.value) }} />
+                                                {/* <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={() => setQuestion(idx, {sidx: item.SIDX})} /> */}
+                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onChange={e => { setQuestion(e.target.value) }} />
                                             </div>
                                             <div className='typeBox'>
                                                 <Select
@@ -459,7 +463,8 @@ const CreateNewSurvey = (props) => {
                     <div className='submitListWrap'>
                         <div className="submitListBtn">
                             <button className='listBtn'>목록</button>
-                            <button type='submit' className='submitNewSurvey' onClick={insertSurveySubmit}>제출
+                            <button type='submit' className='submitNewSurvey' onClick={insertSurveySubmit}>
+                                제출
                             </button>
                         </div>
                     </div>

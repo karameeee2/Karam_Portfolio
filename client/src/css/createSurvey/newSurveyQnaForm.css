@@ -81,7 +81,7 @@
 }
 .selectOne .deleteOption, .selectMulti .deleteOption {
     width: 16px; height: 40px; line-height: 40px; margin-left: 10px; border: none;
-    background-color: transparent; padding: 0; outline: none;
+    background-color: transparent; padding: 0; outline: none; cursor: pointer;
 }
 .selectOne .addOption, .selectOne .addTextField, .selectMulti .addOption, .selectMulti .addTextField {
     width:724px; line-height: 40px; padding: 0 10px; box-sizing: border-box; 
