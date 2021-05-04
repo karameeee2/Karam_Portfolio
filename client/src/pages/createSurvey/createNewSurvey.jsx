@@ -14,7 +14,21 @@ import ko from 'date-fns/locale/ko';
 import addDays from 'date-fns/addDays'
 
 const CreateNewSurvey = (props) => {
-    const {setSsubject, setScontent, setSdate, setEdate, sdate, edate, setTag, setImg, insertSurveySubmit, setQuestion, setAnswer } = props;
+    const {setSsubject, setScontent, setSdate, setEdate, sdate, edate, setTag, setImg, insertSurveySubmit, setQuestion, setAnswer, question, answer } = props;
+
+    const _setQuestion = (index) => (e) => {
+        let obj = {...question}
+        obj[index] = e.target.value
+        setQuestion(obj)
+    }
+    
+    const _setAnswer = (index, idx) => (e) => {
+        let arr = [...answer]
+        let obj = {...arr[index]}
+        obj[idx] = e.target.value
+        arr[index] = obj
+        setAnswer(arr)
+    }
 
     // input 활성화/비활성화 css 추가
     const inputOnFocus = (e) => {
@@ -187,21 +201,21 @@ const CreateNewSurvey = (props) => {
         setSurveyForm(copy_form);
     }
 
-    const renderAnswerInputType = (survey, idx) => {
+    const renderAnswerInputType = (survey, index) => {
         let result = <></>;
 
         switch (survey.answer_type) {
             case 'selectOne':
                 result = (
-                    <div className='answerBox selectOne' onChange={ handleOneAnswer(idx) } value={undefined}>
-                        {optionForm.map((item, idx) => {
+                    <div className='answerBox selectOne' onChange={ handleOneAnswer(index) } value={undefined}>
+                        {optionForm && optionForm.map((item, idx) => {
                             return (
                                 <span className="optionBox" key={idx}>
                                     <span className="radio">
                                         <p className="radioIcon"></p>
                                     </span>
                                     {/* <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={() => {setAnswer(idx, {qidx: item.QIDX})}} /> */}
-                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setAnswer(e.target.value) }} />
+                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setAnswer(index,idx)} />
                                     <button className="deleteOption" onClick={popOption(idx)}>
                                         <p className="deleteOptionIcon"></p>
                                     </button>
@@ -223,48 +237,48 @@ const CreateNewSurvey = (props) => {
                     </div>
                 );
                 break;
-            case 'selectMulti':
-                console.log('multi');
-                result = (
-                    <div className='answerBox selectMulti' onChange={ handleMultiAnswer(idx, 1) }>
-                        {optionForm.map((item, idx) => {
-                            return (
-                                <span className="optionBox" key={idx}>
-                                    <span className="checkbox">
-                                        <p className="checkBoxIcon"></p>
-                                    </span>
-                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setAnswer(e.target.value) }} />
-                                    <button className="deleteOption" onClick={popOption(idx)}>
-                                        <p className="deleteOptionIcon"></p>
-                                    </button>
-                                </span>
-                            )
-                        })}
-                        <span className="optionBox">
-                            <span className="checkbox">
-                                <p className="checkBoxIcon"></p>
-                            </span>
-                            <a href='#!' className='addOption'>옵션 추가</a>
-                        </span>
-                        {/* <span className="optionBox">
-                            <span className="checkbox">
-                                <p className="checkBoxIcon"></p>
-                            </span>
-                            <a href='#!' className='addTextField'>기타 추가</a>
-                        </span> */}
-                    </div>
-                );
-                break;
+            // case 'selectMulti':
+            //     console.log('multi');
+            //     result = (
+            //         <div className='answerBox selectMulti' onChange={ handleMultiAnswer(idx, 1) }>
+            //             {optionForm.map((item, idx) => {
+            //                 return (
+            //                     <span className="optionBox" key={idx}>
+            //                         <span className="checkbox">
+            //                             <p className="checkBoxIcon"></p>
+            //                         </span>
+            //                         <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setAnswer(index,idx)} />
+            //                         <button className="deleteOption" onClick={popOption(idx)}>
+            //                             <p className="deleteOptionIcon"></p>
+            //                         </button>
+            //                     </span>
+            //                 )
+            //             })}
+            //             <span className="optionBox">
+            //                 <span className="checkbox">
+            //                     <p className="checkBoxIcon"></p>
+            //                 </span>
+            //                 <a href='#!' className='addOption'>옵션 추가</a>
+            //             </span>
+            //             {/* <span className="optionBox">
+            //                 <span className="checkbox">
+            //                     <p className="checkBoxIcon"></p>
+            //                 </span>
+            //                 <a href='#!' className='addTextField'>기타 추가</a>
+            //             </span> */}
+            //         </div>
+            //     );
+            //     break;
             case 'shortText':
                 result = (
-                    <div className='answerBox shortText' onChange={ handleStringAnswer(idx) }>
+                    <div className='answerBox shortText' onChange={ handleStringAnswer(index) }>
                         <input type="text" placeholder='단답형 텍스트' readOnly />
                     </div>
                 );
                 break;
             case 'longText':
                 result = (
-                    <div className='answerBox longText' onChange={ handleStringAnswer(idx) }>
+                    <div className='answerBox longText' onChange={ handleStringAnswer(index) }>
                         <input type="text" placeholder='장문형 텍스트' readOnly />
                     </div>
                 );
@@ -426,8 +440,8 @@ const CreateNewSurvey = (props) => {
                                         {/* surveyForm = 테두리 스타일링, padding 값 */}
                                         <div className='questionTypeWrap'>
                                             <div className='questionBox'>
-                                                {/* <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={() => setQuestion(idx, {sidx: item.SIDX})} /> */}
-                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onChange={e => { setQuestion(e.target.value) }} />
+                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setQuestion(idx)} />
+                                                {/* <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setQuestion(e.target.value) }} /> */}
                                             </div>
                                             <div className='typeBox'>
                                                 <Select

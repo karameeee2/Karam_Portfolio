@@ -7,14 +7,19 @@ const Landing = (props) => {
 
     return (
         <>
-            <SearchComponent/>
+            {/* <SearchComponent/> */}
             <div id="landingBox">
                 <div className="landingImg">
-                    {landing.map((item, idx) => {
+                    <div className="landingWrap">
+                        <div className="wave _one"></div>
+                        <div className="wave _two"></div>
+                        {/* <div className="wave _three"></div> */}
+                    </div>
+                    {/* {landing.map((item, idx) => {
                         return (
                             <img src={item.imageSrc} key={idx} alt='사이트 소개 이미지' />
                         )
-                    })}
+                    })} */}
                 </div>
             </div>
         </>

@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateNewSurvey from '../../pages/createSurvey/createNewSurvey';
 import { CommonUtils } from '../../utils/common';
 
@@ -11,7 +11,7 @@ const CreateNewSurveyComponent = () => {
     const [tag, setTag] = useState('');
     const [img, setImg] = useState('');
     const [question, setQuestion] = useState({});
-    const [answer, setAnswer] = useState({});
+    const [answer, setAnswer] = useState([]);
 
     // const [questionList, setQuestionList] = useState({});
     // const [answerList, setAnswerList] = useState({});
@@ -46,8 +46,14 @@ const CreateNewSurveyComponent = () => {
         let end = CommonUtils.dateFormat(edate)
 
         let questionArr = Object.values({...question});
-        let answerArr = Object.values({...answer});
 
+        // []
+        // idx = question index
+        // {0: ['qwer','asdf'], 1: ['1234'], 2: ['zxcv'] }
+        
+        let answerArr = Object.values({...answer});
+        console.log('question:', question, questionArr)
+        console.log('answer:', answer, answerArr)
         Axios.post(`http://localhost:8080/insertSurvey`, {
             ssubject: ssubject,
             scontent: scontent,
@@ -60,7 +66,7 @@ const CreateNewSurveyComponent = () => {
         },{withCredentials:true})
         .then(res => {
             console.log('insert newSurvey success', res);
-            window.location.href='/progressList';
+            // window.location.href='/progressList';
         })
         .catch(err => {
             console.log('insert newSurvey error', err, err.res);
@@ -70,7 +76,7 @@ const CreateNewSurveyComponent = () => {
     return (
         <CreateNewSurvey insertSurveySubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
         setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}
-        setQuestion={setQuestion} setAnswer={setAnswer} />
+        setQuestion={setQuestion} setAnswer={setAnswer} question={question} answer={answer} />
     )
 }
 
