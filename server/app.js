@@ -7,8 +7,10 @@ const cors = require('cors');
 const routes = require('./routes');
 const passport = require('passport');
 const passportConfig = require('./config/passport');
+const path = require('path');
+const clientPath = path.resolve(__dirname, '..', 'client', 'dist')
+app.use(express.static(clientPath));
 
-app.use(express.static('public'));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended:true }));
 app.use(express.json());
@@ -52,6 +54,10 @@ passport.deserializeUser((id, done) => {
 
 // routes
 app.use('/', routes);
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(clientPath, 'index.html'))
+})
+
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
