@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchComponent from '../../components/search/search';
 import '../../css/mainSection/landing.css';
 
 const Landing = (props) => {
@@ -8,18 +7,31 @@ const Landing = (props) => {
     return (
         <>
             {/* <SearchComponent/> */}
-            <div id="landingBox">
-                <div className="landingImg">
+            <div id="landingContainer">
+                <div className="landingBox">
                     <div className="landingWrap">
                         <div className="wave _one"></div>
                         <div className="wave _two"></div>
-                        {/* <div className="wave _three"></div> */}
+                        <div className="contentBox">   
+                            <div className="contentWrap">
+                                <div className="textBox halfBox">
+                                    <p className="largeText">
+                                        설문을 통해 데이터를 쉽고 빠르게 얻으세요!
+                                    </p>
+                                    <p className="smallText">
+                                        필요한 데이터에 대한 설문을 검색하고, 새로운 설문을 등록해 나에게 꼭 필요한 정보와 데이터 및 통계를 얻어보세요.
+                                    </p>
+                                    <button className="freeStart">
+                                        무료로 시작하기
+                                    </button>
+                                </div>
+                                <div className="imageBox halfBox">
+                                    <div className="changeImage"></div>    
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {/* {landing.map((item, idx) => {
-                        return (
-                            <img src={item.imageSrc} key={idx} alt='사이트 소개 이미지' />
-                        )
-                    })} */}
+                    
                 </div>
             </div>
         </>

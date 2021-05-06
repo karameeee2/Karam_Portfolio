@@ -24,7 +24,7 @@
     "regenerator-runtime": "^0.13.7"
   },
   "scripts": {
-    "start": "cross-env NODE_PATH=src react-scripts start",
+    "start": "webpack-dev-server --config webpack.dev.js",
     "build": "rm -Rf ./dist && webpack",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

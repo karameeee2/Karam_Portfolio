@@ -58,35 +58,36 @@ const Header = (props) => {
                         </li>
                     </ul>
                 </div>
-            </nav>
-            <aside className="userView none">
-                <div className="userViewWrap">
-                    {cookie ?
-                        <div className="userViewBox">
-                            <div className="helloBox">
-                                <p className="hello">안녕하세요!</p>
-                                <p className="nickName">{cookie.nickName}님</p>
+                <aside className="userView none">
+                    <div className="userViewWrap">
+                        {cookie ?
+                            <div className="userViewBox">
+                                <div className="helloBox">
+                                    <p className="hello">안녕하세요!</p>
+                                    <p className="nickName">{cookie.nickName}님</p>
+                                </div>
+                                <p className="myPageLine line22">
+                                    <Link to='/mypage'>마이페이지</Link>
+                                </p>
+                                <p className="logoutLine line22">
+                                    <a href='#!' onClick = { e => {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        logout();
+                                    }}>로그아웃</a>
+                                </p>
                             </div>
-                            <p className="myPageLine line22">
-                                <Link to='/mypage'>마이페이지</Link>
-                            </p>
-                            <p className="logoutLine line22">
-                                <a href='#!' onClick = { e => {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    logout();
-                                }}>로그아웃</a>
-                            </p>
-                        </div>
-                    :
-                        <div className="userViewBox">
-                            <p className="loginLine line22">
-                                <Link to='/login'>로그인</Link>
-                            </p>
-                        </div>
-                    }
-                </div>
-            </aside>
+                        :
+                            <div className="userViewBox">
+                                <p className="loginLine line22">
+                                    <Link to='/login'>로그인</Link>
+                                </p>
+                            </div>
+                        }
+                    </div>
+                </aside>
+            </nav>
+            
         </>
     )
 }
