@@ -1,8 +1,8 @@
 // landing images
-import landing_1 from '../assets/landing_1.jpg';
-import landing_2 from '../assets/landing_2.jpg';
-import landing_3 from '../assets/landing_3.jpg';
-import landing_4 from '../assets/landing_4.jpg';
+import landing1 from '../assets/landing1.png';
+import landing2 from '../assets/landing2.png';
+import landing3 from '../assets/landing3.png';
+import landing4 from '../assets/landing4.png';
 
 // common
 export const search = [
@@ -18,10 +18,10 @@ export const topBtn = {
 
 // landing
 export const landing = [
-    { imageSrc: landing_1 },
-    { imageSrc: landing_2 },
-    { imageSrc: landing_3 },
-    { imageSrc: landing_4 },
+    { imageSrc: landing1 },
+    { imageSrc: landing2 },
+    { imageSrc: landing3 },
+    { imageSrc: landing4 },
 ]
 
 // mypage

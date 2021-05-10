@@ -26,7 +26,13 @@ const Landing = (props) => {
                                     </button>
                                 </div>
                                 <div className="imageBox halfBox">
-                                    <div className="changeImage"></div>    
+                                    <div className="changeImage">
+                                        {landing.map((item, idx) => {
+                                            return (
+                                                <img className='landingImg' src={item.imageSrc} key={idx} alt="사이트 미리보기 이미지" />
+                                            )
+                                        })}
+                                    </div>    
                                 </div>
                             </div>
                         </div>
