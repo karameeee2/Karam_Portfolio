@@ -13,7 +13,7 @@ const ProgressQnAComponent = (props) => {
     // 2. qidx 배열을 가지고 aidx(답변)를 구한다.
 
     const getQuestionList = (sidx) => {
-        const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
+        const url = `http://localhost:8080/api/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
             getAnswerList(res.data)
@@ -26,7 +26,7 @@ const ProgressQnAComponent = (props) => {
     const getAnswerList = async (data) => {
         if(data.length <= 0) return;
 
-        const url = `http://localhost:8080/selectAnswer`;
+        const url = `http://localhost:8080/api/selectAnswer`;
         const result = [...data]
         // console.log(result)
         // question 1  question2, .. 

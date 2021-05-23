@@ -10,7 +10,7 @@ const EndChartComponent = (props) => {
     }, [])
 
     const getQuestionList = (sidx) => {
-        const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
+        const url = `http://localhost:8080/api/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
             setQuestionList(res.data);

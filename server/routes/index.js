@@ -36,52 +36,45 @@ const search = require('./search/index');
 
 // -------------------------------------------------------------------------------------
 
-router.use('/selectMember', selectMember);
-router.use('/register', register);
-router.use('/idCheck', idCheck);
+router.use('/api/selectMember', selectMember);
+router.use('/api/register', register);
+router.use('/api/idCheck', idCheck);
 
-router.use('/selectSurveyList', selectSurveyList);
-router.use('/selectEndList', selectEndList);
-router.use('/selectSurveyEach', selectSurveyEach);
-router.use('/insertSurvey', insertSurvey);
-router.use('/selectEndEach', selectEndEach);
+router.use('/api/selectSurveyList', selectSurveyList);
+router.use('/api/selectEndList', selectEndList);
+router.use('/api/selectSurveyEach', selectSurveyEach);
+router.use('/api/insertSurvey', insertSurvey);
+router.use('/api/selectEndEach', selectEndEach);
 
-router.use('/selectQna', selectQnA)
-router.use('/joinSurveyCheck', joinSurveyCheck);
-router.use('/insertJoinSurvey', insertJoinSurvey);
+router.use('/api/selectQna', selectQnA)
+router.use('/api/joinSurveyCheck', joinSurveyCheck);
+router.use('/api/insertJoinSurvey', insertJoinSurvey);
 
-router.use('/selectQuestion', selectQuestion);
-router.use('/insertQuestion', insertQuestion);
+router.use('/api/selectQuestion', selectQuestion);
+router.use('/api/insertQuestion', insertQuestion);
 
-router.use('/selectAnswer', selectAnswer);
-router.use('/insertAnswer', insertAnswer);
+router.use('/api/selectAnswer', selectAnswer);
+router.use('/api/insertAnswer', insertAnswer);
 
-router.use('/selectAgeCount', selectAgeCount);
+router.use('/api/selectAgeCount', selectAgeCount);
 
-router.use('/noticeList', noticeList);
-router.use('/noticeDetail', noticeDetail);
+router.use('/api/noticeList', noticeList);
+router.use('/api/noticeDetail', noticeDetail);
 
-router.use('/login', login);
+router.use('/api/login', login);
 
-router.use('/login/success', (req, res) => {
+router.use('/api/login/success', (req, res) => {
     console.log('here', req.session, req.user);
     res.end();
 });
 
-router.get('/logout', async (req, res) => {
-    // console.log('쿠키 삭제');
-    // await req.logout();
-    // req.session = null;
-    // res.clearCookie('connect.sid');
+router.get('/api/logout', async (req, res) => {
     console.log('logout!!!!!!');
     req.logout();
-    // req.session.destroy(() => {
-    //     res.clearCookie('connect.sid', {path: '/'});
-    // });
     res.end();
 });
 
-router.get('/ex', (req, res) => {
+router.get('/api/ex', (req, res) => {
     console.log(req.user);
     res.send('done');
 })
@@ -92,9 +85,8 @@ router.get('/ex', (req, res) => {
     
 // })
 
+router.use('/api/withdraw', withdraw);
 
-router.use('/withdraw', withdraw);
-
-router.use('/search', search);
+router.use('/api/search', search);
 
 module.exports = router;

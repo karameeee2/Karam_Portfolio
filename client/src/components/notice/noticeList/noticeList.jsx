@@ -10,7 +10,7 @@ const NoticeListComponent = () => {
     const [noticeList, setNoticeList] = useState([]);
 
     const getNoticeList = () => {
-        Axios.get('http://localhost:8080/noticeList')
+        Axios.get('http://localhost:8080/api/noticeList')
         .then((res) => {
             setNoticeList(res.data);
         })

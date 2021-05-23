@@ -10,7 +10,7 @@ const LoginFormComponent = (props) => {
     const cookies = Cookie.get('connect.sid'); // 쿠키를 클라이언트에서 찾아쓰기 위함
     const loginSubmit = (id, password) => {
         
-        Axios.post('http://localhost:8080/login', {
+        Axios.post('http://localhost:8080/api/login', {
             id: id, 
             password: password
         }, {
@@ -30,7 +30,7 @@ const LoginFormComponent = (props) => {
     // deserializeUser가 호출되나
     useEffect(() => {
         if(cookies) {
-            Axios.get('http://localhost:8080/ex', {
+            Axios.get('http://localhost:8080/api/ex', {
                 withCredentials: true
             }).then(res => {
             }).catch(err => {

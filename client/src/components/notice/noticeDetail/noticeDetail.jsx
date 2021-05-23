@@ -11,7 +11,7 @@ const NoticeDetailComponent = (props) => {
     }, []);
     
     const getNoticeDetail = (nidx) => {
-        const url = `http://localhost:8080/noticeDetail?nidx=${nidx}`;
+        const url = `http://localhost:8080/api/noticeDetail?nidx=${nidx}`;
         Axios.get(url)
         .then((response) => {
             // console.log(response.data)

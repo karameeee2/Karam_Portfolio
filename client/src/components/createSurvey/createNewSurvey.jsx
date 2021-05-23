@@ -13,17 +13,6 @@ const CreateNewSurveyComponent = () => {
     const [question, setQuestion] = useState({});
     const [answer, setAnswer] = useState([]);
 
-    // const [questionList, setQuestionList] = useState({});
-    // const [answerList, setAnswerList] = useState({});
-
-    // const _setQuestionList = (key, value) => {
-    //     setQuestion({...question, [key] : value})
-    // }
-
-    // const _setAnswerList = (key, value) => {
-    //     setAnswer({...answer, [key] : value});
-    // }
-
     const insertSurveySubmit = () => {
         // null check
         if(!ssubject) {
@@ -54,7 +43,7 @@ const CreateNewSurveyComponent = () => {
         let answerArr = Object.values({...answer});
         console.log('question:', question, questionArr)
         console.log('answer:', answer, answerArr)
-        Axios.post(`http://localhost:8080/insertSurvey`, {
+        Axios.post(`http://localhost:8080/api/insertSurvey`, {
             ssubject: ssubject,
             scontent: scontent,
             sdate: start,

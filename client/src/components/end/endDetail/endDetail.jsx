@@ -16,7 +16,7 @@ const EndDetailComponent = (props) => {
     
     
     const getSurveyDetail = () => {
-        const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
+        const url = `http://localhost:8080/api/selectSurveyEach?sidx=${sidx}`;
 
         Axios.get(url)
         .then(response => {
@@ -28,7 +28,7 @@ const EndDetailComponent = (props) => {
     }
 
     const getQuestionList = () => {
-        const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
+        const url = `http://localhost:8080/api/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
             getAnswerList(res.data)
@@ -41,7 +41,7 @@ const EndDetailComponent = (props) => {
     const getAnswerList = async (data) => {
         if(data.length <= 0) return;
 
-        const url = `http://localhost:8080/selectAnswer`;
+        const url = `http://localhost:8080/api/selectAnswer`;
         const result = [...data]
 
         for (let i = 0; i < data.length; i++) {
@@ -62,7 +62,7 @@ const EndDetailComponent = (props) => {
     }
 
     const getAgeCount = async (data) => {
-        const url = `http://localhost:8080/selectAgeCount`;
+        const url = `http://localhost:8080/api/selectAgeCount`;
         const result = [...data]
 
         for(let i = 0; i < data.length; i++) {

@@ -10,7 +10,7 @@ const DetailInfoComponent = (props) => {
     }, [])
 
     const getSurveyDetail = (sidx) => {
-        const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
+        const url = `http://localhost:8080/api/selectSurveyEach?sidx=${sidx}`;
 
         Axios.get(url)
         .then(response => {

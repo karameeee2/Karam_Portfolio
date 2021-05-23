@@ -25,7 +25,7 @@ const ProgressDetailComponent = (props) => {
     }, [])
 
     const getSurveyDetail = () => {
-        const url = `http://localhost:8080/selectSurveyEach?sidx=${sidx}`;
+        const url = `http://localhost:8080/api/selectSurveyEach?sidx=${sidx}`;
 
         Axios.get(url)
         .then(response => {
@@ -37,7 +37,7 @@ const ProgressDetailComponent = (props) => {
     }
 
     const getJoinSurveyCheck = () => {
-        Axios.get(`http://localhost:8080/joinSurveyCheck?sidx=${sidx}`,{
+        Axios.get(`http://localhost:8080/api/joinSurveyCheck?sidx=${sidx}`,{
             withCredentials: true
         })
         .then(res => {
@@ -58,7 +58,7 @@ const ProgressDetailComponent = (props) => {
     }
 
     const getQuestionList = () => {
-        const url = `http://localhost:8080/selectQuestion?sidx=${sidx}`;
+        const url = `http://localhost:8080/api/selectQuestion?sidx=${sidx}`;
         Axios.get(url)
         .then(res => {
             getAnswerList(res.data)
@@ -71,7 +71,7 @@ const ProgressDetailComponent = (props) => {
     const getAnswerList = async (data) => {
         if(data.length <= 0) return;
 
-        const url = `http://localhost:8080/selectAnswer`;
+        const url = `http://localhost:8080/api/selectAnswer`;
         const result = [...data]
         // console.log(result)
         // question 1  question2, .. 
@@ -106,7 +106,7 @@ const ProgressDetailComponent = (props) => {
 
     const joinSurveySubmit = () => {
         let arr = Object.values({...checkedList})
-        Axios.post(`http://localhost:8080/insertJoinSurvey`, {
+        Axios.post(`http://localhost:8080/api/insertJoinSurvey`, {
             sidx: sidx,
             checkedList: arr
         }, {withCredentials: true})

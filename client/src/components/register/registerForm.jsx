@@ -27,7 +27,7 @@ const RegisterFormComponent = () => {
         // console.log('잘되냐~', id);
         
         // 4. 중복체크
-        Axios.post('http://localhost:8080/idCheck', { 
+        Axios.post('http://localhost:8080/api/idCheck', { 
             id: id 
         })
         .then(res => {
@@ -82,7 +82,7 @@ const RegisterFormComponent = () => {
         }
 
         // console.log(id, password, name, nickName, gender, birth);
-        Axios.post('http://localhost:8080/register', {
+        Axios.post('http://localhost:8080/api/register', {
             id: id,
             password: password,
             name: name,

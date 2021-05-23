@@ -8,7 +8,7 @@ const ProgressDetailBtnComponent = (props) => {
 
     const joinSurveySubmit = () => {
         let arr = Object.values({...checkedList})
-        Axios.post(`http://localhost:8080/insertJoinSurvey`, {
+        Axios.post(`http://localhost:8080/api/insertJoinSurvey`, {
             sidx: sidx,
             checkedList: arr
         }, {withCredentials: true})

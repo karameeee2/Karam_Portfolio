@@ -9,7 +9,7 @@ const HeaderComponent = (props) => {
     const cookie = Cookie.get('connect.sid');
 
     const logout = () => {
-        Axios.get(`http://localhost:8080/logout`, {
+        Axios.get(`http://localhost:8080/api/logout`, {
             
         })
         .then(res => {

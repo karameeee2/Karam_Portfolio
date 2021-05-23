@@ -9,7 +9,7 @@ const EndListComponent = () => {
 
     const [endList, setEndList] = useState([]);
     const getEndList = () => {
-        Axios.get('http://localhost:8080/selectEndList')
+        Axios.get('http://localhost:8080/api/selectEndList')
             .then((res) => {
                 setEndList(res.data);
             })

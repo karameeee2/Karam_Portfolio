@@ -10,7 +10,7 @@ const ProgressListComponent = () => {
     
     const [surveyList, setSurveyList] = useState([]);
     const getProgressList = () => {
-        Axios.get('http://localhost:8080/selectSurveyList')
+        Axios.get('http://localhost:8080/api/selectSurveyList')
         .then((res) => {
             setSurveyList(res.data);
         })
