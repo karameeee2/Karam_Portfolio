@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { CommonUtils } from '../../../utils/common';
+import ReactPaginate from 'react-paginate';
 import '../../../css/common/pageTitle.css';
 import '../../../css/common/previewList.css';
 import '../../../css/progress/progressList/progressPreview.css';
@@ -9,6 +10,8 @@ import thumbnail1 from '../../../assets/thumbnail/thumbnail_basic.png';
 import termIcon from '../../../assets/icons/termIcon.svg';
 import hashIcon from '../../../assets/icons/hashIcon.svg';
 import plus16 from '../../../assets/icons/plus16.svg';
+import arrowNext from '../../../assets/icons/arrowNext.svg';
+import arrowPrev from '../../../assets/icons/arrowPrev.svg';
 
 const ProgressList = (props) => {
     const progressPreview = props.surveyList;
@@ -52,6 +55,18 @@ const ProgressList = (props) => {
             </section>
 
             {/* pagination */}
+            {/* <ReactPaginate 
+                // pageCount={Math.ceil(totalRecords / 6)}
+                pageRangeDisplayed={6}
+                breakLabel={''}
+                previousLabel={arrowPrev+'이전'}
+                nextLabel={arrowNext+'다음'}
+                // onPageChange={changePage}
+                containerClassName={'paginationWrap'}
+                activeClassName={'currentPage'}
+                previousClassName={'prevPage'}
+                nextClassName={'nextPage'}
+            /> */}
             
         </>
         // <div>

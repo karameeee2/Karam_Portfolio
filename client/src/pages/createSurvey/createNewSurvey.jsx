@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -335,12 +335,34 @@ const CreateNewSurvey = (props) => {
     const [imgFile, setImgFIle] = useState('');
 
     const handleFile = (e) => {
+        const pathPoint = e.target.value.indexOf('.');
+        const filePoint = e.target.value.substr(pathPoint+1, e.length);
+        const fileType = filePoint.toLowerCase();
+        if(fileType == 'jpg'|| fileType == 'jpeg' || fileType == 'png') {
+
+        } else  {
+            alert('이미지파일만 선택가능합니다.')
+            return false;
+        }
+        
         setImgFIle(e.target.files[0]);
     }
 
-    // react-date-picker
-    // datePicker
-   
+    // 설문 제목 글자수 제한
+    const onhandleSubject = (e) => {
+        if(e.target.value.length > 100) {
+            return alert('최대 100글자까지 입력가능합니다.');
+        }
+
+        setSsubject(e.target.value)
+    }
+
+    const onhandleContent = (e) => {
+        if(e.target.value.length > 200) {
+            return alert('최대 200글자까지 입력가능합니다.');
+        }
+        setScontent(e.target.value);
+    }
 
     return (
         <>
@@ -364,13 +386,12 @@ const CreateNewSurvey = (props) => {
                     <div className="surveyInfoBox">
                         <div className='titleRow'>
                             <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100' 
-                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setSsubject(e.target.value); }} />
-                            {/* <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100' 
-                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setSsubject(e.target.value); }} /> */}
+                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleSubject}
+                             />
                         </div>
                         <div className='newSurveyRow'>
                             <textarea rows='2' cols='100' id='contentInput' placeholder='설문 설명 입력' maxLength='200'
-                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setScontent(e.target.value); }} />
+                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleContent} />
                         </div>
                         <div className='newSurveyRow'>
                             <input type='text' placeholder='태그 입력 (쉼표로 구분해서 입력)' maxLength='50' 

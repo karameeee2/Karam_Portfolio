@@ -62,6 +62,10 @@ const CreateNewSurveyComponent = () => {
         })
     }
 
+    // useEffect(() => {
+    //     console.log('입력된 제목 : ', ssubject)
+    // }, [ssubject])
+
     return (
         <CreateNewSurvey insertSurveySubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
         setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}

@@ -37,7 +37,7 @@
 
 /* balloon pointer */
 .polygon {
-    position: absolute; width: 24px; height: 8px; overflow: hidden; z-index: 1;
+    position: absolute; width: 24px; height: 8px; overflow: hidden; z-index: 202;
 }
 .polygon::after {
     left: 50%;
