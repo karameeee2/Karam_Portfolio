@@ -1,0 +1,6 @@
+.paginationWrap {
+    display: flex; height: 60px; line-height: 60px; padding: 0 24px; margin: 0 auto; 
+}
+.currentPage {
+    color: #5E00FF; font-weight: 400;
+}
