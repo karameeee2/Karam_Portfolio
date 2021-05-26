@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import '../../../css/notice/noticeList/noticeBoard.css';
 import { CommonUtils } from '../../../utils/common';
+import ReactPaginate from 'react-paginate';
+import '../../../css/notice/noticeList/noticeBoard.css';
+import '../../../css/common/pagination.css';
 
 const NoticeList = (props) => {
-    const noticeList = props.noticeList;
+    const activeNoticeList = props.activeNoticeList;
+    const handlePageClick = props.handlePageClick;
+    const noticeCount = props.noticeList.length;
+    const item_per_page = props.item_per_page;
+
     return (
         <>
             {/* <SearchComponent /> */}
@@ -25,7 +31,7 @@ const NoticeList = (props) => {
                                 <th className='rowMidium'>등록일</th>
                                 <th className='rowMidium'>조회수</th>
                             </tr>
-                            {noticeList.map((item) => {
+                            {activeNoticeList.map((item) => {
                                 return (
                                     <tr className="noticeContentWrap" key={item.NIDX}>
                                         <td className='num rowSmall'>{item.NIDX}</td>
@@ -37,6 +43,21 @@ const NoticeList = (props) => {
                             })}
                         </tbody>
                     </table>
+                </div>
+                {/* pagination */}
+                <div className="paginationBox">
+                    <ReactPaginate 
+                        previousLabel={'이전'}
+                        nextLabel={'다음'}
+                        breakLabel={'...'}
+                        pageCount={Math.ceil(noticeCount / item_per_page)}
+                        pageRangeDisplayed={item_per_page}
+                        containerClassName={'paginationWrap'}
+                        activeClassName={'currentPage'}
+                        previousClassName={'prevPage'}
+                        nextClassName={'nextPage'}
+                        onPageChange={handlePageClick}
+                    />
                 </div>
             </section>
         </>

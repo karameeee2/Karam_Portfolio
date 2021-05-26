@@ -1,16 +1,21 @@
 import React from 'react';
-import { CommonUtils } from '../../../utils/common';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { CommonUtils } from '../../../utils/common';
+import ReactPaginate from 'react-paginate';
 import '../../../css/end/endList/endList.css';
 import '../../../css/end/endList/endPreview.css';
 import '../../../css/common/previewList.css';
+import '../../../css/common/pagination.css';
 import thumbnail1 from '../../../assets/thumbnail/thumbnail_basic.png';
 import termIcon from '../../../assets/icons/termIcon.svg';
 import hashIcon from '../../../assets/icons/hashIcon.svg';
 import joinedIcon from '../../../assets/icons/joinedIcon.svg';
 
 const EndList = (props) => {
-    const endPreview = props.endList;
+    const activeEndList = props.activeEndList;
+    const handlePageClick = props.handlePageClick;
+    const endCount = props.endList.length;
+    const item_per_page = props.item_per_page;
 
     return (
         <>
@@ -25,7 +30,7 @@ const EndList = (props) => {
             <section className="endPreviewSection">
                 <div className="previewContainer">
                     <ul className="previewWrap">
-                        {endPreview.map((item) => {
+                        {activeEndList.map((item) => {
                             return (
                                 <li className="prevBox" key={item.SIDX}>
                                     <img className="prevThumbnail" src={item.SIMG || thumbnail1} alt='설문 썸네일 이미지' onError={e => e.target.src = thumbnail1} />
@@ -46,6 +51,21 @@ const EndList = (props) => {
                             );
                         })}
                     </ul>
+                </div>
+                {/* pagination */}
+                <div className="paginationBox">
+                    <ReactPaginate 
+                        previousLabel={'이전'}
+                        nextLabel={'다음'}
+                        breakLabel={'...'}
+                        pageCount={Math.ceil(endCount / item_per_page)}
+                        pageRangeDisplayed={item_per_page}
+                        containerClassName={'paginationWrap'}
+                        activeClassName={'currentPage'}
+                        previousClassName={'prevPage'}
+                        nextClassName={'nextPage'}
+                        onPageChange={handlePageClick}
+                        />
                 </div>
             </section>
         </>
