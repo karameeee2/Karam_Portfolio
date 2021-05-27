@@ -1,8 +1,11 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Cookie from 'js-cookie';
 import Progress from '../../../pages/progress/progressList/progressList';
 
 const ProgressListComponent = () => {
+    const cookie = Cookie.get('connect.sid');
+
     // useEffect의 두번째 인수를 빈배열로 두면 컴포넌트가 렌더링될때만 useEffect 안의 구문이 실행된다.
     const [surveyList, setSurveyList] = useState([]);
 
@@ -14,7 +17,6 @@ const ProgressListComponent = () => {
         Axios.get('http://localhost:8080/api/selectSurveyList')
         .then((res) => {
             setSurveyList(res.data);
-            console.log('surveyTotal', res.data.length);
         })
         .catch((err)=>{
             console.log('에러낫음', err.res, err)
@@ -48,7 +50,8 @@ const ProgressListComponent = () => {
     };
 
     return (
-        <Progress surveyList={surveyList} item_per_page={item_per_page} activeProgressList={activeProgressList} handlePageClick={handlePageClick} />
+        <Progress surveyList={surveyList} item_per_page={item_per_page} activeProgressList={activeProgressList} handlePageClick={handlePageClick}
+        cookie={cookie} />
     )
 }
 

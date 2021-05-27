@@ -53,9 +53,43 @@
 }
 
 .changeImage {
-    height: 398px; border-radius: 4px; overflow: hidden;
+    position: relative; height: 398px; border-radius: 4px; overflow: hidden;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
 }
 .landingImg {
-    height: inherit;
+    position: absolute; height: inherit;
+    -webkit-animation-name: fade; -webkit-animation-iteration-count: infinite;
+    animation-name: fade; animation-iteration-count: infinite;
+    animation-duration: 12s;
+}
+
+@-webkit-keyframes fade {
+    0% {opacity: 1;}
+    17% {opacity: 1;}
+    25% {opacity: 0;}
+    92% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes fade {
+    0% {opacity: 1;}
+    17% {opacity: 1;}
+    25% {opacity: 0;}
+    92% {opacity: 0;}
+    100% {opacity: 1;}
+}
+#fade1 {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+#fade2 {
+    -webkit-animation-delay: 3s;
+    animation-delay: 3s;
+}
+#fade3 {
+    -webkit-animation-delay: 6s;
+    animation-delay: 6s;
+}
+#fade4 {
+    -webkit-animation-delay: 9s;
+    animation-delay: 9s;
 }

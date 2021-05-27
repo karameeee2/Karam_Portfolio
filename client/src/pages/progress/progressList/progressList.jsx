@@ -16,6 +16,16 @@ const ProgressList = (props) => {
     const handlePageClick = props.handlePageClick;
     const progressCount = props.surveyList.length;
     const item_per_page = props.item_per_page;
+    const cookie = props.cookie;
+
+    const isLoginCheck = () => {
+        if(!cookie) {
+            alert('로그인 후 이용가능한 서비스입니다.');
+            window.location.href = '/login';
+        } else {
+            window.location.href = '/createSurvey';
+        }
+    }
 
     return (
         <>
@@ -23,9 +33,9 @@ const ProgressList = (props) => {
             <div className="pageTitleBox">
                 <div className="pageTitleWrap">
                     <h2 className='titleLeft'>진행중인 설문</h2>
-                    <Link to='/createSurvey'>
-                        <button className='createSurveyBtn'>새 설문 <img src={plus16} alt="새 설문 등록"/></button>
-                    </Link>
+                    {/* <Link to='/createSurvey'> */}
+                        <button className='createSurveyBtn' onClick={isLoginCheck}>새 설문 <img src={plus16} alt="새 설문 등록"/></button>
+                    {/* </Link> */}
                 </div>
             </div>
             
