@@ -73,19 +73,7 @@ const ProgressDetailComponent = (props) => {
 
         const url = `http://localhost:8080/api/selectAnswer`;
         const result = [...data]
-        // console.log(result)
-        // question 1  question2, .. 
-        // ans 1 ans2  ans1 ans2
-        /*
-            queiston1 = [
-                QIDX: 1,
-                SIDX: 1, 
-                question: 'aslkdjflaksdjflkjasfd',
-                answerList: [
-
-                ]
-            ]
-        */
+       
         for (let i = 0; i < data.length; i++) {
             await Axios.get(url + `?qidx=${data[i].QIDX}`)
             .then(res => {

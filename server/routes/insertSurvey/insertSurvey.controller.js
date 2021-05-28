@@ -25,7 +25,7 @@ exports.insertSurvey = (req, res, next) => {
             }
     
             conn.query('INSERT INTO SURVEY (SSUBJECT, SCONTENT, MIDX, SDATE, EDATE, TAG, IMG) '+ 
-            `VALUES ('${ssubject}', '${scontent}', ${midx}, '${sdate}', '${edate}', '${tag}', '${img}')`, (insertErr, results, fields) => {
+            `VALUES ('${ssubject}', '${scontent}', '${midx}', '${sdate}', '${edate}', '${tag}', '${img}')`, (insertErr, results, fields) => {
                 if(insertErr) {
                     console.error('Insert1 Error >>', insertErr);
                     return res.send(insertErr);
@@ -36,7 +36,7 @@ exports.insertSurvey = (req, res, next) => {
                 for (let i = 0; i < question.length; i++) {
                     console.log('insert question map');
                     const sidx = results.insertId;
-                    fixedQueryQ += `(${sidx}, '${question[i]}')`;
+                    fixedQueryQ += `('${sidx}', '${question[i]}')`;
                     if(question.length !== i+1) fixedQueryQ += ',';
                 }
                 console.log('fixed::::::',fixedQueryQ)
@@ -60,7 +60,7 @@ exports.insertSurvey = (req, res, next) => {
                         let answerArr = Object.values({...answer[i]});
                         for (let j = 0; j < answerArr.length; j++) {
                             
-                            fixedQueryA += `(${qidx}, '${answerArr[j]}')`;
+                            fixedQueryA += `('${qidx}', '${answerArr[j]}')`;
                             if(answer.length !== i+1) fixedQueryA += ',';
                         }
                     }
