@@ -29,7 +29,7 @@ app.use(
     
 db;
 // cors허용
-app.use(cors({ credentials: true, origin: 'https://karameeee.dev' }));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 passportConfig(passport);
 
