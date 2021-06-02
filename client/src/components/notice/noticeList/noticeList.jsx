@@ -9,8 +9,8 @@ const NoticeListComponent = () => {
         getNoticeList();
     }, []);
 
-    const getNoticeList = () => {
-        Axios.get('http://localhost:8080/api/noticeList')
+    const getNoticeList = async() => {
+        await Axios.get('http://localhost:8080/api/noticeList')
         .then((res) => {
             setNoticeList(res.data);
         })
