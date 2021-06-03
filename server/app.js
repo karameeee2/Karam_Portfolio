@@ -33,7 +33,7 @@ let corsOptions = {
     credentials: true
 }
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)) // include before other routes
 
 passportConfig(passport);
