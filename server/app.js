@@ -59,7 +59,7 @@ passport.deserializeUser((id, done) => {
 
 // routes
 app.use('/', routes);
-app.get('*', (req, res) => {
+app.get('*',cors(corsOptions), (req, res) => {
     res.sendFile(path.resolve(clientPath, 'index.html'))
 })
 
