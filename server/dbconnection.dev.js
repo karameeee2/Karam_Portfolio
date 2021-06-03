@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 
 const dbconnection = mysql.createPool ({
-    host: 'surveyon.cz9kdiazwbth.ap-northeast-2.rds.amazonaws.com',
+    host: 'localhost',
     port: 3306,
     user: 'karameeee',
     password: 'karam119',
