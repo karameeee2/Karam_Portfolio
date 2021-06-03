@@ -11,8 +11,6 @@ const path = require('path');
 const clientPath = path.resolve(__dirname, '..', 'client', 'dist')
 app.use(express.static(clientPath));
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended:true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use(
