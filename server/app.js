@@ -27,14 +27,8 @@ app.use(
     
 db;
 // cors허용
-const corsOptions = {
-    origin: 'https://karameeee.dev',
-    credentials: true,
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}
-app.options('*', cors(corsOptions)) // include before other routes
-app.use(cors(corsOptions));
+app.options('*', cors()) // include before other routes
+app.use(cors({ credentials: true, origin: 'https://karameeee.dev' }));
 
 passportConfig(passport);
 
@@ -59,7 +53,7 @@ passport.deserializeUser((id, done) => {
 
 // routes
 app.use('/', routes);
-app.get('*',cors(corsOptions), (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.resolve(clientPath, 'index.html'))
 })
 
