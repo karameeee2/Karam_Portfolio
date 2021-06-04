@@ -24,8 +24,9 @@ app.use(
     
 db;
 // cors허용
-app.use(cors({ credentials: true, origin: 'https://karameeee.dev' }));
-app.options('*', cors()) // include before other routes
+// app.use(cors({ credentials: true, origin: 'https://karameeee.dev' }));
+// app.options('*', cors()) // include before other routes
+app.use(cors({credential: true}));
 
 passportConfig(passport);
 

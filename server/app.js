@@ -34,7 +34,7 @@ let corsOptions = {
 }
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)) // include before other routes
+app.options('/products/:id', cors(corsOptions)) // include before other routes
 
 passportConfig(passport);
 
