@@ -3,13 +3,15 @@ import Header from '../../pages/header/header';
 import '../../css/common/header.css';
 import Cookie from 'js-cookie';
 import Axios from 'axios';
+import { API_LIST } from '../../constants/api';
 
 const HeaderComponent = (props) => {
 
     const cookie = Cookie.get('connect.sid');
 
     const logout = () => {
-        Axios.get(`http://localhost:8080/api/logout`, {
+        let url = API_LIST.LOGOUT;
+        Axios.get(url, {
             
         })
         .then(res => {

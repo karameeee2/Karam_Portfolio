@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_LIST } from '../../../constants/api';
 import NoticeDetail from '../../../pages/notice/noticeDetail/noticeDetail';
 
 const NoticeDetailComponent = (props) => {
@@ -11,8 +12,8 @@ const NoticeDetailComponent = (props) => {
     }, []);
     
     const getNoticeDetail = (nidx) => {
-        const url = `http://localhost:8080/api/noticeDetail?nidx=${nidx}`;
-        Axios.get(url)
+        let url = API_LIST.NOTICE_DETAIL;
+        Axios.get(url + `?nidx=${nidx}`)
         .then((response) => {
             // console.log(response.data)
             setNoticeDetail(response.data[0])

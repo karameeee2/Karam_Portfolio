@@ -11,8 +11,7 @@ const NoticeListComponent = () => {
     }, []);
 
     const getNoticeList = () => {
-        // Axios.get('http://localhost:8080/api/noticeList')
-        let url = `${HOST}${API}${API_LIST.GET_NOTICE_LIST}`;
+        let url = API_LIST.NOTICE_LIST;
         Axios.get(url)
         .then((res) => {
             setNoticeList(res.data);

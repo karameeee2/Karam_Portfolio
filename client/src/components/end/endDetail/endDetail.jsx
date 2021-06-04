@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_LIST } from '../../../constants/api';
 import EndDetail from '../../../pages/end/endDetail/endDetail';
 
 const EndDetailComponent = (props) => {
@@ -16,9 +17,8 @@ const EndDetailComponent = (props) => {
     
     
     const getSurveyDetail = () => {
-        const url = `http://localhost:8080/api/selectSurveyEach?sidx=${sidx}`;
-
-        Axios.get(url)
+        let url = API_LIST.SURVEY_EACH;
+        Axios.get(url + `?sidx=${sidx}`)
         .then(response => {
             setSurveyDetail(response.data[0])
         })
@@ -28,8 +28,8 @@ const EndDetailComponent = (props) => {
     }
 
     const getQuestionList = () => {
-        const url = `http://localhost:8080/api/selectQuestion?sidx=${sidx}`;
-        Axios.get(url)
+        let url = API_LIST.SELECT_QUESTION;
+        Axios.get(url + `?sidx=${sidx}`)
         .then(res => {
             getAnswerList(res.data)
         })
@@ -41,7 +41,7 @@ const EndDetailComponent = (props) => {
     const getAnswerList = async (data) => {
         if(data.length <= 0) return;
 
-        const url = `http://localhost:8080/api/selectAnswer`;
+        let url = API_LIST.SELECT_ANSWER;
         const result = [...data]
 
         for (let i = 0; i < data.length; i++) {
@@ -62,7 +62,7 @@ const EndDetailComponent = (props) => {
     }
 
     const getAgeCount = async (data) => {
-        const url = `http://localhost:8080/api/selectAgeCount`;
+        let url = API_LIST.AGE_COUNT;
         const result = [...data]
 
         for(let i = 0; i < data.length; i++) {

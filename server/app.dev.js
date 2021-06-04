@@ -1,13 +1,13 @@
 const express = require('express');
 const session = require('express-session');
-const db = require('./dbconnection.dev');
+process.env.NODE_ENV = 'development';
+const db = require('./dbconnection');
 const app = express();
 const port = process.env.PORT || 8080;
 const cors = require('cors');
 const routes = require('./routes');
 const passport = require('passport');
 const passportConfig = require('./config/passport');
-
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use(

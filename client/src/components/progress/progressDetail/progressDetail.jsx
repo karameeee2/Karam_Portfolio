@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_LIST } from '../../../constants/api';
 import ProgressDetail from '../../../pages/progress/progressDetail/progressDetail';
 
 const ProgressDetailComponent = (props) => {
@@ -25,9 +26,9 @@ const ProgressDetailComponent = (props) => {
     }, [])
 
     const getSurveyDetail = () => {
-        const url = `http://localhost:8080/api/selectSurveyEach?sidx=${sidx}`;
+        const url = API_LIST.SURVEY_EACH;
 
-        Axios.get(url)
+        Axios.get(url + `?sidx=${sidx}`)
         .then(response => {
             setSurveyDetail(response.data[0])
         })
@@ -37,7 +38,8 @@ const ProgressDetailComponent = (props) => {
     }
 
     const getJoinSurveyCheck = () => {
-        Axios.get(`http://localhost:8080/api/joinSurveyCheck?sidx=${sidx}`,{
+        let url = API_LIST.PROGRESS_JOIN_CHECK;
+        Axios.get(url + `?sidx=${sidx}`,{
             withCredentials: true
         })
         .then(res => {
@@ -58,8 +60,8 @@ const ProgressDetailComponent = (props) => {
     }
 
     const getQuestionList = () => {
-        const url = `http://localhost:8080/api/selectQuestion?sidx=${sidx}`;
-        Axios.get(url)
+        let url = API_LIST.SELECT_QUESTION;
+        Axios.get(url + `?sidx=${sidx}`)
         .then(res => {
             getAnswerList(res.data)
         })
@@ -71,7 +73,7 @@ const ProgressDetailComponent = (props) => {
     const getAnswerList = async (data) => {
         if(data.length <= 0) return;
 
-        const url = `http://localhost:8080/api/selectAnswer`;
+        let url = API_LIST.SELECT_ANSWER;
         const result = [...data]
        
         for (let i = 0; i < data.length; i++) {
@@ -94,7 +96,8 @@ const ProgressDetailComponent = (props) => {
 
     const joinSurveySubmit = () => {
         let arr = Object.values({...checkedList})
-        Axios.post(`http://localhost:8080/api/insertJoinSurvey`, {
+        let url = API_LIST.JOIN_SURVEY;
+        Axios.post(url, {
             sidx: sidx,
             checkedList: arr
         }, {withCredentials: true})

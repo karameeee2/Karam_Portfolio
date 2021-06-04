@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_LIST } from '../../constants/api';
 import SearchResult from '../../pages/search/searchResult';
 
 const SearchResultComponent = (props) => {
@@ -22,8 +23,8 @@ const SearchResultComponent = (props) => {
 
     const getsearchWord = (value) => {
         // const url = `http://localhost:8080/search?value=${value}&category=${category}`;
-        const url = `http://localhost:8080/api/search?value=${value}`;
-        Axios.get(url)
+        const url = API_LIST.GET_SEARCH_RESULT;
+        Axios.get(url + `?value=${value}`)
         .then(res => {
             //let result = res.data;
             // result[0] : progressList, result[1]: endList, result[2]: noticeList

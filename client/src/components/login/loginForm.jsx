@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect } from 'react';
 import Cookie from 'js-cookie';
 import LoginForm from '../../pages/login/loginForm';
+import { API_LIST } from '../../constants/api';
 
 const LoginFormComponent = (props) => {
     let id = props.match.params.id;
@@ -9,8 +10,8 @@ const LoginFormComponent = (props) => {
 
     const cookies = Cookie.get('connect.sid'); // 쿠키를 클라이언트에서 찾아쓰기 위함
     const loginSubmit = (id, password) => {
-        
-        Axios.post('http://localhost:8080/api/login', {
+        let url = API_LIST.LOGIN;
+        Axios.post(url, {
             id: id, 
             password: password
         }, {
@@ -30,7 +31,8 @@ const LoginFormComponent = (props) => {
     // deserializeUser가 호출되나
     useEffect(() => {
         if(cookies) {
-            Axios.get('http://localhost:8080/api/ex', {
+            let url = API_LIST.EX;
+            Axios.get(url, {
                 withCredentials: true
             }).then(res => {
             }).catch(err => {

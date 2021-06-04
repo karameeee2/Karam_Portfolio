@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_LIST } from '../../../constants/api';
 import ProgressPreview from '../../../pages/progress/progressList/progressPreview';
 
 
@@ -11,7 +12,8 @@ const ProgressPreviewComponent = () => {
     
     const [surveyList, setSurveyList] = useState([]);
     const getProgressList = () => {
-        Axios.get('http://localhost:8080/api/selectSurveyList')
+        let url = API_LIST.PROGRESS_LIST;
+        Axios.get(url)
         .then((res) => {
             setSurveyList(res.data);
         })

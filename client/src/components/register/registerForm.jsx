@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
+import { API_LIST } from '../../constants/api';
 import { emailRegex } from '../../constants/const';
 import RegisterForm from '../../pages/register/registerForm';
 
@@ -27,7 +28,8 @@ const RegisterFormComponent = () => {
         // console.log('잘되냐~', id);
         
         // 4. 중복체크
-        Axios.post('http://localhost:8080/api/idCheck', { 
+        let url = API_LIST.REGISTER_ID_CHECK;
+        Axios.post(url, { 
             id: id 
         })
         .then(res => {
@@ -82,7 +84,8 @@ const RegisterFormComponent = () => {
         }
 
         // console.log(id, password, name, nickName, gender, birth);
-        Axios.post('http://localhost:8080/api/register', {
+        let url = API_LIST.REGISTER;
+        Axios.post(url, {
             id: id,
             password: password,
             name: name,

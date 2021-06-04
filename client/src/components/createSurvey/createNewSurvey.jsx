@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_LIST } from '../../constants/api';
 import CreateNewSurvey from '../../pages/createSurvey/createNewSurvey';
 import { CommonUtils } from '../../utils/common';
 
@@ -43,7 +44,8 @@ const CreateNewSurveyComponent = () => {
         let answerArr = Object.values({...answer});
         console.log('question:', question, questionArr)
         console.log('answer:', answer, answerArr)
-        Axios.post(`http://localhost:8080/api/insertSurvey`, {
+        let url = API_LIST.NEW_SURVEY;
+        Axios.post(url, {
             ssubject: ssubject,
             scontent: scontent,
             sdate: start,

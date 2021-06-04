@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_LIST } from '../../../constants/api';
 import EndList from '../../../pages/end/endList/endList'
 
 const EndListComponent = () => {
@@ -10,7 +11,8 @@ const EndListComponent = () => {
     }, [])
 
     const getEndList = () => {
-        Axios.get('http://localhost:8080/api/selectEndList')
+        let url = API_LIST.END_LIST;
+        Axios.get(url)
             .then((res) => {
                 setEndList(res.data);
             })
