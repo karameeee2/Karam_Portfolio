@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API, API_LIST, HOST } from '../../../constants/api';
 import NoticeList from '../../../pages/notice/noticeList/noticeList';
 
 const NoticeListComponent = () => {
@@ -10,7 +11,9 @@ const NoticeListComponent = () => {
     }, []);
 
     const getNoticeList = () => {
-        Axios.get('http://localhost:8080/api/noticeList')
+        // Axios.get('http://localhost:8080/api/noticeList')
+        let url = `${HOST}${API}${API_LIST.GET_NOTICE_LIST}`;
+        Axios.get(url)
         .then((res) => {
             setNoticeList(res.data);
         })

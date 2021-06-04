@@ -12,7 +12,10 @@ module.exports = merge(common, {
         hot: true,
         compress: true,
     },
-    // plugins: [
-    //     new BundleAnalyzerPlugin(),
-    // ],
+    plugins: [
+        // new BundleAnalyzerPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': 'development'
+        })
+    ],
 })
