@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 import Progress from '../../../pages/progress/progressList/progressList';
+import { API_LIST } from '../../../constants/api';
 
 const ProgressListComponent = () => {
     const cookie = Cookie.get('connect.sid');
@@ -14,7 +15,8 @@ const ProgressListComponent = () => {
     }, [])
     
     const getProgressList = () => {
-        Axios.get('http://localhost:8080/api/selectSurveyList')
+        let url =  API_LIST.PROGRESS_LIST;
+        Axios.get(url)
         .then((res) => {
             setSurveyList(res.data);
         })
