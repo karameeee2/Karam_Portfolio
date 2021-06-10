@@ -57,7 +57,7 @@ const CreateNewSurveyComponent = () => {
         },{withCredentials:true})
         .then(res => {
             console.log('insert newSurvey success', res);
-            // window.location.href='/progressList';
+            window.location.href='/progressList';
         })
         .catch(err => {
             console.log('insert newSurvey error', err, err.res);

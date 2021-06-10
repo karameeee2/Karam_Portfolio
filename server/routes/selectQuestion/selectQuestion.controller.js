@@ -1,5 +1,4 @@
 const db = require('../../dbconnection');
-const mysql = require('mysql');
 
 exports.selectQuestion = (req, res, next) => {
     let sidx = req.query.sidx;

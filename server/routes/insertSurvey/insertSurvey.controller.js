@@ -1,6 +1,6 @@
 const db = require('../../dbconnection');
-
-exports.insertSurvey = (req, res, next) => {
+const {promisify} = require('util');
+exports.insertSurvey = async(req, res, next) => {
     console.log('insert survey,', req.body,req.user);
     const ssubject = req.body.ssubject;
     const scontent = req.body.scontent;
@@ -12,15 +12,18 @@ exports.insertSurvey = (req, res, next) => {
     const question = req.body.question;
     const answer = req.body.answer;
 
+    console.log('midx>>>>>', midx);
+
     db.getConnection((err, conn) => {
         if(!conn) {
             return next()
         }
 
 
-        conn.beginTransaction (TranErr => {
+        conn.beginTransaction ((TranErr) => {
             if(TranErr) {
                 console.error('Transaction Error >>', TranErr);
+                conn.rollback();
                 return res.send(TranErr);
             }
     
@@ -28,57 +31,58 @@ exports.insertSurvey = (req, res, next) => {
             `VALUES ('${ssubject}', '${scontent}', '${midx}', '${sdate}', '${edate}', '${tag}', '${img}')`, (insertErr, results, fields) => {
                 if(insertErr) {
                     console.error('Insert1 Error >>', insertErr);
+                    conn.rollback();
                     return res.send(insertErr);
                 }
                 console.log('results_1 >>', results);
-        
-                let fixedQueryQ = `INSERT INTO SURVEY_QUESTION (SIDX, QUESTION) VALUES `;
+                
                 for (let i = 0; i < question.length; i++) {
-                    console.log('insert question map');
+                    console.log('insert question map', i);
+
                     const sidx = results.insertId;
-                    fixedQueryQ += `('${sidx}', '${question[i]}')`;
-                    if(question.length !== i+1) fixedQueryQ += ',';
-                }
-                console.log('fixed::::::',fixedQueryQ)
+                    let fixedQueryQ = `INSERT INTO SURVEY_QUESTION (SIDX, QUESTION) VALUES ('${sidx}', '${question[i]}')`;
 
-                conn.query(fixedQueryQ, (insertErr, results, fields) => {
-                    if(insertErr) {
-                        console.error('Insert2 Error >>', insertErr);
-                        return res.send(insertErr);
-                    }
-                    console.log('results_2 >>', results);
-                    console.log('results_2 insertId', results.insertId);
-                    console.log('results_2 affectedRows', results.affectedRows);
-    
-                    // answer 
-                    // 0: {0: "1111", 1: "2222"}
-                    // 1: {0: "aaaa", 1: "qqq", 2: "ee"}
-
-                    let fixedQueryA = `INSERT INTO SURVEY_ANSWER (QIDX, ANSWER) VALUES `;
-                    for(let i = 0; i < answer.length; i++) {
-                        const qidx = results.insertId;
-                        let answerArr = Object.values({...answer[i]});
-                        for (let j = 0; j < answerArr.length; j++) {
-                            
-                            fixedQueryA += `('${qidx}', '${answerArr[j]}')`;
-                            if(answer.length !== i+1) fixedQueryA += ',';
+                    conn.query(fixedQueryQ, (questionInsertError, questionResults, fields) => {
+                        if (questionInsertError) {
+                            console.error('Insert2 Error >>', questionInsertError);
+                            conn.rollback();
+                            return res.send(questionInsertError);
                         }
-                    }
-                    console.log('fixedA::::::',fixedQueryA)
+                        console.log('questionResults_2 >>', questionResults);
+                        console.log('questionResults_2 insertId', questionResults.insertId);
+                        console.log('questionResults_2 affectedRows', questionResults.affectedRows);
 
-                    conn.query(fixedQueryA, (insertErr, results, fields) => {
-                        if(insertErr) {
-                            console.error('Insert3 Error >>' , insertErr);
-                            return res.send(insertErr);
+                        // answer 
+                        // 0: {0: "1111", 1: "2222"}
+                        // 1: {0: "aaaa", 1: "qqq", 2: "ee"}
+
+                        const qidx = questionResults.insertId;
+                        for (let i = 0; i < answer.length; i++) {
+                            let answerArr = Object.values({ ...answer[i] });
+                            console.log('answerArr: ',answerArr);
+                            for (let j = 0; j < answerArr.length; j++) {
+                                let fixedQueryA = `INSERT INTO SURVEY_ANSWER (QIDX, ANSWER) VALUES ('${qidx}', '${answerArr[j]}')`;
+                                console.log('fixedA::::::', fixedQueryA)
+                                conn.query(fixedQueryA, (answerInsertError, answerResults, fields) => {
+                                    if (answerInsertError) {
+                                        console.error('Insert3 Error >>', answerInsertError);
+                                        conn.rollback();
+                                        return res.send(answerInsertError);
+                                    }
+                                    console.log('answerResults_3 >>', answerResults);
+                                })
+                            }
                         }
-                        console.log('results_3 >>', results);
+
                         conn.commit();
-                        res.send(200);
-                    })
-                })
+                        console.log('survey insert success');
+                        res.status(200).send();
+
+                    });
+                }
+                
             })
         })
         
     })
-    console.log('survey insert success');
 }

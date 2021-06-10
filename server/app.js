@@ -8,7 +8,8 @@ const routes = require('./routes');
 const passport = require('passport');
 const passportConfig = require('./config/passport');
 const path = require('path');
-const clientPath = path.resolve(__dirname, '..', 'client', 'dist')
+const clientPath = path.resolve(__dirname, '..', 'client', 'dist');
+
 app.use(express.static(clientPath));
 
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use(
 );
     
 db;
+
 // cors허용
 let corsOptions = {
     origin: 'https://karameeee.dev',

@@ -1,5 +1,5 @@
 const db = require('../../dbconnection');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 
 exports.searchResult = (req, res, next) => {
