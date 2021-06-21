@@ -19,18 +19,20 @@ const ProgressQnA = (props) => {
                     return (
                         <div className="qnaWrap" key={item.QIDX}>
                             <p className="qst">{idx + 1}. {item.QUESTION}</p>
-                            {item.answerList.map((answer) => {
-                                console.log(answer,);
-                                // mySurveyAnswer[idx].AIDX === answer.AIDX
-                                return (
-                                    <label className="aswBox" key={answer.AIDX} >
-                                        <input type="radio" name={item.QIDX} className='asw' checked={mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX}
-                                        // disabled={mySurveyAnswer[idx] !== undefined}
-                                        disabled={isJoin}
-                                        onClick={() => _setCheckedList(idx, {aidx: answer.AIDX, qidx: item.QIDX })} />{answer.ANSWER}
-                                    </label>
-                                );
-                            })}
+                            <div className="aswWrap">
+                                {item.answerList.map((answer) => {
+                                    console.log(answer,);
+                                    // mySurveyAnswer[idx].AIDX === answer.AIDX
+                                    return (
+                                        <label className="aswBox" key={answer.AIDX} >
+                                            <input type="radio" name={item.QIDX} className='asw' checked={mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX}
+                                            // disabled={mySurveyAnswer[idx] !== undefined}
+                                            disabled={isJoin}
+                                            onClick={() => _setCheckedList(idx, {aidx: answer.AIDX, qidx: item.QIDX })} />{answer.ANSWER}
+                                        </label>
+                                    );
+                                })}
+                            </div>
                         </div>
                     );
                 })}

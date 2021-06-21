@@ -10,7 +10,7 @@ exports.insertJoinSurvey = (req, res, next) => {
     console.log('insertJoinSurvey:', sidx, midx, gender, birth, checkedList);
 
     
-    let fixedQuery = `INSERT INTO SURVEY_COUNT (SIDX, QIDX, AIDX, MIDX, GENDER, BIRTH) VALUES `;
+    let fixedQuery = `INSERT INTO SURVEY_COUNT (SIDX, QIDX, AIDX, MIDX, ANSWER, GENDER, BIRTH) VALUES `;
     for (let i = 0; i < checkedList.length; i++) {
         let qidx = checkedList[i].qidx;
         let aidx = checkedList[i].aidx;

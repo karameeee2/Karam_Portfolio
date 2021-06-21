@@ -5,7 +5,7 @@
     margin-bottom: 0;
 }
 .qnaWrap {
-    width: 1200px; margin-bottom: 24px; padding: 48px; box-sizing: border-box; border-radius: 4px;
+    width: 1200px; margin-bottom: 24px; padding: 48px 48px 38px; box-sizing: border-box; border-radius: 4px;
     background-color: #FFF; box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
 }
 
@@ -13,8 +13,9 @@
 .qst {
     height: 28px; margin-bottom: 24px; line-height: 28px; font-size: 22px; font-weight: 400;
 }
+
 .aswBox {
-    display: inline-flex; height: 40px; font-size: 16px; margin-right: 24px; padding: 7px;
+    display: inline-flex; height: 40px; font-size: 16px; margin: 0 24px 10px 0; padding: 7px;
     border: 1px solid #C7C7C7; box-sizing: border-box; border-radius: 4px; background-color: rgba(199,199,199,0.14);
     align-items: baseline; cursor: pointer;
 }

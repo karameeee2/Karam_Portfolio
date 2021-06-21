@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import '../../css/common/header.css';
 import surveyOnLogo from '../../assets/logo/survey_on_logo_1.svg';
@@ -6,18 +6,8 @@ import surveyOnLogo from '../../assets/logo/survey_on_logo_1.svg';
 const Header = (props) => {
     const cookie = props.cookie;
     const logout = props.logout;
-
-    console.log(props);
-
-    const onClickBlock = () => {
-        let polygon = document.getElementsByClassName('polygon')[0];
-        let userView = document.getElementsByClassName('userView')[0];
-        
-        userView.classList.toggle('none');
-        polygon.classList.toggle('none');
-        userView.classList.toggle('block');
-        polygon.classList.toggle('block');
-    }
+    const userModalOn = props.userModalOn;
+    const handleUserModal = props.handleUserModal;
 
     const showSearch = () => {
         let search = document.getElementById('search');
@@ -26,7 +16,6 @@ const Header = (props) => {
         search.style.display = 'block';
         typeSearch.focus();
     }
-
 
     return (
         <>
@@ -46,9 +35,11 @@ const Header = (props) => {
                             <NavLink to='/noticeList' className='item' activeClassName='nowPage'>공지사항</NavLink>
                         </li>
                         <li>
-                            <span className="iconBox userIcon" onClick={onClickBlock}>
+                            <span className="iconBox userIcon" onClick={handleUserModal(true)}>
                                 <p id="userIcon" className='navIcon'></p>
-                                <p className="polygon none"></p>
+                                {userModalOn &&
+                                    <p className="polygon"></p>
+                                }
                             </span>
                         </li>
                         <li>
@@ -58,36 +49,40 @@ const Header = (props) => {
                         </li>
                     </ul>
                 </div>
-                <aside className="userView none">
-                    <div className="userViewWrap">
-                        {cookie ?
-                            <div className="userViewBox">
-                                <div className="helloBox">
-                                    <p className="hello">안녕하세요!</p>
-                                    <p className="nickName">{cookie.nickName}님</p>
-                                </div>
-                                <p className="myPageLine line22">
-                                    <Link to='/mypage'>마이페이지</Link>
-                                </p>
-                                <p className="logoutLine line22">
-                                    <a href='#!' onClick = { e => {
-                                        e.stopPropagation();
-                                        e.preventDefault();
-                                        logout();
-                                    }}>로그아웃</a>
-                                </p>
+                {userModalOn && (
+                    <div className="dimmer" onClick={handleUserModal(false)}>
+                        <aside className="userView" onClick={(e) => e.stopPropagation()}>
+                            <div className="userViewWrap">
+                                {cookie ?
+                                    <div className="userViewBox">
+                                        <div className="helloBox">
+                                            <p className="hello">안녕하세요!</p>
+                                            {/* <p className="nickName">{cookie.nickName}님</p> */}
+                                        </div>
+                                        {/* <p className="myPageLine line22">
+                                            <Link to='/mypage'>마이페이지</Link>
+                                        </p> */}
+                                        <p className="logoutLine line22">
+                                            <a href='#!' onClick = { e => {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                handleUserModal(false);
+                                                logout();
+                                            }}>로그아웃</a>
+                                        </p>
+                                    </div>
+                                :
+                                    <div className="userViewBox">
+                                        <p className="loginLine line22">
+                                            <Link to='/login' onClick={handleUserModal(false)}>로그인</Link>
+                                        </p>
+                                    </div>
+                                }
                             </div>
-                        :
-                            <div className="userViewBox">
-                                <p className="loginLine line22">
-                                    <Link to='/login'>로그인</Link>
-                                </p>
-                            </div>
-                        }
+                        </aside>
                     </div>
-                </aside>
+                )}
             </nav>
-            
         </>
     )
 }
