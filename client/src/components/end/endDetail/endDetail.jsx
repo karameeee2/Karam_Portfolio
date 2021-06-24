@@ -23,7 +23,7 @@ const EndDetailComponent = (props) => {
             setSurveyDetail(response.data[0])
         })
         .catch(err => {
-            console.log('getSurveyDetail', err , err.response)
+            console.log('getSurveyDetail error', err , err.response)
         })
     }
 
@@ -34,7 +34,7 @@ const EndDetailComponent = (props) => {
             getAnswerList(res.data)
         })
         .catch(err => {
-            // console.log('getQuestionList', err, err.res);
+            console.log('getQuestionList error', err, err.res);
         })
     }
 
@@ -51,7 +51,7 @@ const EndDetailComponent = (props) => {
                 getAgeCount(res.data);
             })
             .catch(err => {
-                console.log('getAnswerList', err, err.res);
+                console.log('getAnswerList error', err, err.res);
             })
         }
 

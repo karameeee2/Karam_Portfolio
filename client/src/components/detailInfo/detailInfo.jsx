@@ -17,7 +17,7 @@ const DetailInfoComponent = (props) => {
             setSurveyDetail(response.data[0])
         })
         .catch(err => {
-            console.log('getSurveyDetail', err , err.response)
+            console.log('getSurveyDetail error', err , err.response)
         })
     }
     return (

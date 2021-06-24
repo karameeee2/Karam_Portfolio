@@ -15,9 +15,7 @@ const NoticeDetailComponent = (props) => {
         let url = API_LIST.NOTICE_DETAIL;
         Axios.get(url + `?nidx=${nidx}`)
         .then((response) => {
-            // console.log(response.data)
             setNoticeDetail(response.data[0])
-            // console.log(response.data)
         })
         .catch((err) => {
             console.log('noticeDetail error', err.response, err)

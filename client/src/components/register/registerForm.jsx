@@ -25,7 +25,6 @@ const RegisterFormComponent = () => {
         if (!emailRegex.test(id)) {
             return alert('아이디는 이메일 형식으로 입력해주십시오.')
         }
-        // console.log('잘되냐~', id);
         
         // 4. 중복체크
         let url = API_LIST.REGISTER_ID_CHECK;
@@ -33,14 +32,12 @@ const RegisterFormComponent = () => {
             id: id 
         })
         .then(res => {
-            // console.log('idCheck success', res);
             if(res.status === 200) {
                 setIsOverlap(false);
                 setErrorText('사용 가능한 아이디입니다.');
             } 
         })
         .catch(err => {
-            // console.log('idCheck error', err, err.response.status);
             if(err.response.status === 409){
                 setIsOverlap(true);
                 setErrorText('중복된 이메일입니다.');
@@ -83,7 +80,6 @@ const RegisterFormComponent = () => {
             return alert('중복된 아이디입니다.');
         }
 
-        // console.log(id, password, name, nickName, gender, birth);
         let url = API_LIST.REGISTER;
         Axios.post(url, {
             id: id,
@@ -94,7 +90,7 @@ const RegisterFormComponent = () => {
             birth: birth
         })
         .then(res => {
-            console.log('register success', res);
+            // console.log('register success', res);
             window.location.href='/login';
         })
         .catch(err => {

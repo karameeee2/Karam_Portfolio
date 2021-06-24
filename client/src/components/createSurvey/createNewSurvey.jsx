@@ -42,8 +42,6 @@ const CreateNewSurveyComponent = () => {
         // {0: ['qwer','asdf'], 1: ['1234'], 2: ['zxcv'] }
         
         let answerArr = Object.values({...answer});
-        console.log('question:', question, questionArr)
-        console.log('answer:', answer, answerArr)
         let url = API_LIST.NEW_SURVEY;
         Axios.post(url, {
             ssubject: ssubject,
@@ -56,7 +54,7 @@ const CreateNewSurveyComponent = () => {
             answer: answerArr
         },{withCredentials:true})
         .then(res => {
-            console.log('insert newSurvey success', res);
+            // console.log('insert newSurvey success', res);
             window.location.href='/progressList';
         })
         .catch(err => {

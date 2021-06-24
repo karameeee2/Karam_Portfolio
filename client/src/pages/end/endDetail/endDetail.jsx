@@ -83,7 +83,6 @@ const EndDetail = (props) => {
                                     <p className="qst" key={item.QIDX}>{idx+1}. {item.QUESTION}</p>
                                     <div className="endAswBox">
                                         {item.answerList.map((answer) => {
-                                            console.log('answer::::::',answer);
                                             return (
                                                 <div className="chartBox" key={answer.AIDX}>
                                                     <p className="labelPercent">

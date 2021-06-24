@@ -16,7 +16,7 @@ const EndChartComponent = (props) => {
             setQuestionList(res.data);
         })
         .catch(err => {
-            console.log('getQuestionList', err, err.res);
+            console.log('getQuestionList error', err, err.res);
         })
     }
 

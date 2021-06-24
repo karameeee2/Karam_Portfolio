@@ -155,7 +155,6 @@ const CreateNewSurvey = (props) => {
         }
         
         let copy_form = [...surveyForm];
-        console.log(copy_form);
         copy_form.splice(idx, 1);
         setSurveyForm(copy_form);
     }
@@ -184,7 +183,6 @@ const CreateNewSurvey = (props) => {
         }
 
         let copy_form = [...optionForm];
-        console.log(copy_form);
         copy_form.splice(idx, 1);
         setOptionForm(copy_form);
     }

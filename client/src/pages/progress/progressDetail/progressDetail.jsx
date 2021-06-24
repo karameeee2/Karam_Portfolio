@@ -13,7 +13,6 @@ const ProgressDetail = (props) => {
     const { surveyDetail, questionList, _setCheckedList, isJoin, mySurveyAnswer, checkedList } = props;
     const joinSurveySubmit = props.onSubmit;
 
-    console.log('checkedList', checkedList)
     return (
         <>
             {/* pageTitle */}
@@ -62,8 +61,6 @@ const ProgressDetail = (props) => {
                                 <div className="qnaWrap" key={item.QIDX}>
                                     <p className="qst">{idx + 1}. {item.QUESTION}</p>
                                     {item.answerList.map((answer, answerIndex) => {
-                                        // console.log(answer,);
-                                        // mySurveyAnswer[idx].AIDX === answer.AIDX
                                         return (
                                             <div className={`aswBox ${mySurveyAnswer[idx] && mySurveyAnswer[idx].AIDX === answer.AIDX ? 'checked' : ''}
                                             ${checkedList[idx] && checkedList[idx].aidx === answer.AIDX ? 'checked' : ''}
@@ -96,7 +93,6 @@ const ProgressDetail = (props) => {
                     :
                     <div className="submitCancelBox">
                         <button type='submit' className="surveySubmitBtn" onClick={e => {
-                            console.log('click');
                             e.stopPropagation();
                             e.preventDefault();
                             joinSurveySubmit()

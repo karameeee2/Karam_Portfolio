@@ -18,7 +18,7 @@ const ProgressPreviewComponent = () => {
             setSurveyList(res.data);
         })
         .catch((err)=>{
-            console.log('에러낫음', err.res, err)
+            console.log('getProgressList error', err.res, err)
         })
     }
     return(

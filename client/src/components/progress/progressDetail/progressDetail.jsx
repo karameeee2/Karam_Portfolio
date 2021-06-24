@@ -33,7 +33,7 @@ const ProgressDetailComponent = (props) => {
             setSurveyDetail(response.data[0])
         })
         .catch(err => {
-            console.log('getSurveyDetail', err , err.response)
+            console.log('getSurveyDetail error', err , err.response)
         })
     }
 
@@ -44,7 +44,6 @@ const ProgressDetailComponent = (props) => {
         })
         .then(res => {
             // 이 안에서 if~else로 배열이 있을때와 없을때를 구분해서 없을 때 데이터도 받아올수 있도록
-            console.log('data: ', res.data);
             if(res.data.length <= 0) {
                 setJoinSurveyCheck();
                 setIsJoin(false);
@@ -66,7 +65,7 @@ const ProgressDetailComponent = (props) => {
             getAnswerList(res.data)
         })
         .catch(err => {
-            // console.log('getQuestionList', err, err.res);
+            console.log('getQuestionList error', err, err.res);
         })
     }
 
@@ -79,14 +78,12 @@ const ProgressDetailComponent = (props) => {
         for (let i = 0; i < data.length; i++) {
             await Axios.get(url + `?qidx=${data[i].QIDX}`)
             .then(res => {
-                // console.log('answer response: ' + i, res.data)
                 result[i].answerList = res.data
             })
             .catch(err => {
-                console.log('getAnswerList', err, err.res);
+                console.log('getAnswerList error', err, err.res);
             })
         }
-        // console.log('result:', result)
         setQuestionList(result);
     }
 
