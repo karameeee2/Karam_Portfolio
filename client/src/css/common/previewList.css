@@ -25,7 +25,7 @@
     font-weight: 500; color: black; text-decoration: none;
 }
 .prevBox .prevInfoBox .prevSubject:hover {
-    color: #5E00FF;
+    color: #5E00FF; cursor: pointer;
 }
 .prevBox .prevInfoBox .prevTerm, .prevBox .prevInfoBox .prevTag, .prevBox .prevInfoBox .prevJoin { 
     display: flex; width: 320px; height: 24px; line-height: 24px; margin-top: 12px; font-size: 16px;

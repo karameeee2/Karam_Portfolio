@@ -88,8 +88,10 @@
 .myPageLine a {
     color: #000; 
 }
-.logoutLine a {
+.logoutLine {
     margin-top: 12px; /* 마이페이지 작업 완료시 margin 삭제 */
+}
+.logoutLine a {
     color: #D95767;
 }
 

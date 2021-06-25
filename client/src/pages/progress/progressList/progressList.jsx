@@ -18,12 +18,16 @@ const ProgressList = (props) => {
     const item_per_page = props.item_per_page;
     const cookie = props.cookie;
 
-    const isLoginCheck = () => {
+    const isLoginCheck = (e) => {
         if(!cookie) {
             alert('로그인 후 이용가능한 서비스입니다.');
             window.location.href = '/login';
         } else {
-            window.location.href = '/createSurvey';
+            if(e.target.className === 'createSurveyBtn'){
+                window.location.href = '/createSurvey';
+            } else if(e.target.className === 'prevSubject') {
+                window.location.href = `/progressDetail/` + e.target.id;
+            }
         }
     }
 
@@ -33,9 +37,7 @@ const ProgressList = (props) => {
             <div className="pageTitleBox">
                 <div className="pageTitleWrap">
                     <h2 className='titleLeft'>진행중인 설문</h2>
-                    {/* <Link to='/createSurvey'> */}
-                        <button className='createSurveyBtn' onClick={isLoginCheck}>새 설문 <img src={plus16} alt="새 설문 등록"/></button>
-                    {/* </Link> */}
+                        <button className='createSurveyBtn' onClick={isLoginCheck} >새 설문 <img src={plus16} alt="새 설문 등록"/></button>
                 </div>
             </div>
             
@@ -50,7 +52,7 @@ const ProgressList = (props) => {
                                         <img className="prevThumbnail" src={item.SIMG || thumbnail1} alt='설문 썸네일 이미지' onError={e => e.target.src = thumbnail1} />
                                         <div className="prevInfoBox">
                                             <p className='prevNickname'>{item.NICKNAME}</p>
-                                            <Link to={`/progressDetail/${item.SIDX}`} ><h3 className='prevSubject'>{item.SSUBJECT}</h3></Link>
+                                            <h3 className='prevSubject' id={item.SIDX} onClick={isLoginCheck}>{item.SSUBJECT}</h3>
                                             <p className='prevTerm'>
                                                 <img src={termIcon} alt="기간"/>{CommonUtils.dateFormat(new Date(item.SDATE))} ~ {CommonUtils.dateFormat(new Date(item.EDATE))}
                                             </p>
@@ -81,17 +83,6 @@ const ProgressList = (props) => {
                 </div>
             </section>
         </>
-        // <div>
-        //     {/* <SearchComponent /> */}
-        //     <PageTitle pageTitle='진행중인 설문' />
-        //     {/* <CreateBtnComponent /> */}
-        //     {/* List */}
-        //     <section className="progressPreviewSection">
-        //         <div className="progressPrevWrap">
-        //             <ProgressPreviewComponent surveyList={props.surveyList} />
-        //         </div>
-        //     </section>
-        // </div>
     )
 }
 
