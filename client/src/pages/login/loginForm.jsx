@@ -5,6 +5,10 @@ import '../../css/common/pageTitle.css';
 
 const LoginForm = (props) => {
     const loginSubmit = props.onSubmit;
+
+    const noService = () => {
+        alert('서비스 준비중입니다.');
+    }
     
     return (
         <>
@@ -31,9 +35,9 @@ const LoginForm = (props) => {
                         </Link>
                     </div>
                     <p className="findIdPw">
-                        <a href="#!" className="findId">아이디찾기</a>
+                        <a href="#!" className="findId" onClick={noService}>아이디찾기</a>
                         {/* <span className="verLine">|</span> */}
-                        <a href="#!" className="findPassword">비밀번호찾기</a>
+                        <a href="#!" className="findPassword" onClick={noService}>비밀번호찾기</a>
                     </p>
                 </div>
             </div>

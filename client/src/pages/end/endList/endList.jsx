@@ -16,6 +16,16 @@ const EndList = (props) => {
     const handlePageClick = props.handlePageClick;
     const endCount = props.endList.length;
     const item_per_page = props.item_per_page;
+    const cookie = props.cookie;
+
+    const isLoginCheck = (e) => {
+        if(!cookie) {
+            alert('로그인 후 이용 가능한 서비스입니다.');
+            window.location.href = '/login'
+        } else {
+            window.location.href = `/endDetail/` + e.target.id;
+        }
+    }
 
     return (
         <>
@@ -36,7 +46,7 @@ const EndList = (props) => {
                                     <img className="prevThumbnail" src={item.SIMG || thumbnail1} alt='설문 썸네일 이미지' onError={e => e.target.src = thumbnail1} />
                                     <div className="prevInfoBox">
                                         <p className='prevNickname'>{item.NICKNAME}</p>
-                                        <Link to={`/endDetail/${item.SIDX}`}><h3 className='prevSubject'>{item.SSUBJECT}</h3></Link>
+                                        <h3 className='prevSubject' id={item.SIDX} onClick={isLoginCheck}>{item.SSUBJECT}</h3>
                                         <p className='prevTerm'>
                                             <img src={termIcon} alt="기간"/>{CommonUtils.dateFormat(new Date(item.SDATE))} ~ {CommonUtils.dateFormat(new Date(item.EDATE))}
                                         </p>

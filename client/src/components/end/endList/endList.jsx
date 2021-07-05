@@ -1,9 +1,12 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Cookie from 'js-cookie';
 import { API_LIST } from '../../../constants/api';
 import EndList from '../../../pages/end/endList/endList'
 
 const EndListComponent = () => {
+    const cookie = Cookie.get('connect.sid');
+
     const [endList, setEndList] = useState([]);
 
     useEffect(() => {
@@ -44,7 +47,8 @@ const EndListComponent = () => {
     }
 
     return (
-        <EndList endList={ endList } activeEndList={activeEndList} item_per_page={item_per_page} handlePageClick={handlePageClick} />
+        <EndList endList={ endList } activeEndList={activeEndList} item_per_page={item_per_page} handlePageClick={handlePageClick}
+        cookie={cookie} />
     );
 }
 

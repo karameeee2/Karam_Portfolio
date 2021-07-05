@@ -20,7 +20,7 @@ const ProgressList = (props) => {
 
     const isLoginCheck = (e) => {
         if(!cookie) {
-            alert('로그인 후 이용가능한 서비스입니다.');
+            alert('로그인 후 이용 가능한 서비스입니다.');
             window.location.href = '/login';
         } else {
             if(e.target.className === 'createSurveyBtn'){
