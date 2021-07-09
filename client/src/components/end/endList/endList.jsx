@@ -37,11 +37,7 @@ const EndListComponent = () => {
 
         let arr = [...endList];
 
-        if(!selected) {
-            arr = arr.splice(0, item_per_page);
-        } else  {
-            arr = arr.splice(offset, selected * item_per_page);
-        }
+        arr = arr.slice(offset, offset + item_per_page);
 
         setActiveEndList(arr);
     }

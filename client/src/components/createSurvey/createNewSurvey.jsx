@@ -13,6 +13,7 @@ const CreateNewSurveyComponent = () => {
     const [img, setImg] = useState('');
     const [question, setQuestion] = useState({});
     const [answer, setAnswer] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const insertSurveySubmit = () => {
         // null check
@@ -43,6 +44,8 @@ const CreateNewSurveyComponent = () => {
         
         let answerArr = Object.values({...answer});
         let url = API_LIST.NEW_SURVEY;
+        setLoading(true);
+
         Axios.post(url, {
             ssubject: ssubject,
             scontent: scontent,
@@ -59,6 +62,7 @@ const CreateNewSurveyComponent = () => {
         })
         .catch(err => {
             console.log('insert newSurvey error', err, err.res);
+            setLoading(false);
         })
     }
 
@@ -69,7 +73,8 @@ const CreateNewSurveyComponent = () => {
     return (
         <CreateNewSurvey insertSurveySubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
         setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}
-        setQuestion={setQuestion} setAnswer={setAnswer} question={question} answer={answer} />
+        setQuestion={setQuestion} setAnswer={setAnswer} question={question} answer={answer} 
+        loading={loading} />
     )
 }
 

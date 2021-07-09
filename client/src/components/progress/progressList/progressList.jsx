@@ -41,11 +41,7 @@ const ProgressListComponent = () => {
         let arr = [...surveyList]; // 1. 전체배열을 복사
         
         // 2. selected 값과 offset 을 활용해서 몇개씩 보여져야할 지 배열을 편집
-        if(!selected) {
-            arr = arr.splice(0, item_per_page)
-        } else {
-            arr = arr.splice(offset, selected * item_per_page); // 문제의 소지가 있을 수도..
-        }
+        arr = arr.slice(offset, offset + item_per_page);
 
         // 3. 보여져야할 배열 state update
         setActiveProgressList(arr)

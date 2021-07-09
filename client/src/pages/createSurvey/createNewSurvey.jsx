@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 import Select from 'react-select';
 import '../../css/common/pageTitle.css';
 import '../../css/createSurvey/newSurveyInfoForm.css';
@@ -11,20 +12,21 @@ import shortTextSelect from '../../assets/icons/shortTextSelect.svg';
 import longTextSelect from '../../assets/icons/longTextSelect.svg';
 import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
-import addDays from 'date-fns/addDays'
+import addDays from 'date-fns/addDays';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 const CreateNewSurvey = (props) => {
-    const {setSsubject, setScontent, setSdate, setEdate, sdate, edate, setTag, setImg, insertSurveySubmit, setQuestion, setAnswer, question, answer } = props;
+    const { setSsubject, setScontent, setSdate, setEdate, sdate, edate, setTag, setImg, insertSurveySubmit, setQuestion, setAnswer, question, answer, loading } = props;
 
     const _setQuestion = (index) => (e) => {
-        let obj = {...question}
+        let obj = { ...question }
         obj[index] = e.target.value
         setQuestion(obj)
     }
-    
+
     const _setAnswer = (index, idx) => (e) => {
         let arr = [...answer]
-        let obj = {...arr[index]}
+        let obj = { ...arr[index] }
         obj[idx] = e.target.value
         arr[index] = obj
         setAnswer(arr)
@@ -41,20 +43,20 @@ const CreateNewSurvey = (props) => {
     // select
     const styles = {
         // 옵션들에 대한 스타일 정의
-        option: (styles, {isFocused, isDisabled}) => {
+        option: (styles, { isFocused, isDisabled }) => {
             return {
                 backgroundColor: isFocused ? '#F0F0F0' : '',
                 // color: isDisabled ? '#C7C7C7' : '',
                 cursor: isDisabled ? 'default' : 'pointer',
                 padding: '0 24px',
-                filter: isDisabled ? 'opacity(0.3)': ''
+                filter: isDisabled ? 'opacity(0.3)' : ''
             };
         },
         // styles =>  ...styles는 이 라이브러리가 쓰고있는 기본 스타일을 일단 복사한다는 의미
         // control: 인풋창(select 태그라고 생각하면 됨)
         control: (styles) => (
             {
-                ...styles, height: "48px", cursor: "pointer", padding: '0 24px', boxShadow: 'none', 
+                ...styles, height: "48px", cursor: "pointer", padding: '0 24px', boxShadow: 'none',
                 border: '1px solid #C7C7C7 !important', borderRadius: '4px'
             }
         ),
@@ -74,7 +76,7 @@ const CreateNewSurvey = (props) => {
         ),
         indicatorSeparator: (styles) => (
             {
-                ...styles, display: 'none', 
+                ...styles, display: 'none',
             }
         ),
         menuList: (styles) => (
@@ -82,7 +84,7 @@ const CreateNewSurvey = (props) => {
                 ...styles, lineHeight: '48px', padding: '0'
             }
         ),
-        
+
     }
 
     // 선택 목록 (option 태그)
@@ -135,25 +137,25 @@ const CreateNewSurvey = (props) => {
     };
 
     // 폼 배열
-    const [surveyForm, setSurveyForm] = useState([{...initialForm}]);
-    
+    const [surveyForm, setSurveyForm] = useState([{ ...initialForm }]);
+
     // 입력 폼 추가
     const addForm = () => {
-        if(!surveyForm || surveyForm.length <= 0) {
+        if (!surveyForm || surveyForm.length <= 0) {
             setSurveyForm([...surveyForm, initialForm]);
             return;
         }
         // 객체의 불변성 때문에 객체복사 필요
-        const obj = {...initialForm};
+        const obj = { ...initialForm };
         obj._id = surveyForm[surveyForm.length - 1]._id + 1;
         setSurveyForm([...surveyForm, obj]);
     };
     const popForm = (idx) => (e) => {
         // 폼이 비었다면 동작하지 않음
-        if(!surveyForm || surveyForm.length <= 0) {
+        if (!surveyForm || surveyForm.length <= 0) {
             return;
         }
-        
+
         let copy_form = [...surveyForm];
         copy_form.splice(idx, 1);
         setSurveyForm(copy_form);
@@ -165,20 +167,20 @@ const CreateNewSurvey = (props) => {
         _id: 0
     }
     // 옵션 배열
-    const [optionForm, setOptionForm] = useState([{...initialOption}]);
+    const [optionForm, setOptionForm] = useState([{ ...initialOption }]);
     // 옵션 추가
     const addOption = () => {
-        if(!optionForm || optionForm.length <= 0) {
+        if (!optionForm || optionForm.length <= 0) {
             setOptionForm([...optionForm, initialOption]);
             return;
         }
-        const obj = {...initialOption};
+        const obj = { ...initialOption };
         obj._id = optionForm[optionForm.length - 1]._id + 1;
         setOptionForm([...optionForm, obj]);
     }
     // 옵션 삭제
     const popOption = (idx) => (e) => {
-        if(!optionForm || optionForm.length <= 0) {
+        if (!optionForm || optionForm.length <= 0) {
             return;
         }
 
@@ -205,7 +207,7 @@ const CreateNewSurvey = (props) => {
         switch (survey.answer_type) {
             case 'selectOne':
                 result = (
-                    <div className='answerBox selectOne' onChange={ handleOneAnswer(index) } value={undefined}>
+                    <div className='answerBox selectOne' onChange={handleOneAnswer(index)} value={undefined}>
                         {optionForm && optionForm.map((item, idx) => {
                             return (
                                 <span className="optionBox" key={idx}>
@@ -213,7 +215,7 @@ const CreateNewSurvey = (props) => {
                                         <p className="radioIcon"></p>
                                     </span>
                                     {/* <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={() => {setAnswer(idx, {qidx: item.QIDX})}} /> */}
-                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setAnswer(index,idx)} />
+                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setAnswer(index, idx)} />
                                     <button className="deleteOption" onClick={popOption(idx)}>
                                         <p className="deleteOptionIcon"></p>
                                     </button>
@@ -269,19 +271,19 @@ const CreateNewSurvey = (props) => {
             //     break;
             case 'shortText':
                 result = (
-                    <div className='answerBox shortText' onChange={ handleStringAnswer(index) }>
+                    <div className='answerBox shortText' onChange={handleStringAnswer(index)}>
                         <input type="text" placeholder='단답형 텍스트' readOnly />
                     </div>
                 );
                 break;
             case 'longText':
                 result = (
-                    <div className='answerBox longText' onChange={ handleStringAnswer(index) }>
+                    <div className='answerBox longText' onChange={handleStringAnswer(index)}>
                         <input type="text" placeholder='장문형 텍스트' readOnly />
                     </div>
                 );
                 break;
-            default :
+            default:
                 break;
         }
 
@@ -303,9 +305,9 @@ const CreateNewSurvey = (props) => {
         let obj = { ...copy_form[idx] };
 
         // 없다면 객체형태의 answer를 만들어줌
-        if(obj.answer === undefined)
+        if (obj.answer === undefined)
             obj.answer = {};
-        else 
+        else
             obj.answer = { ...obj.answer };
 
         obj.answer[num] = e.target.checked;
@@ -334,21 +336,21 @@ const CreateNewSurvey = (props) => {
 
     const handleFile = (e) => {
         const pathPoint = e.target.value.indexOf('.');
-        const filePoint = e.target.value.substr(pathPoint+1, e.length);
+        const filePoint = e.target.value.substr(pathPoint + 1, e.length);
         const fileType = filePoint.toLowerCase();
-        if(fileType == 'jpg'|| fileType == 'jpeg' || fileType == 'png') {
+        if (fileType == 'jpg' || fileType == 'jpeg' || fileType == 'png') {
 
-        } else  {
+        } else {
             alert('이미지파일만 선택가능합니다.')
             return false;
         }
-        
+
         setImgFIle(e.target.files[0]);
     }
 
     // 설문 제목 글자수 제한
     const onhandleSubject = (e) => {
-        if(e.target.value.length > 100) {
+        if (e.target.value.length > 100) {
             return alert('최대 100글자까지 입력가능합니다.');
         }
 
@@ -356,11 +358,20 @@ const CreateNewSurvey = (props) => {
     }
 
     const onhandleContent = (e) => {
-        if(e.target.value.length > 200) {
+        if (e.target.value.length > 200) {
             return alert('최대 200글자까지 입력가능합니다.');
         }
         setScontent(e.target.value);
     }
+
+    // loading-spinner
+    const [color, setColor] = useState('#5E00FF');
+
+    const override = css`
+        display: block,
+        margin: 0 auto,
+        border: 1px solid red;
+    `;
 
     return (
         <>
@@ -370,9 +381,9 @@ const CreateNewSurvey = (props) => {
                     <h2 className='titleLeft'>새 설문 등록</h2>
                 </div>
             </div>
-            
+
             {/* createForm */}
-            <section className="createSurveyFormSection">    
+            <section className="createSurveyFormSection">
                 {/* <NewSurveyInfoFormComponent /> */}
                 <div className='createNewSurveyInfoContainer'>
                     <div className="subTitleWrap">
@@ -383,28 +394,28 @@ const CreateNewSurvey = (props) => {
                     {/* newSurveyRow = 100% 다 차지, newSurveyHalfRow = 반만 차지 */}
                     <div className="surveyInfoBox">
                         <div className='titleRow'>
-                            <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100' 
-                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleSubject}
-                             />
+                            <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100'
+                                onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleSubject}
+                            />
                         </div>
                         <div className='newSurveyRow'>
                             <textarea rows='2' cols='100' id='contentInput' placeholder='설문 설명 입력' maxLength='200'
-                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleContent} />
+                                onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleContent} />
                         </div>
                         <div className='newSurveyRow'>
-                            <input type='text' placeholder='태그 입력 (쉼표로 구분해서 입력)' maxLength='50' 
-                            onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setTag(e.target.value); }} />
+                            <input type='text' placeholder='태그 입력 (쉼표로 구분해서 입력)' maxLength='50'
+                                onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setTag(e.target.value); }} />
                         </div>
                         <div className='newSurveyHalfRow'>
                             <div className="halfRowLeft">
                                 <div className='fileInputBox'>
-                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부'  maxLength='200'
-                                    onFocus={inputOnFocus} onBlur={inputOnBlur} value={imgFile.name || ''} onChange={e => { setImg(e.target.value) }} />
-                                    
+                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부' maxLength='200'
+                                        onFocus={inputOnFocus} onBlur={inputOnBlur} value={imgFile.name || ''} onChange={e => { setImg(e.target.value) }} />
+
                                     <label htmlFor="file">
                                         <p id="appendIcon" className='infoIcon'></p>
                                     </label>
-                                    <input type="file" id='file' accept='image/jpg, image/jpeg, image/png' onChange={handleFile} style={{ display:'none' }} />
+                                    <input type="file" id='file' accept='image/jpg, image/jpeg, image/png' onChange={handleFile} style={{ display: 'none' }} />
                                 </div>
                                 <div className="commentBox">
                                     <p className='newSurveyComment'>* 썸네일로 사용할 이미지가 첨부되지 않았을 시에는 임의의 이미지로 대체합니다.</p>
@@ -412,7 +423,7 @@ const CreateNewSurvey = (props) => {
                             </div>
                             <div className='halfRowRight'>
                                 <div className="datePickerBox">
-                                    <DatePicker 
+                                    <DatePicker
                                         selected={sdate}
                                         onChange={date => setSdate(date)}
                                         dateFormat='yyyy/MM/dd'
@@ -421,9 +432,9 @@ const CreateNewSurvey = (props) => {
                                         readOnly
                                     />
                                     <span className='inputCenter'> ~ </span>
-                                    <DatePicker 
+                                    <DatePicker
                                         selected={edate}
-                                        onChange={date => {setEdate(date)}}
+                                        onChange={date => { setEdate(date) }}
                                         selectsEnd
                                         startDate={sdate}
                                         endDate={edate}
@@ -437,7 +448,7 @@ const CreateNewSurvey = (props) => {
                                         <p id="calendarIcon" className='infoIcon'></p>
                                     </button>
                                 </div>
-                                
+
                                 <div className="commentBox">
                                     <p className='newSurveyComment'>* 기간은 최소1일부터 최대 30일까지 가능합니다.</p>
                                 </div>
@@ -447,42 +458,42 @@ const CreateNewSurvey = (props) => {
                 </div>
 
                 {/* <NewSurveyQnaFormComponent /> */}
-                        <div className='createSurveyQnaContainer'>
-                            <div className="subTitleWrap">
-                                <p className="subTitleLine">
-                                    <span className="subTitle">질문 입력</span>
-                                </p>
-                            </div>
-                            {surveyForm.map((item, idx) => {
-                                return (
-                                    <div className='surveyEach' key={idx}>
-                                        {/* surveyForm = 테두리 스타일링, padding 값 */}
-                                        <div className='questionTypeWrap'>
-                                            <div className='questionBox'>
-                                                <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setQuestion(idx)} />
-                                                {/* <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setQuestion(e.target.value) }} /> */}
-                                            </div>
-                                            <div className='typeBox'>
-                                                <Select
-                                                    styles={styles}
-                                                    options={options}
-                                                    onChange={setAnswerType(idx)}
-                                                    isSearchable={false}
-                                                    defaultValue={options[0]}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div>{ renderAnswerInputType(item, idx) }</div>
-
-                                        <div className='deleteBox'>
-                                            <button className='deleteBtn' onClick={popForm(idx)}>
-                                                <p className="deleteIcon"></p>
-                                            </button>
-                                        </div>
+                <div className='createSurveyQnaContainer'>
+                    <div className="subTitleWrap">
+                        <p className="subTitleLine">
+                            <span className="subTitle">질문 입력</span>
+                        </p>
+                    </div>
+                    {surveyForm.map((item, idx) => {
+                        return (
+                            <div className='surveyEach' key={idx}>
+                                {/* surveyForm = 테두리 스타일링, padding 값 */}
+                                <div className='questionTypeWrap'>
+                                    <div className='questionBox'>
+                                        <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setQuestion(idx)} />
+                                        {/* <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setQuestion(e.target.value) }} /> */}
                                     </div>
-                                )
-                            })}
-                        </div>
+                                    <div className='typeBox'>
+                                        <Select
+                                            styles={styles}
+                                            options={options}
+                                            onChange={setAnswerType(idx)}
+                                            isSearchable={false}
+                                            defaultValue={options[0]}
+                                        />
+                                    </div>
+                                </div>
+                                <div>{renderAnswerInputType(item, idx)}</div>
+
+                                <div className='deleteBox'>
+                                    <button className='deleteBtn' onClick={popForm(idx)}>
+                                        <p className="deleteIcon"></p>
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
                 <div className='addWrap'>
                     <div className="addBox">
                         <button className='addQnA' onClick={addForm}>
@@ -503,6 +514,13 @@ const CreateNewSurvey = (props) => {
                     </div>
                 </div>
             </section>
+            {loading ?
+                <div className="spinnerContainer">
+                    <ScaleLoader color={color} loading={true} css={override} size={150} />
+                </div>
+                :
+                false
+            }
         </>
     )
 }

@@ -87,7 +87,7 @@ const EndDetail = (props) => {
                                                 <div className="chartBox" key={answer.AIDX}>
                                                     <p className="labelPercent">
                                                         <span className="chartLabel">{answer.ANSWER}</span>
-                                                        <span className="chartPercent">{answer.ageCount[`ca${answer.AIDX}Rate`] + '%'}</span>
+                                                        <span className="chartPercent">{answer.ageCount[`ca${answer.AIDX}Rate`] || '0'}%</span>
                                                     </p>
                                                     <div className="chartLine">
                                                         <ul className="chartBar" style={{width: (answer && answer.ageCount && answer.ageCount[`ca${answer.AIDX}Rate`] + '%') || '0%'}}>

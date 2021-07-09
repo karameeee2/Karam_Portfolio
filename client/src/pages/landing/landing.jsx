@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import '../../css/mainSection/landing.css';
 
 const Landing = (props) => {
@@ -21,9 +22,11 @@ const Landing = (props) => {
                                     <p className="smallText">
                                         필요한 데이터에 대한 설문을 검색하고, 새로운 설문을 등록해 나에게 꼭 필요한 정보와 데이터 및 통계를 얻어보세요.
                                     </p>
-                                    <button className="freeStart">
-                                        무료로 시작하기
-                                    </button>
+                                    <Link to='/login'>
+                                        <button className="freeStart">
+                                            무료로 시작하기
+                                        </button>
+                                    </Link>
                                 </div>
                                 <div className="imageBox halfBox">
                                     <div className="changeImage">

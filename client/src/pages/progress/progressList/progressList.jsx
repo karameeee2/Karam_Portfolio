@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useEffect } from 'react';
 import { CommonUtils } from '../../../utils/common';
 import ReactPaginate from 'react-paginate';
 import '../../../css/common/pageTitle.css';
