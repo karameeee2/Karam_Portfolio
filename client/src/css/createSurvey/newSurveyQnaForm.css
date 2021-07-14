@@ -8,6 +8,9 @@
     position: relative; width: 100%; margin-bottom: 24px; padding: 48px; box-sizing: border-box; border-radius: 4px; background-color: #FFF;
     box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
 }
+.surveyEach input:focus {
+    border-bottom: 2px solid #5E00FF !important;
+}
 .createSurveyQnaContainer div.surveyEach:last-child {
     margin-bottom: 0;
 }

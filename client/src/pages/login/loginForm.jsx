@@ -5,6 +5,7 @@ import '../../css/common/pageTitle.css';
 
 const LoginForm = (props) => {
     const loginSubmit = props.onSubmit;
+    const {idInput, passwordInput, setIdInput, setPasswordInput} = props;
 
     const noService = () => {
         alert('서비스 준비중입니다.');
@@ -25,8 +26,10 @@ const LoginForm = (props) => {
                         e.stopPropagation();
                         e.preventDefault();
                         loginSubmit(e.target.id.value, e.target.password.value)}}>
-                        <input type='text' className='idInput' name='id' placeholder='아이디' />
-                        <input type='password' className='passwordInput' name='password' placeholder='비밀번호' />
+                        <input type='text' className='idInput' name='id' id='loginId' value={idInput} placeholder='아이디(이메일)' 
+                        onChange={ e => { setIdInput(e.target.value)}} />
+                        <input type='password' className='passwordInput' name='password' value={passwordInput} placeholder='비밀번호' 
+                        onChange={ e => { setPasswordInput(e.target.value)}} />
                         <button type='submit' className='loginBtn'>로그인</button>
                     </form>
                     <div className="registerBtnWrap">

@@ -32,14 +32,6 @@ const CreateNewSurvey = (props) => {
         setAnswer(arr)
     }
 
-    // input 활성화/비활성화 css 추가
-    const inputOnFocus = (e) => {
-        e.target.classList.add('infoActiveFocus');
-    }
-
-    const inputOnBlur = (e) => {
-        e.target.classList.remove('infoActiveFocus');
-    }
     // select
     const styles = {
         // 옵션들에 대한 스타일 정의
@@ -214,8 +206,7 @@ const CreateNewSurvey = (props) => {
                                     <span className="radio">
                                         <p className="radioIcon"></p>
                                     </span>
-                                    {/* <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={() => {setAnswer(idx, {qidx: item.QIDX})}} /> */}
-                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setAnswer(index, idx)} />
+                                    <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onChange={_setAnswer(index, idx)} />
                                     <button className="deleteOption" onClick={popOption(idx)}>
                                         <p className="deleteOptionIcon"></p>
                                     </button>
@@ -247,7 +238,7 @@ const CreateNewSurvey = (props) => {
             //                         <span className="checkbox">
             //                             <p className="checkBoxIcon"></p>
             //                         </span>
-            //                         <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setAnswer(index,idx)} />
+            //                         <input className='options' type="text" placeholder={'옵션' + (idx + 1)} onChange={_setAnswer(index,idx)} />
             //                         <button className="deleteOption" onClick={popOption(idx)}>
             //                             <p className="deleteOptionIcon"></p>
             //                         </button>
@@ -394,24 +385,19 @@ const CreateNewSurvey = (props) => {
                     {/* newSurveyRow = 100% 다 차지, newSurveyHalfRow = 반만 차지 */}
                     <div className="surveyInfoBox">
                         <div className='titleRow'>
-                            <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100'
-                                onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleSubject}
-                            />
+                            <input type='text' id='titleInput' placeholder='설문 제목 입력' maxLength='100' onChange={onhandleSubject} />
                         </div>
                         <div className='newSurveyRow'>
-                            <textarea rows='2' cols='100' id='contentInput' placeholder='설문 설명 입력' maxLength='200'
-                                onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={onhandleContent} />
+                            <textarea rows='2' cols='100' id='contentInput' placeholder='설문 설명 입력' maxLength='200' onChange={onhandleContent} />
                         </div>
                         <div className='newSurveyRow'>
-                            <input type='text' placeholder='태그 입력 (쉼표로 구분해서 입력)' maxLength='50'
-                                onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setTag(e.target.value); }} />
+                            <input type='text' placeholder='태그 입력 (쉼표로 구분해서 입력)' maxLength='50' onChange={e => { setTag(e.target.value); }} />
                         </div>
                         <div className='newSurveyHalfRow'>
                             <div className="halfRowLeft">
                                 <div className='fileInputBox'>
-                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부' maxLength='200'
-                                        onFocus={inputOnFocus} onBlur={inputOnBlur} value={imgFile.name || ''} onChange={e => { setImg(e.target.value) }} />
-
+                                    <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부' maxLength='200' 
+                                    value={imgFile.name || ''} onChange={e => { setImg(e.target.value) }} />
                                     <label htmlFor="file">
                                         <p id="appendIcon" className='infoIcon'></p>
                                     </label>
@@ -470,8 +456,7 @@ const CreateNewSurvey = (props) => {
                                 {/* surveyForm = 테두리 스타일링, padding 값 */}
                                 <div className='questionTypeWrap'>
                                     <div className='questionBox'>
-                                        <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={_setQuestion(idx)} />
-                                        {/* <input type="text" placeholder='질문' onFocus={inputOnFocus} onBlur={inputOnBlur} onChange={e => { setQuestion(e.target.value) }} /> */}
+                                        <input type="text" placeholder='질문' onChange={_setQuestion(idx)} />
                                     </div>
                                     <div className='typeBox'>
                                         <Select

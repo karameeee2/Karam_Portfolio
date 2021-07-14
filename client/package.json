@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "build": "rm -Rf ./dist && webpack",
+    "build": "GENERATE_SOURCEMAP=false rm -Rf ./dist && webpack",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

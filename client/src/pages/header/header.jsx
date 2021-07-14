@@ -57,7 +57,7 @@ const Header = (props) => {
                                     <div className="userViewBox">
                                         <div className="helloBox">
                                             <p className="hello">안녕하세요!</p>
-                                            {/* <p className="nickName">{cookie.nickName}님</p> */}
+                                            <p className="nickName">회원님</p>
                                         </div>
                                         {/* <p className="myPageLine line22">
                                             <Link to='/mypage'>마이페이지</Link>
