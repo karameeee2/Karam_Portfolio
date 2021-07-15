@@ -14,7 +14,7 @@ const RegisterComplete = () => {
                     </div>
                 </div>
                 <div className="completeTextBox">
-                    <p className="completeText">회원가입 완료~!</p>
+                    <p className="completeText">회원가입이 완료되었습니다.</p>
                     <br />
                     <p className="completeText">
                     로그인 후 다양한 설문에 응답하고 내가 필요한 설문을 등록해 다양한 데이터를 얻어보세요!
@@ -24,11 +24,11 @@ const RegisterComplete = () => {
                 </div>
                 <div className="completeBtnWrap">
                     <div className="completeBtnBox">
-                        <Link to='/login'>
-                            <button type='submit' className="loginBtn">로그인</button>
-                        </Link>
                         <Link to='/'>
                             <button type='button' className="homeBtn">홈</button>
+                        </Link>
+                        <Link to='/login'>
+                            <button type='submit' className="loginBtn">로그인</button>
                         </Link>
                     </div>
                 </div>

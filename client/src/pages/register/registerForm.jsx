@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { css } from '@emotion/react'
 import '../../css/register/registerForm.css';
 import '../../css/common/pageTitle.css';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 const RegisterForm = (props) => {
     const registerSubmit = props.onSubmit;
 
-    const {setId, setPassword, setName, setNickName, setGender, setBirth, idCheck, isOverlap, errorText} = props;
+    const {setId, setPassword, setName, setNickName, setGender, setBirth, idCheck, isOverlap, errorText, loading} = props;
 
-    // input 활성화/비활성화 css 추가
-    const inputOnFocus = (e) => {
-        // e.target.classList.add('infoActiveFocus');
-    }
+    // loading-spinner
+    const [color, setColor] = useState('#5E00FF');
 
-    const inputOnBlur = (e) => {
-        // e.target.classList.remove('infoActiveFocus');
-    }
+    const override = css`
+        display: block,
+        margin: 0 auto,
+    `;
 
     return(
-        <div className='registerFormContainer'>
+        <>
             <div className="registerFormWrap">
                 {/* pageTitle */}
                 <div className="pageTitleBox">
@@ -59,7 +60,14 @@ const RegisterForm = (props) => {
                     </div>
                 </form>
             </div>
-        </div>
+            {loading ?
+                <div className="spinnerContainer">
+                    <ScaleLoader color={color} loading={true} css={override} size={150} />
+                </div>
+                :
+                false
+            }
+        </>
     );
 }
 

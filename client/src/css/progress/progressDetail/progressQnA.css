@@ -38,3 +38,16 @@
 input[type='radio']:checked {
     background-color: #5E00FF; font-weight: 400;
 } */
+
+/* spinner */
+.spinnerContainer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    z-index: 300;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

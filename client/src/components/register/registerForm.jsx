@@ -16,6 +16,8 @@ const RegisterFormComponent = () => {
     const [isOverlap, setIsOverlap] = useState(false); // 아이디 중복
     const [errorText, setErrorText] = useState('');
 
+    const [loading, setLoading] = useState(false);
+
     const idCheck = (e) => {
         e.preventDefault();
         if (!id) {
@@ -81,6 +83,8 @@ const RegisterFormComponent = () => {
         }
 
         let url = API_LIST.REGISTER;
+        setLoading(true);
+
         Axios.post(url, {
             id: id,
             password: password,
@@ -91,17 +95,19 @@ const RegisterFormComponent = () => {
         })
         .then(res => {
             // console.log('register success', res);
-            window.location.href='/login';
+            window.location.href='/registerComplete';
         })
         .catch(err => {
             console.log('register error', err, err.res);
+            setLoading(false);
         })
     }
 
     return (
         <section className="registerFormSection">
             <RegisterForm onSubmit={registerSubmit} idCheck={idCheck} isOverlap={isOverlap} errorText={errorText}
-            setId={setId} setPassword={setPassword} setName={setName} setNickName={setNickName} setGender={setGender} setBirth={setBirth} />
+            setId={setId} setPassword={setPassword} setName={setName} setNickName={setNickName} setGender={setGender} setBirth={setBirth}
+            loading={loading} />
         </section>
     );
 }

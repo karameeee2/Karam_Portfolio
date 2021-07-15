@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../../css/common/pageTitle.css';
 import '../../../css/common/detailInfo.css';
 import '../../../css/progress/progressDetail/progressDetail.css';
@@ -7,11 +7,21 @@ import '../../../css/common/detailBtn.css';
 import thumbnail1 from '../../../assets/thumbnail/thumbnail_basic.png';
 import { CommonUtils } from '../../../utils/common';
 import { Link } from 'react-router-dom';
+import { css } from '@emotion/react';
+import ScaleLoader from 'react-spinners/ScaleLoader';
 
 
 const ProgressDetail = (props) => {
-    const { surveyDetail, questionList, _setCheckedList, isJoin, mySurveyAnswer, checkedList } = props;
+    const { surveyDetail, questionList, _setCheckedList, isJoin, mySurveyAnswer, checkedList, loading } = props;
     const joinSurveySubmit = props.onSubmit;
+
+    // loading-spinner
+    const [color, setColor] = useState('#5E00FF');
+
+    const override = css`
+        display: block,
+        margin: 0 auto,
+    `;
 
     return (
         <>
@@ -103,6 +113,13 @@ const ProgressDetail = (props) => {
                     </div>
                 }
             </div>
+            {loading ?
+                <div className="spinnerContainer">
+                    <ScaleLoader color={color} loading={true} css={override} size={150} />
+                </div>
+                :
+                false
+            }
 
             {/* <PageTitle pageTitle='진행중인 설문' />
             <section className='infoQnASection'>

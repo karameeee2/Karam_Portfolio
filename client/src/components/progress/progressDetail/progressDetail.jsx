@@ -12,6 +12,7 @@ const ProgressDetailComponent = (props) => {
     const [mySurveyAnswer, setMySurveyAnswer] = useState([]);
     const [questionList, setQuestionList] = useState([]);
     const [checkedList, setCheckedList] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         getSurveyDetail();
@@ -94,6 +95,8 @@ const ProgressDetailComponent = (props) => {
     const joinSurveySubmit = () => {
         let arr = Object.values({...checkedList})
         let url = API_LIST.JOIN_SURVEY;
+        setLoading(true);
+
         Axios.post(url, {
             sidx: sidx,
             checkedList: arr
@@ -103,12 +106,13 @@ const ProgressDetailComponent = (props) => {
         })
         .catch(err => {
             console.log('joinSurveySubmit error', err, err.res);
+            setLoading(false);
         })
     }
 
     return (
         <ProgressDetail pageTitle={ '진행중인 설문' } sidx={sidx} surveyDetail={surveyDetail} joinSurveyCheck={joinSurveyCheck} isJoin={isJoin} mySurveyAnswer={mySurveyAnswer}
-        questionList={questionList} checkedList={checkedList} _setCheckedList={_setCheckedList} onSubmit={joinSurveySubmit} />
+        questionList={questionList} checkedList={checkedList} _setCheckedList={_setCheckedList} onSubmit={joinSurveySubmit} loading={loading} />
     )
 }
 
