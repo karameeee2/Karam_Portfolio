@@ -18,11 +18,11 @@ const LoginFormComponent = (props) => {
         setPasswordInput('');
     }
 
-    const loginSubmit = (id, password) => {
+    const loginSubmit = () => {
         let url = API_LIST.LOGIN;
         Axios.post(url, {
-            id: id, 
-            password: password
+            id: idInput, 
+            password: passwordInput
         }, {
             withCredentials: true
         }) 
@@ -37,6 +37,12 @@ const LoginFormComponent = (props) => {
             document.getElementById('loginId').focus();
             console.log('login error', err, err.res);
         })
+    }
+
+    const passwordInputOnEnter = (e) => {
+        if(e.keyCode === 13) {
+            loginSubmit();
+        }
     }
 
     // deserializeUser가 호출되나
@@ -59,6 +65,7 @@ const LoginFormComponent = (props) => {
     return(
         <section className="loginFormSection">
             <LoginForm onSubmit={ loginSubmit } idInput={idInput} passwordInput={passwordInput} setIdInput={setIdInput} setPasswordInput={setPasswordInput} 
+            passwordInputOnEnter={passwordInputOnEnter}
             id={id} password={password} />
         </section>
     );

@@ -5,7 +5,7 @@ import '../../css/common/pageTitle.css';
 
 const LoginForm = (props) => {
     const loginSubmit = props.onSubmit;
-    const {idInput, passwordInput, setIdInput, setPasswordInput} = props;
+    const {idInput, passwordInput, setIdInput, setPasswordInput, passwordInputOnEnter} = props;
 
     const noService = () => {
         alert('서비스 준비중입니다.');
@@ -22,16 +22,13 @@ const LoginForm = (props) => {
                     </div>
                 </div>
                 <div className="loginFormWrap">
-                    <form className="loginInputWrap" method='post' onSubmit={ e => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        loginSubmit(e.target.id.value, e.target.password.value)}}>
+                    <div className="loginInputWrap">
                         <input type='text' className='idInput' name='id' id='loginId' value={idInput} placeholder='아이디(이메일)' 
                         onChange={ e => { setIdInput(e.target.value)}} />
                         <input type='password' className='passwordInput' name='password' value={passwordInput} placeholder='비밀번호' 
-                        onChange={ e => { setPasswordInput(e.target.value)}} />
-                        <button type='submit' className='loginBtn'>로그인</button>
-                    </form>
+                        onChange={ e => { setPasswordInput(e.target.value)}} onKeyUp={passwordInputOnEnter} />
+                        <button className='loginBtn' onClick={loginSubmit}>로그인</button>
+                    </div>
                     <div className="registerBtnWrap">
                         <Link to='/register'>
                             <button className='registerBtn'>회원가입</button>
