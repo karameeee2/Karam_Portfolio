@@ -30,7 +30,6 @@ const LoginFormComponent = (props) => {
             if(res.status === 200) {
                 window.location.href= '/';
             }
-            
         })
         .catch(err => {
             alert('아이디 또는 비밀번호가 일치하지 않습니다.');
