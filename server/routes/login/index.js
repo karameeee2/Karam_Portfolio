@@ -16,15 +16,16 @@ passport.deserializeUser((id, done) => {
 })
 
 router.post('/', passport.authenticate('local-login', {
-    failureRedirect : '/login',
+    // failureRedirect : '/login',
 }), (req, res) => {
     req.session.save(() => {
         if(req.user){
             // return res.redirect('/' + req.user.id );
             // console.log('req.user::', req.user);
             return res.redirect(200, '/');
+        } else {
+            return res.status(404).send();
         }
-        return res.redirect('/login');
     })
 })
 
