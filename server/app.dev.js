@@ -8,6 +8,7 @@ const cors = require('cors');
 const routes = require('./routes');
 const passport = require('passport');
 const passportConfig = require('./config/passport');
+require('dotenv').config({path: './.env'})
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 app.use(

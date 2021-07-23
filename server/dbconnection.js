@@ -1,7 +1,7 @@
 const mysql = require('mysql');
-
+require('dotenv').config();
 console.log('dbconnection process.env.NODE_ENV: ', process.env.NODE_ENV);
-const host = process.env.NODE_ENV === 'development' ? '127.0.0.1' : 'surveyon.cz9kdiazwbth.ap-northeast-2.rds.amazonaws.com';
+const host = process.env.NODE_ENV === 'development' ? '127.0.0.1' : process.env.DB_HOST;
 const dbconnection = mysql.createPool ({
     host: host,
     port: 3306,

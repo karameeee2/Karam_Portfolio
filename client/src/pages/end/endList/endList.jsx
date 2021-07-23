@@ -43,7 +43,9 @@ const EndList = (props) => {
                         {activeEndList.map((item) => {
                             return (
                                 <li className="prevBox" key={item.SIDX}>
-                                    <img className="prevThumbnail" src={item.SIMG || thumbnail1} alt='설문 썸네일 이미지' onError={e => e.target.src = thumbnail1} />
+                                    <div className='thumbnailCover'>
+                                        <img className="prevThumbnail" src={item.IMG || thumbnail1} alt='설문 썸네일 이미지'onError={e => {e.target.src = thumbnail1; e.target.onError = null;}} />
+                                    </div>
                                     <div className="prevInfoBox">
                                         <p className='prevNickname'>{item.NICKNAME}</p>
                                         <h3 className='prevSubject' id={item.SIDX} onClick={isLoginCheck}>{item.SSUBJECT}</h3>

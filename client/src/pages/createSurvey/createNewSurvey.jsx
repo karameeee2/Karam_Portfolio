@@ -16,7 +16,8 @@ import addDays from 'date-fns/addDays';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 
 const CreateNewSurvey = (props) => {
-    const { setSsubject, setScontent, setSdate, setEdate, sdate, edate, setTag, setImg, insertSurveySubmit, setQuestion, setAnswer, question, answer, loading } = props;
+    const { setSsubject, setScontent, setSdate, setEdate, sdate, edate, setTag, setImg, insertSurveySubmit, setQuestion, setAnswer, question, answer, loading,
+    img } = props;
 
     const _setQuestion = (index) => (e) => {
         let obj = { ...question }
@@ -323,7 +324,7 @@ const CreateNewSurvey = (props) => {
 
 
     //fileUpload
-    const [imgFile, setImgFIle] = useState('');
+    // const [imgFile, setImgFIle] = useState('');
 
     const handleFile = (e) => {
         const pathPoint = e.target.value.indexOf('.');
@@ -335,8 +336,8 @@ const CreateNewSurvey = (props) => {
             alert('이미지파일만 선택가능합니다.')
             return false;
         }
-
-        setImgFIle(e.target.files[0]);
+        // console.log(typeof e.target.files[0]);
+        setImg(e.target.files[0]);
     }
 
     // 설문 제목 글자수 제한
@@ -396,7 +397,7 @@ const CreateNewSurvey = (props) => {
                             <div className="halfRowLeft">
                                 <div className='fileInputBox'>
                                     <input className='fileName' readOnly type='text' placeholder='썸네일 이미지 파일 첨부' maxLength='200' 
-                                    value={imgFile.name || ''} onChange={e => { setImg(e.target.value) }} />
+                                    value={img && img.name || ''} />
                                     <label htmlFor="file">
                                         <p id="appendIcon" className='infoIcon'></p>
                                     </label>

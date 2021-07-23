@@ -46,17 +46,28 @@ const CreateNewSurveyComponent = () => {
         let url = API_LIST.NEW_SURVEY;
         setLoading(true);
 
-        Axios.post(url, {
-            ssubject: ssubject,
-            scontent: scontent,
-            sdate: start,
-            edate: end,
-            tag: tag,
-            img: img,
-            question: questionArr,
-            answer: answerArr
-        },{withCredentials:true})
-        .then(res => {
+        // 이미지가 있을때는 formData 로 모든 정보를 담아서 전송 
+        // if(img && typeof img === 'object') {
+        let formData = new FormData();
+        
+        questionArr = JSON.stringify(questionArr);
+        answerArr = JSON.stringify(answerArr);
+        
+        formData.append("ssubject", ssubject);
+        formData.append("scontent", scontent);
+        formData.append("sdate", start);
+        formData.append("edate", end);
+        formData.append("tag", tag);
+        formData.append("img", img);
+        formData.append("question", questionArr);
+        formData.append("answer", answerArr);
+        
+        Axios.post(url, formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data'
+            },
+            withCredentials: true
+        }).then(res => {
             // console.log('insert newSurvey success', res);
             window.location.href='/progressList';
         })
@@ -64,6 +75,26 @@ const CreateNewSurveyComponent = () => {
             console.log('insert newSurvey error', err, err.res);
             setLoading(false);
         })
+
+        // } else {
+            // Axios.post(url, {
+            //     ssubject: ssubject,
+            //     scontent: scontent,
+            //     sdate: start,
+            //     edate: end,
+            //     tag: tag,
+            //     question: questionArr,
+            //     answer: answerArr
+            // },{withCredentials:true})
+            // .then(res => {
+            //     // console.log('insert newSurvey success', res);
+            //     window.location.href='/progressList';
+            // })
+            // .catch(err => {
+            //     console.log('insert newSurvey error', err, err.res);
+            //     setLoading(false);
+            // })
+        // }
     }
 
     // useEffect(() => {
@@ -72,7 +103,7 @@ const CreateNewSurveyComponent = () => {
 
     return (
         <CreateNewSurvey insertSurveySubmit={insertSurveySubmit} setSsubject={setSsubject} setScontent={setScontent} 
-        setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg}
+        setSdate={setSdate} sdate={sdate} setEdate={setEdate} edate={edate} setTag={setTag} setImg={setImg} img={img}
         setQuestion={setQuestion} setAnswer={setAnswer} question={question} answer={answer} 
         loading={loading} />
     )

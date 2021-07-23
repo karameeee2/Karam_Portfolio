@@ -30,7 +30,9 @@ const EndDetail = (props) => {
                             </p>
                         </div>
                         <div className="detailInfoBox">
-                            <img className="infoThumbnail" src={surveyDetail.SIMG || thumbnail1} alt='설문조사 대표이미지' onError={e => e.target.src = thumbnail1} />
+                            <div className='thumbnailCover'>
+                                <img className="infoThumbnail" src={surveyDetail.SIMG || thumbnail1} alt='설문조사 대표이미지' onError={e => {e.target.src = thumbnail1; e.target.onError = null;}} />
+                            </div>
                             <div className="detailInfoWrap">
                                 <h3 className="infoSubject">{surveyDetail.SSUBJECT}</h3>
                                 <p className="infoContent">{surveyDetail.SCONTENT}</p>
