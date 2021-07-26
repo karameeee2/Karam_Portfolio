@@ -7,6 +7,8 @@ import '../../../css/common/detailBtn.css';
 
 const NoticeDetail = (props) => {
     const noticeDetail = props.noticeDetail;
+    // const updateHit = props.updateHit;
+    
     return(
         <>
             {/* pageTitle */}

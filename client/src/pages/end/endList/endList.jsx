@@ -56,7 +56,7 @@ const EndList = (props) => {
                                             <img src={hashIcon} alt="해시태그"/>{item.TAG}
                                         </p>
                                         <p className="prevJoin">
-                                            <img src={joinedIcon} alt="참여인원"/>참여인원 {100}명
+                                            <img src={joinedIcon} alt="참여인원"/>참여인원 {item.JOINCOUNT}명
                                         </p>
                                     </div>
                                 </li>

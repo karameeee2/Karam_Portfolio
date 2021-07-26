@@ -5,10 +5,12 @@ import NoticeDetail from '../../../pages/notice/noticeDetail/noticeDetail';
 
 const NoticeDetailComponent = (props) => {
     const [noticeDetail, setNoticeDetail] = useState({});
+    const [updateHit, setUpdateHit] = useState({});
     
     useEffect(() => {
         let nidx = props.match.params.nidx;
         getNoticeDetail(nidx);
+        getUpdateHit(nidx);
     }, []);
     
     const getNoticeDetail = (nidx) => {
@@ -19,6 +21,16 @@ const NoticeDetailComponent = (props) => {
         })
         .catch((err) => {
             console.log('noticeDetail error', err.response, err)
+        })
+    }
+    const getUpdateHit = (nidx) => {
+        let url = API_LIST.UPDATE_HIT;
+        Axios.get(url + `?nidx=${nidx}`)
+        .then(res => {
+            setUpdateHit(res.data[0])
+        })
+        .catch(err => {
+            console.log('updateHit error', err.res, err);
         })
     }
     return(

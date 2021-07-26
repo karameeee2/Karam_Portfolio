@@ -13,15 +13,16 @@ const EndListComponent = () => {
         getEndList();
     }, [])
 
+
     const getEndList = () => {
         let url = API_LIST.END_LIST;
         Axios.get(url)
-            .then((res) => {
-                setEndList(res.data);
-            })
-            .catch((err) => {
-                console.log('에러낫음', err.res, err);
-            })
+        .then((res) => {
+            setEndList(res.data);
+        })
+        .catch((err) => {
+            console.log('에러낫음', err.res, err);
+        })
     }
 
     const [activeEndList, setActiveEndList] = useState([]);

@@ -5,9 +5,9 @@ const host = process.env.NODE_ENV === 'development' ? '127.0.0.1' : 'surveyon.cz
 const mysql2_dbconnection = mysql.createPool ({
     host: host,
     port: 3306,
-    user: 'karameeee',
-    password: 'karam119',
-    database: 'surveyon',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
     multipleStatements: true,
 });
 

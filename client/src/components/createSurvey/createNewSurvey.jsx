@@ -35,19 +35,11 @@ const CreateNewSurveyComponent = () => {
 
         let start = CommonUtils.dateFormat(sdate)
         let end = CommonUtils.dateFormat(edate)
-
         let questionArr = Object.values({...question});
-
-        // []
-        // idx = question index
-        // {0: ['qwer','asdf'], 1: ['1234'], 2: ['zxcv'] }
-        
         let answerArr = Object.values({...answer});
         let url = API_LIST.NEW_SURVEY;
         setLoading(true);
 
-        // 이미지가 있을때는 formData 로 모든 정보를 담아서 전송 
-        // if(img && typeof img === 'object') {
         let formData = new FormData();
         
         questionArr = JSON.stringify(questionArr);
@@ -75,26 +67,6 @@ const CreateNewSurveyComponent = () => {
             console.log('insert newSurvey error', err, err.res);
             setLoading(false);
         })
-
-        // } else {
-            // Axios.post(url, {
-            //     ssubject: ssubject,
-            //     scontent: scontent,
-            //     sdate: start,
-            //     edate: end,
-            //     tag: tag,
-            //     question: questionArr,
-            //     answer: answerArr
-            // },{withCredentials:true})
-            // .then(res => {
-            //     // console.log('insert newSurvey success', res);
-            //     window.location.href='/progressList';
-            // })
-            // .catch(err => {
-            //     console.log('insert newSurvey error', err, err.res);
-            //     setLoading(false);
-            // })
-        // }
     }
 
     // useEffect(() => {

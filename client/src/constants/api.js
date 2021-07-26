@@ -13,10 +13,12 @@ export const API_LIST = {
     NEW_SURVEY: HOST + API + 'insertSurvey',
 
     END_LIST: HOST + API + 'selectEndList',
+    COUNT_JOINED_USER: HOST + API + 'countJoinedUser',
     AGE_COUNT: HOST + API + 'selectAgeCount',
 
     NOTICE_LIST: HOST + API + 'noticeList',
     NOTICE_DETAIL: HOST + API + 'noticeDetail',
+    UPDATE_HIT:HOST + API + 'updateHit',
 
     GET_SEARCH_RESULT: HOST + API + 'search',
     

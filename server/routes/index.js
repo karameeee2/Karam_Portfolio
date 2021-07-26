@@ -6,6 +6,7 @@ const router = express.Router();
 const selectMember = require('./selectMember/index');
 const register = require('./register/index');
 const idCheck = require('./idCheck/index');
+const countJoinedUser = require('./countJoinedUser/index');
 
 const selectSurveyList = require('./selectSurveyList/index');
 const selectEndList = require('./selectEndList/index');
@@ -27,6 +28,7 @@ const selectAgeCount = require('./selectAgeCount/index');
 
 const noticeList = require('./noticeList/index');
 const noticeDetail = require('./noticeDetail/index');
+const updateHit = require('./updateHIt/index');
 
 const login = require('./login/index');
 const logout = require('./logout/index');
@@ -39,6 +41,7 @@ const search = require('./search/index');
 router.use('/api/selectMember', selectMember);
 router.use('/api/register', register);
 router.use('/api/idCheck', idCheck);
+router.use('/api/countJoinedUser', countJoinedUser);
 
 router.use('/api/selectSurveyList', selectSurveyList);
 router.use('/api/selectEndList', selectEndList);
@@ -60,6 +63,7 @@ router.use('/api/selectAgeCount', selectAgeCount);
 
 router.use('/api/noticeList', noticeList);
 router.use('/api/noticeDetail', noticeDetail);
+router.use('/api/updateHIt', updateHit)
 
 router.use('/api/login', login);
 
