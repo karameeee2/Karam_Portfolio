@@ -27,4 +27,5 @@ export const API_LIST = {
     EX: HOST + API + 'ex',
     REGISTER_ID_CHECK: HOST+ API + 'idCheck',
     REGISTER: HOST + API + 'register',
+    NICKNAME: HOST + API + 'showNickname',
 }

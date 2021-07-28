@@ -30,6 +30,7 @@ const noticeList = require('./noticeList/index');
 const noticeDetail = require('./noticeDetail/index');
 const updateHit = require('./updateHIt/index');
 
+const showNickname = require('./showNickname/index');
 const login = require('./login/index');
 const logout = require('./logout/index');
 const withdraw = require('./withdraw/index');
@@ -42,6 +43,7 @@ router.use('/api/selectMember', selectMember);
 router.use('/api/register', register);
 router.use('/api/idCheck', idCheck);
 router.use('/api/countJoinedUser', countJoinedUser);
+router.use('/api/showNickname', showNickname);
 
 router.use('/api/selectSurveyList', selectSurveyList);
 router.use('/api/selectEndList', selectEndList);

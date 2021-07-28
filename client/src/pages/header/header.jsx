@@ -8,6 +8,7 @@ const Header = (props) => {
     const logout = props.logout;
     const userModalOn = props.userModalOn;
     const handleUserModal = props.handleUserModal;
+    const nickname = props.nickname;
 
     const showSearch = () => {
         let search = document.getElementById('search');
@@ -57,7 +58,7 @@ const Header = (props) => {
                                     <div className="userViewBox">
                                         <div className="helloBox">
                                             <p className="hello">안녕하세요!</p>
-                                            <p className="nickName">회원님</p>
+                                            <p className="nickName">{nickname}님</p>
                                         </div>
                                         {/* <p className="myPageLine line22">
                                             <Link to='/mypage'>마이페이지</Link>
