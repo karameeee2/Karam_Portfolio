@@ -9,11 +9,7 @@ const outputDirectory = 'dist';
 
 module.exports = {
     // 명시된 파일을 기준으로 의존성 트리를 만들어 하나의 번들파일을 만들어 내게 된다.
-    /* 아래의 코드는 이 코드의 축약본.. 그래서 번들링 결과물이 default로 main. 으로 시작하게됨.
-    entry: { 
-        main: './path/to/my/entry/file.js' 
-    }
-    */
+    /* 아래의 코드는 이 코드의 축약본.. 그래서 번들링 결과물이 default로 main. 으로 시작하게됨.*/
     entry: './src/index.js', // 다른모듈을 사용하고 있는 최상위 자바스크립트 파일을 적어준다.
 
     // 결과물이 어떻게 나올지 설정한다.
@@ -51,7 +47,18 @@ module.exports = {
                 loader: "style-loader!css-loader"    
             },
             {
-                test: /\.(png|svg|jpg)$/,
+                test: /\.(ico)$/,
+                use: [
+                    {loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    fallback: 'file-loader',
+                    esModule: false
+                }}
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|ico)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -77,11 +84,12 @@ module.exports = {
             minify: {
                 collapseWhitespace: true,
                 removeComments: true
-            }
-        })
+            },
+            favicon: path.resolve(__dirname, 'public', 'favicon.ico')
+        }),
     ],
 
     optimization: {
         minimize: true
-    }
+    },
 }
